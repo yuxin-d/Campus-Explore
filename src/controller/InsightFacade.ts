@@ -1,3 +1,4 @@
+import { privateEncrypt } from "crypto";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 
 /**
@@ -12,7 +13,7 @@ export default class InsightFacade implements IInsightFacade {
 		dataSets = [];
 	}
 
-/**
+	/**
 	 * Add a dataset to insightUBC.
 	 *
 	 * @param id  The id of the dataset being added. Follows the format /^[^_]+$/
@@ -45,7 +46,6 @@ export default class InsightFacade implements IInsightFacade {
 		// 	console.log(txt)
 		// })
 		return new Promise((resolve, reject) => {
-			console.log("start", id)
 			let fs = require("fs");
 			let JSZip = require("jszip");
 			let zip = new JSZip();
@@ -53,58 +53,23 @@ export default class InsightFacade implements IInsightFacade {
 			let toReject: boolean = false;
 			if (this.checkAddId(id)) { // is valid
 				let addedCourses: any[] = [];
-				zip.loadAsync(content, {base64: true}).then(function(dataset: any) {
+				zip.loadAsync(content, {base64: true}).then((dataset: any) => {
 					numRows = Object.keys(dataset.files).length;
 					// Need to check what happens if courses is not a folder
-					let allFiles: any = dataset.folder("courses")["files"]
-					let allKeys = Object.keys(allFiles)
-					numRows = allKeys.length -1;
+					let allFiles: any = dataset.folder("courses")["files"];
+					let allKeys = Object.keys(allFiles);
+					numRows = allKeys.length - 1;
 					if (numRows < 1) {
 						reject(new InsightError("Invalid Data"));
 					}
-					for (let i = 0; i < allKeys.length; i++) {
-						if (allKeys[i].length > 8) {
-							addedCourses.push(allFiles[allKeys[i]].async("string")); //Push to list of promises which return file content
+					for (const key of allKeys) {
+						if (key.length > 8) {
+							addedCourses.push(allFiles[key].async("string"));
 						}
 					}
-					return Promise.all(addedCourses).then((courses) => {
-						let allSections: any[] = [];
-						if (courses.length < 1) {
-							console.log("failure here1")
-							reject(new InsightError("Empty dataset"));
-						}
-						courses.forEach((course) => {
-							let result: any[];
-							try {
-								result =  JSON.parse(course)["result"]; // this is a list of sections
-								if (result.length < 1) {
-									return reject(new InsightError());
-								}
-								result.forEach((section) => {
-									let thisSection: any = {
-															dept: section["Subject"],
-															id: section["Course"],
-															avg: section["Avg"],
-															instructor: section["Professor"],
-															title: section["Title"],
-															pass: section["Pass"],
-															fail: section["Fail"],
-															audit: section["Audit"],
-															uuid: section["id"],
-															year: section["Year"]
-									};
-									allSections.push(thisSection);
-								})
-							} catch {
-								console.log("failure here2")
-								return reject(new InsightError());
-							}
-						})
-						console.log("reach inner resolve")
-						resolve([]);
-					})
+					return this.readCourses(addedCourses);
 				}).then(
-					function(success: any) {
+					(success: any) => {
 						// https://stackoverflow.com/questions/51577849/how-to-save-an-array-of-strings-to-a-json-file-in-javascript
 						// https://stackoverflow.com/questions/12899061/creating-a-file-only-if-it-doesnt-exist-in-node-js
 						// fs.writeFile(`./src/data/${id}.json`, JSON.stringify(allSections), {flag: "wx"}, function (error: any) {
@@ -114,28 +79,64 @@ export default class InsightFacade implements IInsightFacade {
 						// 		return reject(new InsightError("Could not write"));
 						// 	}
 						// });
-						console.log("success2")
-						let newDataset = {
-						id: id,
-						kind: kind,
-						numRows: numRows
-						};
-						dataSets.push(newDataset); // Add new dataset
+						this.confirmAddDataset(id, kind, numRows);
 						return resolve(dataSets.map((dataset) => {
 							return dataset.id;
 						}));
 					},
 					function(error: any) {
-						console.log("rejected")
-						reject(error);
+						reject(new InsightError());
 					}
-				)
+				);
 			} else {
 				return reject(new InsightError("ID Error"));
 			}
-		})
+		});
 	}
-	
+	private confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number) {
+		let newDataset = {
+			id: id,
+			kind: kind,
+			numRows: numRows
+		};
+		dataSets.push(newDataset); // Add new dataset
+	}
+
+
+	private readCourses(addedCourses: any[]): Promise<void | any[]> {
+		return Promise.all(addedCourses).then((courses) => {
+			let allSections: any[] = [];
+			if (courses.length < 1) {
+				throw new InsightError("Empty dataset");
+			}
+			courses.forEach((course) => {
+				let result: any[];
+				try {
+					result =  JSON.parse(course)["result"]; // this is a list of sections
+					if (result.length < 1) {
+						throw new InsightError("Empty course");
+					}
+					result.forEach((section) => {
+						let thisSection: any = {
+							dept: section["Subject"],
+							id: section["Course"],
+							avg: section["Avg"],
+							instructor: section["Professor"],
+							title: section["Title"],
+							pass: section["Pass"],
+							fail: section["Fail"],
+							audit: section["Audit"],
+							uuid: section["id"],
+							year: section["Year"]
+						};
+						allSections.push(thisSection);
+					});
+				} catch {
+					throw new InsightError("Failed to read course");
+				}
+			});
+		});
+	}
 	// https://stackoverflow.com/questions/10261986/
 	// how-to-detect-string-which-only-contains-white-spaces/50971250 code for whitespaces
 	private checkAddId(id: string): boolean {
@@ -155,12 +156,13 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	private isDatasetsContainsId(id: string) {
+		let isContains: boolean = false;
 		dataSets.forEach((element) => {
 			if (element.id === id) {
-				return true;
+				isContains = true;
 			}
 		});
-		return false;
+		return isContains;
 	}
 
 	public removeDataset(id: string): Promise<string> {
@@ -256,3 +258,4 @@ export default class InsightFacade implements IInsightFacade {
 		return false;
 	}
 }
+
