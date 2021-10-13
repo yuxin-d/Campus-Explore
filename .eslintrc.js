@@ -26,6 +26,7 @@ module.exports = {
 			"rules": {
 				"max-lines": "off",
 				"max-lines-per-function": "off",
+				"max-nested-callbacks": "off",
 				"no-unused-expressions": "off"
 			}
 		}
@@ -70,10 +71,13 @@ module.exports = {
 		"curly": "error",
 		"eol-last": "error",
 		"eqeqeq": ["error", "always", {"null": "ignore"}],
-		"indent": ["error", "tab", {"ignoreComments": true}],
+		"indent": ["error", "tab", {"ignoreComments": true, "SwitchCase": 1}],
+		"lines-between-class-members": ["error", "always", {"exceptAfterSingleLine": true}],
 		"max-len": ["error", {"code": 120, "ignoreComments": true}],
 		"max-lines-per-function": ["error", {"max": 50, "skipComments": true}],
 		"max-lines": ["error", 300],
+		"max-nested-callbacks": ["error", 2],
+		"max-statements-per-line": "error",
 		"new-parens": "error",
 		"no-bitwise": "error",
 		"no-caller": "error",
