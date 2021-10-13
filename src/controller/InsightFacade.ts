@@ -7,10 +7,24 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFou
  *
  */
 let dataSets: InsightDataset[];
+let allSections: any[] = [];
 export default class InsightFacade implements IInsightFacade {
 	constructor() {
 		console.trace("InsightFacadeImpl::init()");
 		dataSets = [];
+		let fs = require("fs");
+		let diskDatasets = fs.readdirSync("./src/data");
+		diskDatasets.forEach((disk: any) => {
+			let read = fs.readFileSync(`./src/data/${disk}`).toString("utf8");
+			// https://stackoverflow.com/questions/48676751/convert-javascript-string-to-literal-array
+			dataSets.push(
+				{
+					id: disk.split(".")[0],
+					kind: InsightDatasetKind.Courses,
+					numRows: JSON.parse(read.replace(/'/g, '"')).length
+				}
+			);
+		});
 	}
 
 	/**
@@ -72,13 +86,12 @@ export default class InsightFacade implements IInsightFacade {
 					(success: any) => {
 						// https://stackoverflow.com/questions/51577849/how-to-save-an-array-of-strings-to-a-json-file-in-javascript
 						// https://stackoverflow.com/questions/12899061/creating-a-file-only-if-it-doesnt-exist-in-node-js
-						// fs.writeFile(`./src/data/${id}.json`, JSON.stringify(allSections), {flag: "wx"}, function (error: any) {
-						// 	if (error) {
-						// 		console.log(error)
-						// 		console.log("Could not write")
-						// 		return reject(new InsightError("Could not write"));
-						// 	}
-						// });
+						fs.writeFile(`./src/data/${id}.json`, JSON.stringify(allSections),
+							{flag: "wx"}, function (error: any) {
+								if (error) {
+									return reject(new InsightError("Could not write"));
+								}
+							});
 						this.confirmAddDataset(id, kind, numRows);
 						return resolve(dataSets.map((dataset) => {
 							return dataset.id;
@@ -105,7 +118,6 @@ export default class InsightFacade implements IInsightFacade {
 
 	private readCourses(addedCourses: any[]): Promise<void | any[]> {
 		return Promise.all(addedCourses).then((courses) => {
-			let allSections: any[] = [];
 			if (courses.length < 1) {
 				throw new InsightError("Empty dataset");
 			}
