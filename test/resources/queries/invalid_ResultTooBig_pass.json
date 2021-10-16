@@ -1,0 +1,34 @@
+{
+  "errorMsg": "The result is too big. Only queries with a maximum of 5000 results are supported.",
+  "title": "invalid_ResultTooBig_pass",
+  "input": {
+    "WHERE": {
+      "OR": [
+        {
+          "AND": [
+            {
+              "GT": {
+                "courses_pass": 89
+              }
+            }
+          ]
+        },
+        {
+          "EQ": {
+            "courses_avg": 95
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "ResultTooLargeError"
+}

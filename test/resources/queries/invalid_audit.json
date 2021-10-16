@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid value type in GT, should be number",
+  "title": "Invalid_audit",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_audit": "7"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
