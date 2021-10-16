@@ -1,4 +1,4 @@
-import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
+import {IInsightFacade, InsightDataset, InsightDatasetKind} from "./IInsightFacade";
 
 /**
  * This is the main programmatic entry point for the project.
