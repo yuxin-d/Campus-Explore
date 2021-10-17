@@ -1,0 +1,314 @@
+{
+  "title": "valid_fail",
+  "input": {
+    "WHERE": {
+      "OR": [
+        {
+          "AND": [
+            {
+              "GT": {
+                "courses_fail": 200
+              }
+            }
+          ]
+        },
+        {
+          "EQ": {
+            "courses_avg": 95
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "chem",
+      "courses_id": "233",
+      "courses_avg": 63.33
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "101",
+      "courses_avg": 64.55
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "200",
+      "courses_avg": 64.73
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "233",
+      "courses_avg": 64.94
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "101",
+      "courses_avg": 65.38
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "101",
+      "courses_avg": 65.99
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "101",
+      "courses_avg": 67.24
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 67.42
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 68.2
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 68.72
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 68.77
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "112",
+      "courses_avg": 68.77
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 69.3
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 69.41
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 70.22
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_id": "570",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "rhsc",
+      "courses_id": "501",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "501",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "501",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "obst",
+      "courses_id": "549",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_id": "424",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_id": "424",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_id": "553",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_id": "553",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_id": "553",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_id": "553",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_id": "553",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_id": "553",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_id": "564",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_id": "564",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "532",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "532",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "kin",
+      "courses_id": "500",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "kin",
+      "courses_id": "500",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "kin",
+      "courses_id": "499",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "epse",
+      "courses_id": "682",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "epse",
+      "courses_id": "682",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "epse",
+      "courses_id": "606",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_id": "473",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_id": "473",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "516",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "516",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "589",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "589",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_id": "535",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_id": "535",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_id": "597",
+      "courses_avg": 95
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_id": "597",
+      "courses_avg": 95
+    }
+  ]
+}
