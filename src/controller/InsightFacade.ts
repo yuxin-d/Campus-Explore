@@ -1,4 +1,3 @@
-import { privateEncrypt } from "crypto";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 
 /**
@@ -101,6 +100,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.reject(new InsightError("ID Error"));
 	}
+
 	private confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number) {
 		let newDataset = {
 			id: id,
@@ -110,7 +110,6 @@ export default class InsightFacade implements IInsightFacade {
 		dataSets.push(newDataset); // Add new dataset
 	}
 
-
 	private readCourses(addedCourses: any[], id: string): Promise<void | any[]> {
 		return Promise.all(addedCourses).then((courses) => {
 			courses.forEach((course) => {
@@ -119,7 +118,8 @@ export default class InsightFacade implements IInsightFacade {
 				if (result.length < 1) {
 					throw new InsightError("Empty course");
 				}
-				result.forEach((section) => {
+				for (const i in result) {
+					let section = result[i];
 					let thisSection: any = {
 						dept: section["Subject"],
 						id: section["Course"],
@@ -133,12 +133,13 @@ export default class InsightFacade implements IInsightFacade {
 						year: section["Year"]
 					};
 					allSections.push(thisSection);
-				});
+				}
 			});
 		});
 	}
 	// https://stackoverflow.com/questions/10261986/
 	// how-to-detect-string-which-only-contains-white-spaces/50971250 code for whitespaces
+
 	private checkAddId(id: string): boolean {
 		if (!id) {
 			// throw new InsightError();
