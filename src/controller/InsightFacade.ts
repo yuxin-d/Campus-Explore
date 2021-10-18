@@ -54,57 +54,52 @@ export default class InsightFacade implements IInsightFacade {
 	 */
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		// zip.loadAsync(content, {base64: true}).then(function(content: any) {
-		// 	return content.files["courses/AANB500"].async('string')
-		// }).then(function (txt: any) {
-		// 	console.log(txt)
-		// })
-		return new Promise((resolve, reject) => {
-			let fs = require("fs");
-			let JSZip = require("jszip");
-			let zip = new JSZip();
-			let numRows: number;
-			let toReject: boolean = false;
-			if (this.checkAddId(id)) { // is valid
-				let addedCourses: any[] = [];
-				zip.loadAsync(content, {base64: true}).then((dataset: any) => {
-					numRows = Object.keys(dataset.files).length;
-					// Need to check what happens if courses is not a folder
-					let allFiles: any = dataset.folder("courses")["files"];
-					let allKeys = Object.keys(allFiles);
-					numRows = allKeys.length - 1;
-					if (numRows < 1) {
-						reject(new InsightError("Invalid Data"));
+		let numRows: number;
+		let fs = require("fs");
+		let JSZip = require("jszip");
+		let zip = new JSZip();
+		let addedCourses: any[] = [];
+		if (this.checkAddId(id)) { // is valid
+			return zip.loadAsync(content, {base64: true}).then((dataset: any) => {
+				numRows = Object.keys(dataset.files).length;
+				// Need to check what happens if courses is not a folder
+				let allFiles: any = dataset.folder("courses")["files"];
+				let allKeys = Object.keys(allFiles);
+				numRows = allKeys.length - 1;
+				if (numRows < 1) {
+					return Promise.reject(new InsightError("Invalid Data"));
+				}
+				for (const key of allKeys) {
+					if (key.length > 8) {
+						addedCourses.push(allFiles[key].async("string"));
 					}
-					for (const key of allKeys) {
-						if (key.length > 8) {
-							addedCourses.push(allFiles[key].async("string"));
-						}
-					}
-					return this.readCourses(addedCourses);
-				}).then(
-					(success: any) => {
-						// https://stackoverflow.com/questions/51577849/how-to-save-an-array-of-strings-to-a-json-file-in-javascript
-						// https://stackoverflow.com/questions/12899061/creating-a-file-only-if-it-doesnt-exist-in-node-js
-						fs.writeFile(`./src/data/${id}.json`, JSON.stringify(allSections),
-							{flag: "wx"}, function (error: any) {
-								if (error) {
-									return reject(new InsightError("Could not write"));
-								}
-							});
-						this.confirmAddDataset(id, kind, numRows);
-						return resolve(dataSets.map((dataset) => {
-							return dataset.id;
-						}));
-					},
-					function(error: any) {
-						reject(new InsightError());
-					}
-				);
-			} else {
-				return reject(new InsightError("ID Error"));
-			}
-		});
+				}
+				try {
+					return this.readCourses(addedCourses, id);
+				} catch {
+					return Promise.reject(new InsightError("Could not read"));
+				}
+			}).then(
+				(success: any) => {
+					// https://stackoverflow.com/questions/51577849/how-to-save-an-array-of-strings-to-a-json-file-in-javascript
+					// https://stackoverflow.com/questions/12899061/creating-a-file-only-if-it-doesnt-exist-in-node-js
+					fs.writeFile(`./src/data/${id}.json`, JSON.stringify(allSections),
+						{flag: "wx"}, function (error: any) {
+							if (error) {
+								return Promise.reject(new InsightError("Could not write"));
+							}
+						});
+					this.confirmAddDataset(id, kind, numRows);
+					return Promise.resolve(dataSets.map((dataset) => {
+						return dataset.id;
+					}));
+				},
+				function(error: any) {
+					return Promise.reject(new InsightError(error));
+				}
+			);
+		}
+		return Promise.reject(new InsightError("ID Error"));
 	}
 	private confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number) {
 		let newDataset = {
@@ -116,36 +111,29 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 
-	private readCourses(addedCourses: any[]): Promise<void | any[]> {
+	private readCourses(addedCourses: any[], id: string): Promise<void | any[]> {
 		return Promise.all(addedCourses).then((courses) => {
-			if (courses.length < 1) {
-				throw new InsightError("Empty dataset");
-			}
 			courses.forEach((course) => {
 				let result: any[];
-				try {
-					result =  JSON.parse(course)["result"]; // this is a list of sections
-					if (result.length < 1) {
-						throw new InsightError("Empty course");
-					}
-					result.forEach((section) => {
-						let thisSection: any = {
-							dept: section["Subject"],
-							id: section["Course"],
-							avg: section["Avg"],
-							instructor: section["Professor"],
-							title: section["Title"],
-							pass: section["Pass"],
-							fail: section["Fail"],
-							audit: section["Audit"],
-							uuid: section["id"],
-							year: section["Year"]
-						};
-						allSections.push(thisSection);
-					});
-				} catch {
-					throw new InsightError("Failed to read course");
+				result =  JSON.parse(course)["result"]; // this is a list of sections
+				if (result.length < 1) {
+					throw new InsightError("Empty course");
 				}
+				result.forEach((section) => {
+					let thisSection: any = {
+						dept: section["Subject"],
+						id: section["Course"],
+						avg: section["Avg"],
+						instructor: section["Professor"],
+						title: section["Title"],
+						pass: section["Pass"],
+						fail: section["Fail"],
+						audit: section["Audit"],
+						uuid: section["id"],
+						year: section["Year"]
+					};
+					allSections.push(thisSection);
+				});
 			});
 		});
 	}
@@ -153,16 +141,20 @@ export default class InsightFacade implements IInsightFacade {
 	// how-to-detect-string-which-only-contains-white-spaces/50971250 code for whitespaces
 	private checkAddId(id: string): boolean {
 		if (!id) {
-			throw new InsightError();
+			// throw new InsightError();
+			return false;
 		}
 		if (id.includes("_")) {
-			throw new InsightError();
+			return false;
+			// throw new InsightError();
 		}
 		if (!id.replace(/\s/g, "").length) {
-			throw new InsightError();
+			return false;
+			// throw new InsightError();
 		}
 		if (this.isDatasetsContainsId(id)) {
-			throw new InsightError();
+			return false;
+			// throw new InsightError();
 		}
 		return true;
 	}

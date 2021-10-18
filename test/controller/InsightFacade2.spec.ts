@@ -1,12 +1,13 @@
 import { IInsightFacade , InsightError, InsightDatasetKind, InsightDataset, NotFoundError, ResultTooLargeError}
 	from "../../src/controller/IInsightFacade";
 import InsightFacade from "../../src/controller/InsightFacade";
-import { expect } from "chai";
-// import chai from "chai";
+// import {expect} from "chai";
+import chai from "chai";
 import {testFolder} from "@ubccpsc310/folder-test";
 import chaiAsPromised = require("chai-as-promised");
 import * as fs from "fs-extra";
 chai.use(chaiAsPromised);
+const expect = chai.expect;
 
 type Input = any;
 type Output = Promise<any[]>;
@@ -101,13 +102,11 @@ describe("InsightFacade", function() {
 		// Check empty listData
 		it("Should return an empty list", function() {
 			const result = insightFacade.listDatasets();
-			console.log(result);
 			return expect(result).eventually.to.deep.include.members([]);
 		});
 
 		it("Should have length 0", function() {
 			const result = insightFacade.listDatasets();
-			console.log(result, "ASDF");
 			return expect(result).eventually.to.have.length(0);
 		});
 
@@ -116,7 +115,6 @@ describe("InsightFacade", function() {
 		it("Should add a valid dataset", function() {
 			const shouldEq = ["basic"];
 			const result = insightFacade.addDataset("basic", basic, InsightDatasetKind.Courses);
-			console.log(result);
 			return expect(result).eventually.to.deep.include.members(shouldEq);
 		});
 
