@@ -12,6 +12,10 @@ export default class InsightFacade implements IInsightFacade {
 		console.trace("InsightFacadeImpl::init()");
 		dataSets = [];
 		let fs = require("fs");
+		// https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
+		if (!fs.existsSync("./src/data")) {
+			fs.mkdirSync("./src/data");
+		}
 		let diskDatasets = fs.readdirSync("./src/data");
 		diskDatasets.forEach((disk: any) => {
 			let read = fs.readFileSync(`./src/data/${disk}`).toString("utf8");
