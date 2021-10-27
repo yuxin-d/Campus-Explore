@@ -1,3 +1,4 @@
+import { parse as p5} from "parse5";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 
 /**
@@ -7,6 +8,7 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFou
  */
 let dataSets: InsightDataset[];
 let allSections: any[] = [];
+let allParsedRooms: any[] = [];
 export default class InsightFacade implements IInsightFacade {
 	constructor() {
 		console.trace("InsightFacadeImpl::init()");
@@ -57,6 +59,7 @@ export default class InsightFacade implements IInsightFacade {
 	 */
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		allSections = [];
 		let numRows: number;
 		let fs = require("fs");
 		let JSZip = require("jszip");
@@ -64,23 +67,27 @@ export default class InsightFacade implements IInsightFacade {
 		let addedCourses: any[] = [];
 		if (this.checkAddId(id)) { // is valid
 			return zip.loadAsync(content, {base64: true}).then((dataset: any) => {
-				numRows = Object.keys(dataset.files).length;
-				// Need to check what happens if courses is not a folder
-				let allFiles: any = dataset.folder("courses")["files"];
-				let allKeys = Object.keys(allFiles);
-				numRows = allKeys.length - 1;
-				if (numRows < 1) {
-					return Promise.reject(new InsightError("Invalid Data"));
-				}
-				for (const key of allKeys) {
-					if (key.length > 8) {
-						addedCourses.push(allFiles[key].async("string"));
+				// numRows = Object.keys(dataset.files).length;
+				if (kind == InsightDatasetKind.Courses) {
+					// Need to check what happens if courses is not a folder
+					let allFiles: any = dataset.folder("courses")["files"];
+					let allKeys = Object.keys(allFiles);
+					numRows = allKeys.length - 1;
+					if (numRows < 1) {
+						return Promise.reject(new InsightError("Invalid Data"));
 					}
-				}
-				try {
-					return this.readCourses(addedCourses, id);
-				} catch {
-					return Promise.reject(new InsightError("Could not read"));
+					for (const key of allKeys) {
+						if (key.length > 8) {
+							addedCourses.push(allFiles[key].async("string"));
+						}
+					}
+					try {
+						return this.readCourses(addedCourses);
+					} catch {
+						return Promise.reject(new InsightError("Could not read"));
+					}
+				} else {
+					this.readRooms(dataset)
 				}
 			}).then(
 				(success: any) => {
@@ -105,6 +112,34 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.reject(new InsightError("ID Error"));
 	}
 
+	private readRooms(dataset: any): Promise<void | any[]> {
+		let parse5 = require("parse5");
+		let allRooms: any = dataset.folder("rooms")["files"];
+		let allKeys: any = Object.keys(allRooms);
+		let files: string[] = allKeys.filter((key: string) => key[key.length - 1] != "/");
+		if (!files.includes("rooms/index.htm")) {
+			console.log("no index file")
+			return Promise.reject(new InsightError("No index file"));
+		}
+		//numRows = allKeys.length - 1;
+		let addedRooms: any[] = [];
+		for (const key of allKeys) {
+			if (key != "rooms/index.htm") {
+				addedRooms.push(allRooms[key].async("string"));
+			}
+		}
+		console.log("entering promise")
+		return Promise.all(addedRooms).then((rooms) => {
+			for (const room in rooms) {
+				let parsed: any = parse5.parse(room);
+				allParsedRooms.push(parsed); // Need to parse the room, check the site
+			}
+			return allParsedRooms
+		}).then((stuff) => {
+			console.log(stuff)
+		})
+	}
+
 	private confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number) {
 		let newDataset = {
 			id: id,
@@ -114,13 +149,14 @@ export default class InsightFacade implements IInsightFacade {
 		dataSets.push(newDataset); // Add new dataset
 	}
 
-	private readCourses(addedCourses: any[], id: string): Promise<void | any[]> {
+	private readCourses(addedCourses: any[]): Promise<void | any[]> {
 		return Promise.all(addedCourses).then((courses) => {
+			let empty: boolean = true;
 			courses.forEach((course) => {
 				let result: any[];
 				result =  JSON.parse(course)["result"]; // this is a list of sections
-				if (result.length < 1) {
-					throw new InsightError("Empty course");
+				if (result.length > 0) {
+					empty = false;
 				}
 				for (const i in result) {
 					let section = result[i];
@@ -139,6 +175,9 @@ export default class InsightFacade implements IInsightFacade {
 					allSections.push(thisSection);
 				}
 			});
+			if (empty) {
+				return Promise.reject(new InsightError("Empty dataset"));
+			}
 		});
 	}
 	// https://stackoverflow.com/questions/10261986/
