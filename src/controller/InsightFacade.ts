@@ -68,7 +68,7 @@ export default class InsightFacade implements IInsightFacade {
 		if (this.checkAddId(id)) { // is valid
 			return zip.loadAsync(content, {base64: true}).then((dataset: any) => {
 				// numRows = Object.keys(dataset.files).length;
-				if (kind == InsightDatasetKind.Courses) {
+				if (kind === InsightDatasetKind.Courses) {
 					// Need to check what happens if courses is not a folder
 					let allFiles: any = dataset.folder("courses")["files"];
 					let allKeys = Object.keys(allFiles);
@@ -87,7 +87,7 @@ export default class InsightFacade implements IInsightFacade {
 						return Promise.reject(new InsightError("Could not read"));
 					}
 				} else {
-					this.readRooms(dataset)
+					this.readRooms(dataset);
 				}
 			}).then(
 				(success: any) => {
@@ -116,28 +116,28 @@ export default class InsightFacade implements IInsightFacade {
 		let parse5 = require("parse5");
 		let allRooms: any = dataset.folder("rooms")["files"];
 		let allKeys: any = Object.keys(allRooms);
-		let files: string[] = allKeys.filter((key: string) => key[key.length - 1] != "/");
+		let files: string[] = allKeys.filter((key: string) => key[key.length - 1] !== "/");
 		if (!files.includes("rooms/index.htm")) {
-			console.log("no index file")
+			console.log("no index file");
 			return Promise.reject(new InsightError("No index file"));
 		}
-		//numRows = allKeys.length - 1;
+		// numRows = allKeys.length - 1;
 		let addedRooms: any[] = [];
 		for (const key of allKeys) {
-			if (key != "rooms/index.htm") {
+			if (key !== "rooms/index.htm") {
 				addedRooms.push(allRooms[key].async("string"));
 			}
 		}
-		console.log("entering promise")
+		console.log("entering promise");
 		return Promise.all(addedRooms).then((rooms) => {
 			for (const room in rooms) {
 				let parsed: any = parse5.parse(room);
 				allParsedRooms.push(parsed); // Need to parse the room, check the site
 			}
-			return allParsedRooms
+			return allParsedRooms;
 		}).then((stuff) => {
-			console.log(stuff)
-		})
+			console.log(stuff);
+		});
 	}
 
 	private confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number) {
@@ -225,78 +225,6 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(dataSets);
 	}
 
-	private queryParser(query: any): any {
-		const body = query["WHERE"];
-		const listFilters: any[] = [];
-		this.parseBody(body, listFilters);
-		const options = query["OPTIONS"];
-		const listOptions: string[] = [];
-		this.parseOptions(options, listOptions);
-
-	}
-
-	private parseBody(body: any, listFilters: any[]): any {
-		if (body !== {}) { // not sure if check works
-			// Check what type of filter it is
-			// Assume only 1 key?
-			let filter: string = Object.keys(body)[0];
-			if (this.includes(filter, ["LT", "GT", "EQ"])) {
-				let mcomparator: any = body[filter]; // Should be an object eg. {"courses_avg": 97}
-				let idstring: string = Object.keys(mcomparator)[0]; // eg. "courses_avg"
-				let mkey = idstring.split("_"); // List of two items eg. ["courses", "avg"]
-				//  Check that id is valid
-				if (!this.isDatasetsContainsId(idstring[0])) {
-					throw new NotFoundError();
-				}
-				if (mkey && mkey.length === 2) {
-					if (!this.includes(mkey[1], ["avg", "pass", "fail", "audit", "year"])) {
-						throw new InsightError();
-					}
-				}
-				let value: number = mcomparator[idstring];
-				// ADD to list
-			}
-			// SCOMPARISON
-			if (filter === "IS") {
-				let scomparator: any = body[filter];
-				let idstring: string = Object.keys(scomparator)[0];
-				let skey = idstring.split("_");
-				if (!this.isDatasetsContainsId(skey[0])) {
-					throw new NotFoundError();
-				}
-				if (skey && skey.length === 2) {
-					if (!this.includes(skey[1], ["dept", "id", "instructor", "title", "uuid"])) {
-						throw new InsightError();
-					}
-				}
-				let value: string = scomparator[idstring];
-				// ADD to list
-			}
-			if (this.includes(filter, ["AND", "OR"])) {
-				let logic: any[] = body[filter];
-				logic.forEach((element) => {
-					this.parseBody(element, listFilters);
-				});
-			}
-			if (filter === "NOT") {
-				let not: any = body[filter];
-				// not sure how to handle not
-			} else {
-				throw new InsightError();
-			}
-		}
-	}
-
-	// Parses options. Adds all columns to the array. Assuming order is mandatory, it will be last element on list
-	private parseOptions(options: any, listOptions: string[]) {
-		let columns: string[] = options["COLUMNS"];
-		let order: string = options["ORDER"];
-		columns.forEach((col) => {
-			listOptions.push(col);
-		});
-		listOptions.push(order);
-	}
-
 	private includes(element: any, array: any[]): boolean {
 		array.forEach((item) => {
 			if (element === item) {
@@ -306,4 +234,3 @@ export default class InsightFacade implements IInsightFacade {
 		return false;
 	}
 }
-
