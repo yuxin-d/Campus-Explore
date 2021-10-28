@@ -27,6 +27,7 @@ describe("InsightFacade", function() {
 
 	describe("Add/Remove/List Datasets", function() {
 		let insightFacade: IInsightFacade;
+		let courses: string;
 		let basic: string;
 		let empty: string;
 		let typeError: string;
@@ -34,15 +35,18 @@ describe("InsightFacade", function() {
 		let zeroSections: string;
 		let basic2: string;
 		let notCourses: string;
+		let rooms: string;
 		before(function() {
 			insightFacade = new InsightFacade();
 			basic = getFileContent("test/resources/archives/basic.zip");
+			courses = getFileContent("test/resources/archives/courses.zip");
 			empty = getFileContent("test/resources/archives/empty.zip");
 			typeError = getFileContent("test/resources/archives/typeError.txt");
 			notJSON = getFileContent("test/resources/archives/notJSON.zip");
 			zeroSections = getFileContent("test/resources/archives/zeroSections.zip");
 			basic2 = getFileContent("test/resources/archives/basic2.zip");
 			notCourses = getFileContent("test/resources/archives/notCourses.zip");
+			rooms = getFileContent("test/resources/archives/rooms/rooms.zip");
 		});
 
 		// ID Checking
@@ -118,6 +122,12 @@ describe("InsightFacade", function() {
 			return expect(result).eventually.to.deep.include.members(shouldEq);
 		});
 
+		it("Should add a valid dataset2", function() {
+			const shouldEq = ["courses"];
+			const result = insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
+			return expect(result).eventually.to.deep.include.members(shouldEq);
+		});
+
 		// Check one listData
 		it("Should list one item", function() {
 			const result = insightFacade.listDatasets();
@@ -145,6 +155,13 @@ describe("InsightFacade", function() {
 		it("Should add a second valid dataset", function() {
 			const shouldEq = ["basic", "basic2"];
 			const result = insightFacade.addDataset("basic2", basic2, InsightDatasetKind.Courses);
+			return expect(result).eventually.to.deep.include.members(shouldEq);
+		});
+
+		// Room add
+		it("Should add a room dataset", function() {
+			const shouldEq = ["basic", "basic2", "rooms"];
+			const result = insightFacade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
 			return expect(result).eventually.to.deep.include.members(shouldEq);
 		});
 
