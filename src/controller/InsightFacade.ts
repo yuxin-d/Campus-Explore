@@ -99,7 +99,20 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		return Promise.reject("Not implemented.");
+		if (!k.checkRemoveId(id, dataSets)) {
+			return Promise.reject(new InsightError("Invalid id"));
+		}
+		if (!dataSets.map((obj: any) => obj["id"]).includes(id)) {
+			return Promise.reject(new NotFoundError("Not in memory"));
+		}
+		dataSets = dataSets.filter((obj: any) => obj["id"] !== id);
+		try {
+			let fs = require("fs");
+			fs.unlinkSync(`./src/data/${id}.json`);
+		} catch {
+			return Promise.reject(new InsightError("Error deleting"));
+		}
+		return Promise.resolve(id);
 	}
 
 	public performQuery(query: any): Promise<any[]> {

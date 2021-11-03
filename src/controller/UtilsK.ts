@@ -253,33 +253,20 @@ export function readCourses(addedCourses: any[]): Promise<void | any[]> {
 }
 
 export function checkAddId(id: string, dataSets: any[]): boolean {
-	if (!id) {
-		// throw new InsightError();
+	if (!id || id.includes("_") || !id.replace(/\s/g, "").length) {
 		return false;
 	}
-	if (id.includes("_")) {
+	if (dataSets.map((obj: any) => obj["id"]).includes(id)) {
 		return false;
-		// throw new InsightError();
-	}
-	if (!id.replace(/\s/g, "").length) {
-		return false;
-		// throw new InsightError();
-	}
-	if (isDatasetsContainsId(id, dataSets)) {
-		return false;
-		// throw new InsightError();
 	}
 	return true;
 }
 
-export function isDatasetsContainsId(id: string, dataSets: any[]) {
-	let isContains: boolean = false;
-	dataSets.forEach((element) => {
-		if (element.id === id) {
-			isContains = true;
-		}
-	});
-	return isContains;
+export function checkRemoveId(id: string, dataSets: any[]): boolean {
+	if (!id || id.includes("_") || !id.replace(/\s/g, "").length) {
+		return false;
+	}
+	return true;
 }
 
 export function confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number, dataSets: any[]) {
