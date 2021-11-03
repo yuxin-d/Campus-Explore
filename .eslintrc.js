@@ -31,6 +31,7 @@ module.exports = {
 			}
 		}
 	],
+	"ignorePatterns": ["frontend/**/*"],
 	"rules": {
 		"@typescript-eslint/array-type": ["error", {"default": "array-simple"}],
 		"@typescript-eslint/ban-types": [
