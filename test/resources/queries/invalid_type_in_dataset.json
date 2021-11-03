@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Referenced dataset \"Moon\" not added yet",
+  "title": "Invalid_type_in_dataset",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "courses_avg": 89
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "Moon_dept",
+        "courses_Mars"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
