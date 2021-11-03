@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid key California in GT",
+  "title": "Invalid_querykeys",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "California": 1998
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

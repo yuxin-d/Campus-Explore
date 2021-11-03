@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid key type in GT",
+  "title": "invalid_id_empty",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "courses_id": ""
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id"
+      ],
+      "ORDER": "courses_id"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
