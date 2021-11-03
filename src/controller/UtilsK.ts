@@ -8,7 +8,7 @@ export function httpGet(addr: string, buildingName: string, shortName: string, i
 	// console.log(url)
 	// https://nodejs.org/api/http.html#httpgetoptions-callback
 	let count: number = 0;
-	// return Promise.resolve([{lon: 10.0, lat: 9.99}, info, buildingName, shortName, addr.split("%20").join(" ")]);
+	return Promise.resolve([{lon: 10.0, lat: 9.99}, info, buildingName, shortName, addr.split("%20").join(" ")]);
 	return new Promise((resolve, reject) => {
 		http.get(url, (result: any) => {
 			if (result.statusCode !== 200) {
@@ -253,33 +253,20 @@ export function readCourses(addedCourses: any[]): Promise<void | any[]> {
 }
 
 export function checkAddId(id: string, dataSets: any[]): boolean {
-	if (!id) {
-		// throw new InsightError();
+	if (!id || id.includes("_") || !id.replace(/\s/g, "").length) {
 		return false;
 	}
-	if (id.includes("_")) {
+	if (dataSets.map((obj: any) => obj["id"]).includes(id)) {
 		return false;
-		// throw new InsightError();
-	}
-	if (!id.replace(/\s/g, "").length) {
-		return false;
-		// throw new InsightError();
-	}
-	if (isDatasetsContainsId(id, dataSets)) {
-		return false;
-		// throw new InsightError();
 	}
 	return true;
 }
 
-export function isDatasetsContainsId(id: string, dataSets: any[]) {
-	let isContains: boolean = false;
-	dataSets.forEach((element) => {
-		if (element.id === id) {
-			isContains = true;
-		}
-	});
-	return isContains;
+export function checkRemoveId(id: string, dataSets: any[]): boolean {
+	if (!id || id.includes("_") || !id.replace(/\s/g, "").length) {
+		return false;
+	}
+	return true;
 }
 
 export function confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number, dataSets: any[]) {
