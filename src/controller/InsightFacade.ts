@@ -115,7 +115,6 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
-
 	public performQuery(query: any): Promise<any[]> {
 		return Promise.reject("Not implemented.");
 	}

@@ -8,7 +8,7 @@ export function httpGet(addr: string, buildingName: string, shortName: string, i
 	// console.log(url)
 	// https://nodejs.org/api/http.html#httpgetoptions-callback
 	let count: number = 0;
-	return Promise.resolve([{lon: 10.0, lat: 9.99}, info, buildingName, shortName, addr.split("%20").join(" ")]);
+	// return Promise.resolve([{lon: 10.0, lat: 9.99}, info, buildingName, shortName, addr.split("%20").join(" ")]);
 	return new Promise((resolve, reject) => {
 		http.get(url, (result: any) => {
 			if (result.statusCode !== 200) {
