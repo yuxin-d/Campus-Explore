@@ -9,7 +9,7 @@ import {expect} from "chai";
 describe("InsightFacade", function () {
 	let insightFacade: InsightFacade;
 
-	const persistDir = "./data";
+	const persistDir = "./src/data";
 	const datasetContents = new Map<string, string>();
 
 	// Reference any datasets you've added to test/resources/archives here and they will
