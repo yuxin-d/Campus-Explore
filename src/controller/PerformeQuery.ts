@@ -101,7 +101,7 @@ export default class PerformeQuery{
 				return result;
 			case "IS":
 				// invalid with * need tbd by teammate in validation
-				this.isHelper(propValue, allSections, result, courseProp);
+				result = this.isHelper(propValue, allSections, result, courseProp);
 				return result;
 				break;
 			default:
@@ -143,6 +143,7 @@ export default class PerformeQuery{
 				}
 			}
 		}
+		return result;
 	}
 
 	public kindDetect(query: any): boolean {

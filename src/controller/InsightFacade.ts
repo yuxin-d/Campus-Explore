@@ -135,46 +135,47 @@ export default class InsightFacade implements IInsightFacade {
 
 
 	public performQuery(query: any): Promise<any[]> {
-		let performeQuery = new PerformeQuery();
-		let validQuery = new ValidQuery();
-		if (validQuery.isValidQuery(query)) {
-			let allSections: any = [];
-			if (performeQuery.kindDetect(query)) {
-				allSections = allCourse;
-			} else {
-				allSections = allRoom;
-			}
-			console.log(allCourse[0]);
-			let result = performeQuery.doMatchingAction(query.WHERE, allSections);
-			let options = query.OPTIONS;
-			// GROUP_BY
-			// 1. get an array for each group {value1: [x1,x2,x3...], value2: [x4,x5,x6], ...}
-			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
-			if ("TRANSFORMATIONS" in query) {
-				let gp = this.performTrans(query, result);
-				result = this.applyFunctions(gp, query);
-			}
-			if ("COLUMNS" in options) {
-				let columns = options.COLUMNS;
-				result = this.processColumn(result, columns);
-			}
-			if ("ORDER" in options) {
-				let key = options.ORDER;
-				// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
-				result.sort((a: any, b: any) => {
-					if (a[key] < b[key]){
-						return -1;
-					} else if (a[key] > b[key]) {
-						return 1;
-					} else {
-						return 0;
-					}
-				});
-			}
-			return Promise.resolve(result);
-		} else {
-			return Promise.reject("the query is not valid");
-		}
+		// let performeQuery = new PerformeQuery();
+		// let validQuery = new ValidQuery();
+		// if (validQuery.isValidQuery(query)) {
+		// 	let allSections: any = [];
+		// 	if (performeQuery.kindDetect(query)) {
+		// 		allSections = allCourse;
+		// 	} else {
+		// 		allSections = allRoom;
+		// 	}
+		// 	console.log(allCourse[0]);
+		// 	let result = performeQuery.doMatchingAction(query.WHERE, allSections);
+		// 	let options = query.OPTIONS;
+		// 	// GROUP_BY
+		// 	// 1. get an array for each group {value1: [x1,x2,x3...], value2: [x4,x5,x6], ...}
+		// 	// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
+		// 	if ("TRANSFORMATIONS" in query) {
+		// 		let gp = this.performTrans(query, result);
+		// 		result = this.applyFunctions(gp, query);
+		// 	}
+		// 	if ("COLUMNS" in options) {
+		// 		let columns = options.COLUMNS;
+		// 		result = this.processColumn(result, columns);
+		// 	}
+		// 	if ("ORDER" in options) {
+		// 		let key = options.ORDER;
+		// 		// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+		// 		result.sort((a: any, b: any) => {
+		// 			if (a[key] < b[key]){
+		// 				return -1;
+		// 			} else if (a[key] > b[key]) {
+		// 				return 1;
+		// 			} else {
+		// 				return 0;
+		// 			}
+		// 		});
+		// 	}
+		// 	return Promise.resolve(result);
+		// } else {
+		// 	return Promise.reject("the query is not valid");
+		// }
+		return Promise.reject(new InsightError());
 	}
 
 	private performTrans(query: any, result: any) {
