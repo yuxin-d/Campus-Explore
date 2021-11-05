@@ -67,7 +67,6 @@ export default class PerformeQuery{
 		return notResult;
 	}
 
-	// eslint-disable-next-line max-lines-per-function
 	public simpleOperationHandler(opKey: any, query: any, allSections: any): any[] {
 		let result: any[] = [];
 		let courseProp: any;
@@ -102,37 +101,7 @@ export default class PerformeQuery{
 				return result;
 			case "IS":
 				// invalid with * need tbd by teammate in validation
-				if (propValue === "*") {
-					result = allSections;
-					// *XXX* *XXX XXX*
-				} else if (propValue.startsWith("*") && propValue.endsWith("*")) {
-					for (let section of allSections) {
-						let index = section[courseProp].indexOf(propValue.substring(1, propValue.length - 1));
-						if (index >= 1 && index < section[courseProp].length - 2) {
-							result.push(section);
-						}
-					}
-				} else if (propValue.startsWith("*")) {
-					for (let section of allSections) {
-						let index = section[courseProp].indexOf(propValue.substring(1, propValue.length));
-						if (index >= 1) {
-							result.push(section);
-						}
-					}
-				} else if (propValue.endsWith("*")) {
-					for (let section of allSections) {
-						let index = section[courseProp].indexOf(propValue.substring(0, propValue.length - 1 ));
-						if (index > -1 && index < section[courseProp].length - 2) {
-							result.push(section);
-						}
-					}
-				} else {
-					for (let section of allSections) {
-						if (section[courseProp] === propValue) {
-							result.push(section);
-						}
-					}
-				}
+				this.isHelper(propValue, allSections, result, courseProp);
 				return result;
 				break;
 			default:
@@ -140,6 +109,40 @@ export default class PerformeQuery{
 				break;
 		}
 		return [];
+	}
+
+	private isHelper(propValue: any, allSections: any, result: any, courseProp: any) {
+		if (propValue === "*") {
+			result = allSections;
+			// *XXX* *XXX XXX*
+		} else if (propValue.startsWith("*") && propValue.endsWith("*")) {
+			for (let section of allSections) {
+				let index = section[courseProp].indexOf(propValue.substring(1, propValue.length - 1));
+				if (index >= 1 && index < section[courseProp].length - 2) {
+					result.push(section);
+				}
+			}
+		} else if (propValue.startsWith("*")) {
+			for (let section of allSections) {
+				let index = section[courseProp].indexOf(propValue.substring(1, propValue.length));
+				if (index >= 1) {
+					result.push(section);
+				}
+			}
+		} else if (propValue.endsWith("*")) {
+			for (let section of allSections) {
+				let index = section[courseProp].indexOf(propValue.substring(0, propValue.length - 1 ));
+				if (index > -1 && index < section[courseProp].length - 2) {
+					result.push(section);
+				}
+			}
+		} else {
+			for (let section of allSections) {
+				if (section[courseProp] === propValue) {
+					result.push(section);
+				}
+			}
+		}
 	}
 
 	public kindDetect(query: any): boolean {

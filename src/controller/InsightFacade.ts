@@ -133,9 +133,8 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
-	// eslint-disable-next-line max-lines-per-function
-	public performQuery(query: any): Promise<any[]> {
 
+	public performQuery(query: any): Promise<any[]> {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery();
 		if (validQuery.isValidQuery(query)) {
@@ -152,39 +151,12 @@ export default class InsightFacade implements IInsightFacade {
 			// 1. get an array for each group {value1: [x1,x2,x3...], value2: [x4,x5,x6], ...}
 			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
 			if ("TRANSFORMATIONS" in query) {
-				let gp: any = {all: result };
-				for (let key of query.TRANSFORMATIONS.GROUP) {
-					key = key.split("_")[1];
-					let newGp: any = {};
-					for (let x in gp) {
-						for (let element of gp[x]) {
-							let dataKey = x + "_" + key + element[key];
-							if (!(dataKey in newGp)){
-								newGp[dataKey] = [];
-							}
-							newGp[dataKey].push(element);
-						}
-					}
-					gp = newGp;
-				}
+				let gp = this.performTrans(query, result);
 				result = this.applyFunctions(gp, query);
 			}
 			if ("COLUMNS" in options) {
 				let columns = options.COLUMNS;
-				let actualResult = [];
-				for (let x of result) {
-					let obj: any = {};
-					for (let column of columns) {
-						if (column in x) {
-							obj[column] = x[column];
-							continue;
-						}
-						let actualColumn = column.split("_")[1];
-						obj[column] = x[actualColumn];
-					}
-					actualResult.push(obj);
-				}
-				result = actualResult;
+				result = this.processColumn(result, columns);
 			}
 			if ("ORDER" in options) {
 				let key = options.ORDER;
@@ -203,6 +175,42 @@ export default class InsightFacade implements IInsightFacade {
 		} else {
 			return Promise.reject("the query is not valid");
 		}
+	}
+
+	private performTrans(query: any, result: any) {
+		let gp: any = {all: result };
+		for (let key of query.TRANSFORMATIONS.GROUP) {
+			key = key.split("_")[1];
+			let newGp: any = {};
+			for (let x in gp) {
+				for (let element of gp[x]) {
+					let dataKey = x + "_" + key + element[key];
+					if (!(dataKey in newGp)){
+						newGp[dataKey] = [];
+					}
+					newGp[dataKey].push(element);
+				}
+			}
+			gp = newGp;
+		}
+		return gp;
+	}
+
+	private processColumn(result: any, columns: any) {
+		let actualResult = [];
+		for (let x of result) {
+			let obj: any = {};
+			for (let column of columns) {
+				if (column in x) {
+					obj[column] = x[column];
+					continue;
+				}
+				let actualColumn = column.split("_")[1];
+				obj[column] = x[actualColumn];
+			}
+			actualResult.push(obj);
+		}
+		return actualResult;
 	}
 
 	private applyFunctions(gp: any, query: any) {
