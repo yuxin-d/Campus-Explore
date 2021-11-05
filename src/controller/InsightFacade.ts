@@ -59,7 +59,7 @@ export default class InsightFacade implements IInsightFacade {
 							allCourse = allCourse.concat(currCourses);
 							currC = currCourses;
 						});
-						return Promise.resolve(currC);
+						return Promise.resolve(k.readCourses(addedCourses));
 					} catch {
 						return Promise.reject(new InsightError("Could not read"));
 					}
