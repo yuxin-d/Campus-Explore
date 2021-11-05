@@ -60,6 +60,16 @@ describe("InsightFacade", function () {
 				expect(result).to.deep.equal(expected);
 			});
 		});
+
+		// This is a unit test. You should create more like this!
+		it("Should add a valid dataset", function () {
+			const id: string = "courses";
+			const content: string = datasetContents.get("courses") ?? "";
+			const expected: string[] = [id];
+			return insightFacade.addDataset(id, content, InsightDatasetKind.Courses).then((result: string[]) => {
+				expect(result).to.deep.equal(expected);
+			});
+		});
 	});
 
 	/*
@@ -91,7 +101,8 @@ describe("InsightFacade", function () {
 
 		testFolder<any, any[], PQErrorKind>(
 			"Dynamic InsightFacade PerformQuery tests",
-			(input) => insightFacade.performQuery(input),
+			(input) =>
+				insightFacade.performQuery(input),
 			"./test/resources/queries",
 			{
 				errorValidator: (error): error is PQErrorKind =>

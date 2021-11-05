@@ -1,0 +1,20 @@
+{
+	"title": "SELECT dept, id, avg WHERE avg == 95 || avg > 90 && dept == 'adhe' ORDER BY avg",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"courses_dept": "*an*"
+			}
+
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"with": []
+}

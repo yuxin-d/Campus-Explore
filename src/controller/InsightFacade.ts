@@ -1,6 +1,9 @@
+
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 import * as k from "./UtilsK";
 import * as k2 from "./UtilsK2";
+import PerformeQuery from "./PerformeQuery";
+import ValidQuery from "./validQuery";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -13,9 +16,11 @@ let dataSets: InsightDataset[] = [];
 let buildingNames: string[] = [];
 let shortNames: string[] = [];
 let allBuildings: any[] = [];
+let allCourses: any[] = [];
 // DO NOT USE THESE
 export default class InsightFacade implements IInsightFacade {
 	constructor() {
+		// init helper
 		console.trace("InsightFacadeImpl::init()");
 		k2.init(dataSets);
 	}
@@ -40,7 +45,7 @@ export default class InsightFacade implements IInsightFacade {
 						}
 					}
 					try {
-						return k.readCourses(addedCourses);
+						return Promise.resolve(k.readCourses(addedCourses));
 					} catch {
 						return Promise.reject(new InsightError("Could not read"));
 					}
@@ -48,7 +53,9 @@ export default class InsightFacade implements IInsightFacade {
 					return this.getBuildingsFromIndex(dataset).then((buildings: any[]) => {
 						return Promise.allSettled(k2.getGets(allBuildings, buildings, shortNames, buildingNames));
 					}).then((addresses: any) => {
-						return k2.getAllRoomData(addresses);
+						let currCourses = k2.getAllRoomData(addresses);
+						allCourses.push(currCourses);
+						return Promise.resolve(k2.getAllRoomData(addresses));
 					}).catch ((error: any) => {
 						return Promise.reject(error);
 					});
@@ -115,9 +122,140 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
+	// eslint-disable-next-line max-lines-per-function
 	public performQuery(query: any): Promise<any[]> {
-		return Promise.reject("Not implemented.");
+
+		let performeQuery = new PerformeQuery();
+		let validQuery = new ValidQuery();
+		if (validQuery.isValidQuery(query)) {
+			let result = performeQuery.doMatchingAction(query.WHERE, allCourses);
+			let options = query.OPTIONS;
+			// GROUP_BY
+			// 1. get an array for each group {value1: [x1,x2,x3...], value2: [x4,x5,x6], ...}
+			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
+			if ("TRANSFORMATIONS" in query) {
+				let gp: any = {all: result };
+				for (let key of query.TRANSFORMATIONS.GROUP) {
+					key = key.split("_")[1];
+					let newGp: any = {};
+					for (let x in gp) {
+						for (let element of gp[x]) {
+							let dataKey = x + "_" + key + element[key];
+							if (!(dataKey in newGp)){
+								newGp[dataKey] = [];
+							}
+							newGp[dataKey].push(element);
+						}
+					}
+					gp = newGp;
+				}
+				result = this.applyFunctions(gp, query);
+			}
+			if ("COLUMNS" in options) {
+				let columns = options.COLUMNS;
+				let actualResult = [];
+				for (let x of result) {
+					let obj: any = {};
+					for (let column of columns) {
+						if (column in x) {
+							obj[column] = x[column];
+							continue;
+						}
+						let actualColumn = column.split("_")[1];
+						obj[column] = x[actualColumn];
+					}
+					actualResult.push(obj);
+				}
+				result = actualResult;
+			}
+			if ("ORDER" in options) {
+				let key = options.ORDER;
+				// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+				result.sort((a: any, b: any) => {
+					if (a[key] < b[key]){
+						return -1;
+					} else if (a[key] > b[key]) {
+						return 1;
+					} else {
+						return 0;
+					}
+				});
+			}
+			return Promise.resolve(result);
+		} else {
+			return Promise.reject("the query is not valid");
+		}
 	}
+
+	private applyFunctions(gp: any, query: any) {
+		let newResult = [];
+		for (let data of Object.values(gp)) {
+			let newData = data as any[];
+			let newResultItem = newData[0];
+			for (let apply of query.TRANSFORMATIONS.APPLY) {
+				let newColumn = Object.keys(apply)[0];
+				let applyMethod = Object.keys(apply[newColumn])[0];
+				let applyColumn = apply[newColumn][applyMethod];
+				let trueColumn = applyColumn.split("_")[1];
+				if (applyMethod === "MAX") {
+					let maximum: any = newData[0][trueColumn];
+					for (let element of newData) {
+						if (element[trueColumn] > maximum) {
+							maximum = element[trueColumn];
+						}
+					}
+					newResultItem[newColumn] = maximum;
+				}
+				if (applyMethod === "MIN") {
+					let mini: any = newData[0][trueColumn];
+					for (let element of newData) {
+						if (element[trueColumn] < mini) {
+							mini = element[trueColumn];
+						}
+					}
+					newResultItem[newColumn] = mini;
+				}
+			}
+			newResult.push(newResultItem);
+		}
+		return newResult;
+// =======
+//		if (this.isValidQuery(query)) {
+//			let result: any[] = [];
+//			if (query["OPTIONS"] && query["OPTIONS"]["ORDER"]) {
+//				let order = query["OPTIONS"]["ORDER"];
+//				this.Sort(result, order);
+//				return Promise.resolve(result);
+//			}
+//		}
+//		return Promise.reject("Not implemented.");
+// >>>>>>> ijn
+	}
+
+	private Sort(arr: any[], orderof: string, order = "asc") {
+		arr.sort((a, b) => {
+			if (order === "desc") {
+				return b[orderof] > a[orderof] ? 1 : -1;
+			}
+			return a[orderof] > b[orderof] ? 1 : -1;
+		});
+	}
+
+	private wildCard(inputstring: string, fieldstring: string) {
+		if (inputstring.startsWith("*")) {
+			inputstring = "." + inputstring;
+		}
+
+		if (inputstring.endsWith("*")) {
+			inputstring = inputstring.substring(0, inputstring.length - 1);
+			inputstring += ".*";
+		}
+
+		const reg = new RegExp(inputstring);
+
+		return reg.test(fieldstring);
+	}
+
 
 	public listDatasets(): Promise<InsightDataset[]> {
 		return Promise.resolve(dataSets);
