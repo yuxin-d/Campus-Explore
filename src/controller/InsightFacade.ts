@@ -147,11 +147,12 @@ export default class InsightFacade implements IInsightFacade {
 		if (validQuery.isValidQuery(query)) {
 			let allSections: any = [];
 			if (performeQuery.kindDetect(query)) {
-				allSections = Array.from(new Set(allCourse));
+				allSections = allCourse;
 			} else {
-				allSections = Array.from(new Set(allRoom));
+				allSections = allRoom;
 			}
 			let result = performeQuery.doMatchingAction(query.WHERE, allSections);
+			result = performeQuery.removeDupLicate(result);
 			let options = query.OPTIONS;
 			if (result.length > 5000) {
 				return Promise.reject(new ResultTooLargeError());

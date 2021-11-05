@@ -154,4 +154,11 @@ export default class PerformeQuery{
 		return false;
 	}
 
+	public removeDupLicate(res: any[]) {
+		let result = res.map((x) => JSON.stringify(x));
+		result = Array.from(new Set(result));
+		result = result.map((x) => JSON.parse(x));
+		return result;
+	}
+
 }
