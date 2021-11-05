@@ -142,5 +142,12 @@ export default class PerformeQuery{
 		return [];
 	}
 
+	public kindDetect(query: any): boolean {
+		let q = JSON.stringify(query);
+		if (q.includes("courses_")) {
+			return true;
+		}
+		return false;
+	}
 
 }

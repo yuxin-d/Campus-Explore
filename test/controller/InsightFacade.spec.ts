@@ -62,14 +62,14 @@ describe("InsightFacade", function () {
 		});
 
 		// This is a unit test. You should create more like this!
-		it("Should add a valid dataset", function () {
-			const id: string = "courses";
-			const content: string = datasetContents.get("courses") ?? "";
-			const expected: string[] = [id];
-			return insightFacade.addDataset(id, content, InsightDatasetKind.Courses).then((result: string[]) => {
-				expect(result).to.deep.equal(expected);
-			});
-		});
+		// it("Should add a valid dataset", function () {
+		// 	const id: string = "courses";
+		// 	const content: string = datasetContents.get("courses") ?? "";
+		// 	const expected: string[] = [id];
+		// 	return insightFacade.addDataset(id, content, InsightDatasetKind.Courses).then((result: string[]) => {
+		// 		expect(result).to.deep.equal(expected);
+		// 	});
+		// });
 	});
 
 	/*

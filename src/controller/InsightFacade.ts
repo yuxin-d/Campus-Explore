@@ -16,7 +16,8 @@ let dataSets: InsightDataset[] = [];
 let buildingNames: string[] = [];
 let shortNames: string[] = [];
 let allBuildings: any[] = [];
-let allCourses: any[] = [];
+let allCourse: any[] = [];
+let allRoom: any[] = [];
 // DO NOT USE THESE
 export default class InsightFacade implements IInsightFacade {
 	constructor() {
@@ -45,6 +46,13 @@ export default class InsightFacade implements IInsightFacade {
 						}
 					}
 					try {
+						k.readCourses(addedCourses).then((currCourses: any) => {
+							for (let course of currCourses){
+								allCourse.push(course);
+							}
+						});
+
+						// return currCourses;
 						return Promise.resolve(k.readCourses(addedCourses));
 					} catch {
 						return Promise.reject(new InsightError("Could not read"));
@@ -53,8 +61,11 @@ export default class InsightFacade implements IInsightFacade {
 					return this.getBuildingsFromIndex(dataset).then((buildings: any[]) => {
 						return Promise.allSettled(k2.getGets(allBuildings, buildings, shortNames, buildingNames));
 					}).then((addresses: any) => {
-						let currCourses = k2.getAllRoomData(addresses);
-						allCourses.push(currCourses);
+						// k2.getAllRoomData(addresses).then((currRoom: any) => {
+						// 	for (let room of currRoom) {
+						// 		allRoom.push(room);
+						// 	}
+						// });
 						return Promise.resolve(k2.getAllRoomData(addresses));
 					}).catch ((error: any) => {
 						return Promise.reject(error);
@@ -128,7 +139,14 @@ export default class InsightFacade implements IInsightFacade {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery();
 		if (validQuery.isValidQuery(query)) {
-			let result = performeQuery.doMatchingAction(query.WHERE, allCourses);
+			let allSections: any = [];
+			if (performeQuery.kindDetect(query)) {
+				allSections = allCourse;
+			} else {
+				allSections = allRoom;
+			}
+			console.log(allCourse[0]);
+			let result = performeQuery.doMatchingAction(query.WHERE, allSections);
 			let options = query.OPTIONS;
 			// GROUP_BY
 			// 1. get an array for each group {value1: [x1,x2,x3...], value2: [x4,x5,x6], ...}

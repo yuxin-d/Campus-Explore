@@ -257,9 +257,9 @@ export function checkAddId(id: string, dataSets: any[]): boolean {
 	if (!id || id.includes("_") || !id.replace(/\s/g, "").length) {
 		return false;
 	}
-	if (dataSets.map((obj: any) => obj["id"]).includes(id)) {
-		return false;
-	}
+	// if (dataSets.map((obj: any) => obj["id"]).includes(id)) {
+	// 	return false;
+	// }
 	return true;
 }
 
