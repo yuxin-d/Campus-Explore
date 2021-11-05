@@ -17,7 +17,6 @@ import ValidQuery from "./validQuery";
  * Method documentation is in IInsightFacade
  *
  */
-let dataSets: InsightDataset[] = [];
 
 // DO NOT USE THESE
 let buildingNames: string[] = [];
@@ -27,10 +26,12 @@ let allCourse: any[] = [];
 let allRoom: any[] = [];
 // DO NOT USE THESE
 export default class InsightFacade implements IInsightFacade {
+	public dataSets: InsightDataset[] = [];
+
 	constructor() {
 		// init helper
 		console.trace("InsightFacadeImpl::init()");
-		k2.init(dataSets);
+		k2.init(this.dataSets);
 	}
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -38,7 +39,7 @@ export default class InsightFacade implements IInsightFacade {
 		let JSZip = require("jszip");
 		let zip = new JSZip();
 		let addedCourses: any[] = [];
-		if (k.checkAddId(id, dataSets)) { // is valid
+		if (k.checkAddId(id, this.dataSets)) { // is valid
 			return zip.loadAsync(content, {base64: true}).then((dataset: any) => {
 				if (kind === InsightDatasetKind.Courses) {
 					let allFiles: any = dataset.folder("courses")["files"];
@@ -53,14 +54,12 @@ export default class InsightFacade implements IInsightFacade {
 						}
 					}
 					try {
+						let currC: any[] | PromiseLike<any[]> = [];
 						k.readCourses(addedCourses).then((currCourses: any) => {
-							if (allCourse[0] !== currCourses[0]) {
-								allCourse = allCourse.concat(currCourses);
-							}
+							allCourse = allCourse.concat(currCourses);
+							currC = currCourses;
 						});
-
-						// return currCourses;
-						return Promise.resolve(k.readCourses(addedCourses));
+						return Promise.resolve(currC);
 					} catch {
 						return Promise.reject(new InsightError("Could not read"));
 					}
@@ -80,7 +79,7 @@ export default class InsightFacade implements IInsightFacade {
 				}
 			}).then(
 				(success: any) => {
-					return k2.succesful(success, id, kind, numRows, dataSets);
+					return k2.succesful(success, id, kind, numRows, this.dataSets);
 				},
 				function(error: any) {
 					return Promise.reject(new InsightError(error));
@@ -124,15 +123,16 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		if (!k.checkRemoveId(id, dataSets)) {
+		if (!k.checkRemoveId(id, this.dataSets)) {
 			return Promise.reject(new InsightError("Invalid id"));
 		}
-		if (!dataSets.map((obj: any) => obj["id"]).includes(id)) {
+		if (!this.dataSets.map((obj: any) => obj["id"]).includes(id)) {
 			return Promise.reject(new NotFoundError("Not in memory"));
 		}
-		dataSets = dataSets.filter((obj: any) => obj["id"] !== id);
+		this.dataSets = this.dataSets.filter((obj: any) => obj["id"] !== id);
 		try {
 			let fs = require("fs");
+			fs.statSync(`./src/data/${id}.json`);
 			fs.unlinkSync(`./src/data/${id}.json`);
 		} catch {
 			return Promise.reject(new InsightError("Error deleting"));
@@ -147,9 +147,9 @@ export default class InsightFacade implements IInsightFacade {
 		if (validQuery.isValidQuery(query)) {
 			let allSections: any = [];
 			if (performeQuery.kindDetect(query)) {
-				allSections = allCourse;
+				allSections = Array.from(new Set(allCourse));
 			} else {
-				allSections = allRoom;
+				allSections = Array.from(new Set(allRoom));
 			}
 			let result = performeQuery.doMatchingAction(query.WHERE, allSections);
 			let options = query.OPTIONS;
@@ -180,6 +180,7 @@ export default class InsightFacade implements IInsightFacade {
 					}
 				});
 			}
+			result = Array.from(new Set(result));
 			return Promise.resolve(result);
 		} else {
 			return Promise.reject("the query is not valid");
@@ -255,17 +256,7 @@ export default class InsightFacade implements IInsightFacade {
 			newResult.push(newResultItem);
 		}
 		return newResult;
-// =======
-//		if (this.isValidQuery(query)) {
-//			let result: any[] = [];
-//			if (query["OPTIONS"] && query["OPTIONS"]["ORDER"]) {
-//				let order = query["OPTIONS"]["ORDER"];
-//				this.Sort(result, order);
-//				return Promise.resolve(result);
-//			}
-//		}
-//		return Promise.reject("Not implemented.");
-// >>>>>>> ijn
+
 	}
 
 	private Sort(arr: any[], orderof: string, order = "asc") {
@@ -294,6 +285,6 @@ export default class InsightFacade implements IInsightFacade {
 
 
 	public listDatasets(): Promise<InsightDataset[]> {
-		return Promise.resolve(dataSets);
+		return Promise.resolve(this.dataSets);
 	}
 }
