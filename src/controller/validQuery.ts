@@ -38,18 +38,20 @@ export default class ValidQuery{
 	}
 
 	private handleMCOMPARATOR(query: any) {
-		const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
-		const mfield = ["courses_avg", "courses_pass", "courses_fail", "courses_audit", "courses_year"];
+		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
+		// const mfield = ["courses_avg", "courses_pass", "courses_fail", "courses_audit", "courses_year"];
+		const sfield = ["_dept", "id", "_instructor", "_title", "_uuid"];
+		const mfield = ["_avg", "_pass", "_fail", "_audit", "_year"];
 
 		const mkey = Object.keys(query)[0];
 
-		if (!mfield.includes(mkey) && !sfield.includes(mkey)) {
+		if (!mfield.includes("_" + mkey.split("_")[1]) && !sfield.includes("_" + mkey.split("_")[1])) {
 			throw new InsightError(`Invalid key ${mkey} in GT`);
 		}
 
-		if (mfield.includes(mkey) && typeof query[mkey] !== "number") {
+		if (mfield.includes("_" + mkey.split("_")[1]) && typeof query[mkey] !== "number") {
 			throw new InsightError("Invalid type in GT, should be number");
-		} else if (sfield.includes(mkey) && (typeof query[mkey] !== "string")) {
+		} else if (sfield.includes(mkey.split("_")[1]) && (typeof query[mkey] !== "string")) {
 			throw new InsightError("Invalid type in GT, should be string");
 		}
 
@@ -58,9 +60,11 @@ export default class ValidQuery{
 	private handleSCOMPARISON(query: any) {
 		const skey = Object.keys(query)[0];
 
-		const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
-		const mfield = ["courses_avg", "courses_pass", "courses_fail", "courses_audit", "courses_year"];
-		if (!mfield.includes(skey) && !sfield.includes(skey)) {
+		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
+		// const mfield = ["courses_avg", "courses_pass", "courses_fail", "courses_audit", "courses_year"];
+		const sfield = ["_dept", "_id", "_instructor", "_title", "_uuid"];
+		const mfield = ["_avg", "_pass", "_fail", "_audit", "_year"];
+		if (!mfield.includes("_" + skey.split("_")[1]) && !sfield.includes("_" + skey.split("_")[1])) {
 			throw new InsightError(`Invalid key ${skey} in GT`);
 		}
 		const value = query[skey];

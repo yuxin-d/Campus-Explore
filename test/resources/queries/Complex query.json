@@ -7,313 +7,313 @@
           "AND": [
             {
               "GT": {
-                "courses_avg": 90
+                "test_avg": 90
               }
             },
             {
               "IS": {
-                "courses_dept": "adhe"
+                "test_dept": "adhe"
               }
             }
           ]
         },
         {
           "EQ": {
-            "courses_avg": 95
+            "test_avg": 95
           }
         }
       ]
     },
     "OPTIONS": {
       "COLUMNS": [
-        "courses_dept",
-        "courses_id",
-        "courses_avg"
+        "test_dept",
+        "test_id",
+        "test_avg"
       ],
-      "ORDER": "courses_avg"
+      "ORDER": "test_avg"
     }
   },
   "errorExpected": false,
   "with": [
     {
-      "courses_dept": "adhe",
-      "courses_id": "329",
-      "courses_avg": 90.02
+      "test_dept": "adhe",
+      "test_id": "329",
+      "test_avg": 90.02
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "412",
-      "courses_avg": 90.16
+      "test_dept": "adhe",
+      "test_id": "412",
+      "test_avg": 90.16
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 90.17
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 90.17
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "412",
-      "courses_avg": 90.18
+      "test_dept": "adhe",
+      "test_id": "412",
+      "test_avg": 90.18
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 90.5
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 90.5
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 90.72
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 90.72
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "329",
-      "courses_avg": 90.82
+      "test_dept": "adhe",
+      "test_id": "329",
+      "test_avg": 90.82
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 90.85
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 90.85
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 91.29
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 91.29
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 91.33
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 91.33
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 91.33
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 91.33
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "330",
-      "courses_avg": 91.48
+      "test_dept": "adhe",
+      "test_id": "330",
+      "test_avg": 91.48
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "329",
-      "courses_avg": 92.54
+      "test_dept": "adhe",
+      "test_id": "329",
+      "test_avg": 92.54
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "329",
-      "courses_avg": 93.33
+      "test_dept": "adhe",
+      "test_id": "329",
+      "test_avg": 93.33
     },
     {
-      "courses_dept": "sowk",
-      "courses_id": "570",
-      "courses_avg": 95
+      "test_dept": "sowk",
+      "test_id": "570",
+      "test_avg": 95
     },
     {
-      "courses_dept": "rhsc",
-      "courses_id": "501",
-      "courses_avg": 95
+      "test_dept": "rhsc",
+      "test_id": "501",
+      "test_avg": 95
     },
     {
-      "courses_dept": "psyc",
-      "courses_id": "501",
-      "courses_avg": 95
+      "test_dept": "psyc",
+      "test_id": "501",
+      "test_avg": 95
     },
     {
-      "courses_dept": "psyc",
-      "courses_id": "501",
-      "courses_avg": 95
+      "test_dept": "psyc",
+      "test_id": "501",
+      "test_avg": 95
     },
     {
-      "courses_dept": "obst",
-      "courses_id": "549",
-      "courses_avg": 95
+      "test_dept": "obst",
+      "test_id": "549",
+      "test_avg": 95
     },
     {
-      "courses_dept": "nurs",
-      "courses_id": "424",
-      "courses_avg": 95
+      "test_dept": "nurs",
+      "test_id": "424",
+      "test_avg": 95
     },
     {
-      "courses_dept": "nurs",
-      "courses_id": "424",
-      "courses_avg": 95
+      "test_dept": "nurs",
+      "test_id": "424",
+      "test_avg": 95
     },
     {
-      "courses_dept": "musc",
-      "courses_id": "553",
-      "courses_avg": 95
+      "test_dept": "musc",
+      "test_id": "553",
+      "test_avg": 95
     },
     {
-      "courses_dept": "musc",
-      "courses_id": "553",
-      "courses_avg": 95
+      "test_dept": "musc",
+      "test_id": "553",
+      "test_avg": 95
     },
     {
-      "courses_dept": "musc",
-      "courses_id": "553",
-      "courses_avg": 95
+      "test_dept": "musc",
+      "test_id": "553",
+      "test_avg": 95
     },
     {
-      "courses_dept": "musc",
-      "courses_id": "553",
-      "courses_avg": 95
+      "test_dept": "musc",
+      "test_id": "553",
+      "test_avg": 95
     },
     {
-      "courses_dept": "musc",
-      "courses_id": "553",
-      "courses_avg": 95
+      "test_dept": "musc",
+      "test_id": "553",
+      "test_avg": 95
     },
     {
-      "courses_dept": "musc",
-      "courses_id": "553",
-      "courses_avg": 95
+      "test_dept": "musc",
+      "test_id": "553",
+      "test_avg": 95
     },
     {
-      "courses_dept": "mtrl",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "mtrl",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "mtrl",
-      "courses_id": "564",
-      "courses_avg": 95
+      "test_dept": "mtrl",
+      "test_id": "564",
+      "test_avg": 95
     },
     {
-      "courses_dept": "mtrl",
-      "courses_id": "564",
-      "courses_avg": 95
+      "test_dept": "mtrl",
+      "test_id": "564",
+      "test_avg": 95
     },
     {
-      "courses_dept": "math",
-      "courses_id": "532",
-      "courses_avg": 95
+      "test_dept": "math",
+      "test_id": "532",
+      "test_avg": 95
     },
     {
-      "courses_dept": "math",
-      "courses_id": "532",
-      "courses_avg": 95
+      "test_dept": "math",
+      "test_id": "532",
+      "test_avg": 95
     },
     {
-      "courses_dept": "kin",
-      "courses_id": "500",
-      "courses_avg": 95
+      "test_dept": "kin",
+      "test_id": "500",
+      "test_avg": 95
     },
     {
-      "courses_dept": "kin",
-      "courses_id": "500",
-      "courses_avg": 95
+      "test_dept": "kin",
+      "test_id": "500",
+      "test_avg": 95
     },
     {
-      "courses_dept": "kin",
-      "courses_id": "499",
-      "courses_avg": 95
+      "test_dept": "kin",
+      "test_id": "499",
+      "test_avg": 95
     },
     {
-      "courses_dept": "epse",
-      "courses_id": "682",
-      "courses_avg": 95
+      "test_dept": "epse",
+      "test_id": "682",
+      "test_avg": 95
     },
     {
-      "courses_dept": "epse",
-      "courses_id": "682",
-      "courses_avg": 95
+      "test_dept": "epse",
+      "test_id": "682",
+      "test_avg": 95
     },
     {
-      "courses_dept": "epse",
-      "courses_id": "606",
-      "courses_avg": 95
+      "test_dept": "epse",
+      "test_id": "606",
+      "test_avg": 95
     },
     {
-      "courses_dept": "edcp",
-      "courses_id": "473",
-      "courses_avg": 95
+      "test_dept": "edcp",
+      "test_id": "473",
+      "test_avg": 95
     },
     {
-      "courses_dept": "edcp",
-      "courses_id": "473",
-      "courses_avg": 95
+      "test_dept": "edcp",
+      "test_id": "473",
+      "test_avg": 95
     },
     {
-      "courses_dept": "econ",
-      "courses_id": "516",
-      "courses_avg": 95
+      "test_dept": "econ",
+      "test_id": "516",
+      "test_avg": 95
     },
     {
-      "courses_dept": "econ",
-      "courses_id": "516",
-      "courses_avg": 95
+      "test_dept": "econ",
+      "test_id": "516",
+      "test_avg": 95
     },
     {
-      "courses_dept": "crwr",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "crwr",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "crwr",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "crwr",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "crwr",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "crwr",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "crwr",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "crwr",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "crwr",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "crwr",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "crwr",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "crwr",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "crwr",
-      "courses_id": "599",
-      "courses_avg": 95
+      "test_dept": "crwr",
+      "test_id": "599",
+      "test_avg": 95
     },
     {
-      "courses_dept": "cpsc",
-      "courses_id": "589",
-      "courses_avg": 95
+      "test_dept": "cpsc",
+      "test_id": "589",
+      "test_avg": 95
     },
     {
-      "courses_dept": "cpsc",
-      "courses_id": "589",
-      "courses_avg": 95
+      "test_dept": "cpsc",
+      "test_id": "589",
+      "test_avg": 95
     },
     {
-      "courses_dept": "cnps",
-      "courses_id": "535",
-      "courses_avg": 95
+      "test_dept": "cnps",
+      "test_id": "535",
+      "test_avg": 95
     },
     {
-      "courses_dept": "cnps",
-      "courses_id": "535",
-      "courses_avg": 95
+      "test_dept": "cnps",
+      "test_id": "535",
+      "test_avg": 95
     },
     {
-      "courses_dept": "bmeg",
-      "courses_id": "597",
-      "courses_avg": 95
+      "test_dept": "bmeg",
+      "test_id": "597",
+      "test_avg": 95
     },
     {
-      "courses_dept": "bmeg",
-      "courses_id": "597",
-      "courses_avg": 95
+      "test_dept": "bmeg",
+      "test_id": "597",
+      "test_avg": 95
     },
     {
-      "courses_dept": "adhe",
-      "courses_id": "329",
-      "courses_avg": 96.11
+      "test_dept": "adhe",
+      "test_id": "329",
+      "test_avg": 96.11
     }
   ]
 }

@@ -9,7 +9,7 @@ import {expect} from "chai";
 describe("InsightFacade", function () {
 	let insightFacade: InsightFacade;
 
-	const persistDir = "./src/data";
+	const persistDir = "./data";
 	const datasetContents = new Map<string, string>();
 
 	// Reference any datasets you've added to test/resources/archives here and they will
@@ -61,6 +61,18 @@ describe("InsightFacade", function () {
 			});
 		});
 
+		it("Should List a valid dataset", function () {
+			const id: string = "courses";
+			const content: string = datasetContents.get("courses") ?? "";
+			const expected: any[] = [{id: "courses", kind: "courses", numRows: 5944}];
+			insightFacade.addDataset(id, content, InsightDatasetKind.Courses).then(() => {
+				return insightFacade.listDatasets().then((result: any[]) => {
+					expect(result).to.deep.equal(expected);
+				});
+			});
+
+		});
+
 		// This is a unit test. You should create more like this!
 		// it("Should add a valid dataset", function () {
 		// 	const id: string = "courses";
@@ -86,7 +98,8 @@ describe("InsightFacade", function () {
 			// Load the datasets specified in datasetsToQuery and add them to InsightFacade.
 			// Will *fail* if there is a problem reading ANY dataset.
 			const loadDatasetPromises = [
-				insightFacade.addDataset("courses", datasetContents.get("courses") ?? "", InsightDatasetKind.Courses),
+				insightFacade.addDataset("test", datasetContents.get("courses") ?? "", InsightDatasetKind.Courses),
+				insightFacade.addDataset("courses", datasetContents.get("courses") ?? "", InsightDatasetKind.Courses)
 			];
 
 			return Promise.all(loadDatasetPromises);

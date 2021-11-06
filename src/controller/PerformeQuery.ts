@@ -1,3 +1,5 @@
+import * as fs from "fs";
+
 export default class PerformeQuery{
 	public doMatchingAction(query: any, allSections: any[]): any[] {
 		let subResults: any[] = [];
@@ -56,8 +58,6 @@ export default class PerformeQuery{
 	}
 
 	private notHelperFn(arrayNew: any[], allSections: any): any[] {
-		// All sections, here we need the global variable be available to use, the 'allSections'
-		// let allSections: any[] = [1, 2, 3, 4, 5, 6, 7, 8]; // Since Kelvin's datasets does not work, manual-check Fn
 		let notResult: any[] = [];
 		for (let element of allSections) {
 			if (arrayNew.indexOf(element) === -1) {
@@ -146,19 +146,22 @@ export default class PerformeQuery{
 		return result;
 	}
 
-	public kindDetect(query: any): boolean {
-		let q = JSON.stringify(query);
-		if (q.includes("courses_")) {
-			return true;
+	public grabDataset(query: any[]) {
+		let id: any = false;
+		let res = [];
+		let str: string = JSON.stringify(query);
+		const files = fs.readdirSync("./data/");
+		files.forEach((x) => {
+			if (str.indexOf(x.split(".")[0] + "_")) {
+				id = x;
+			}
+		});
+		if (id !== false) {
+			res = JSON.parse(fs.readFileSync("./data/" + id, "utf8"));
+			return res;
+		} else {
+			return [];
 		}
-		return false;
-	}
-
-	public removeDupLicate(res: any[]) {
-		let result = res.map((x) => JSON.stringify(x));
-		result = Array.from(new Set(result));
-		result = result.map((x) => JSON.parse(x));
-		return result;
 	}
 
 }
