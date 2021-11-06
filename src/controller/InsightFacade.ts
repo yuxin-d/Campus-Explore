@@ -30,7 +30,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	constructor() {
 		// init helper
-		console.trace("InsightFacadeImpl::init()");
+		// console.trace("InsightFacadeImpl::init()");
 		k2.init(this.dataSets);
 	}
 
@@ -69,7 +69,7 @@ export default class InsightFacade implements IInsightFacade {
 				}
 			}).then(
 				(success: any) => {
-					return k2.succesful(success, id, kind, numRows, this.dataSets);
+					return k2.succesful(success, id, kind, success.length, this.dataSets);
 				},
 				function(error: any) {
 					return Promise.reject(new InsightError(error));
@@ -119,12 +119,14 @@ export default class InsightFacade implements IInsightFacade {
 		if (!this.dataSets.map((obj: any) => obj["id"]).includes(id)) {
 			return Promise.reject(new NotFoundError("Not in memory"));
 		}
+		let kind = this.dataSets.filter((obj: any) => obj["id"] === id)[0]["kind"];
 		this.dataSets = this.dataSets.filter((obj: any) => obj["id"] !== id);
 		try {
 			// id.json
 			let fs = require("fs");
-			fs.statSync(`./data/${id}.json`);
-			fs.unlinkSync(`./data/${id}.json`);
+			let pre: string = kind === InsightDatasetKind.Courses ? "c" : "r";
+			fs.statSync(`./data/${pre}${id}.json`);
+			fs.unlinkSync(`./data/${pre}${id}.json`);
 		} catch {
 			return Promise.reject(new InsightError("Error deleting"));
 		}
