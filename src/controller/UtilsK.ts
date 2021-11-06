@@ -217,10 +217,11 @@ export function makeIndex(td4: any): string {
 	return "";
 }
 
+// initialize helper before everything
 export function readCourses(addedCourses: any[]): Promise<void | any[]> {
 	return Promise.all(addedCourses).then((courses) => {
 		let empty: boolean = true;
-		let allSections: any[] = [];
+		let allSections: any[] = []; // delete
 		courses.forEach((course) => {
 			let result: any[];
 			result =  JSON.parse(course)["result"]; // this is a list of sections
@@ -241,13 +242,13 @@ export function readCourses(addedCourses: any[]): Promise<void | any[]> {
 					uuid: section["id"],
 					year: parseInt(section["Year"], 10)
 				};
-				allSections.push(thisSection);
+				allSections.push(thisSection); // push to helper member field
 			}
 		});
 		if (empty) {
 			return Promise.reject(new InsightError("Empty dataset"));
 		} else {
-			return allSections;
+			return allSections; // return helper member
 		}
 	});
 }
@@ -256,9 +257,9 @@ export function checkAddId(id: string, dataSets: any[]): boolean {
 	if (!id || id.includes("_") || !id.replace(/\s/g, "").length) {
 		return false;
 	}
-	if (dataSets.map((obj: any) => obj["id"]).includes(id)) {
-		return false;
-	}
+	// if (dataSets.map((obj: any) => obj["id"]).includes(id)) {
+	// 	return false;
+	// }
 	return true;
 }
 
