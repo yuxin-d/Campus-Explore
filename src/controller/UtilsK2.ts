@@ -73,7 +73,7 @@ export function succesful(success: any, id: string, kind: InsightDatasetKind, nu
 	// https://stackoverflow.com/questions/51577849/how-to-save-an-array-of-strings-to-a-json-file-in-javascript
 	// https://stackoverflow.com/questions/12899061/creating-a-file-only-if-it-doesnt-exist-in-node-js
 	let fs = require("fs");
-	fs.writeFile(`./data/${id}.json`, JSON.stringify(success),
+	fs.writeFile(`./data/${kind === InsightDatasetKind.Courses ? "c" : "r"}${id}.json`, JSON.stringify(success),
 		{flag: "wx"}, function (error: any) {
 			if (error) {
 				return Promise.reject(new InsightError("Could not write"));
@@ -120,15 +120,3 @@ export function getAllRoomData(addresses: any): any {
 	}
 	return allRoomData;
 }
-
-// =======
-//		if (this.isValidQuery(query)) {
-//			let result: any[] = [];
-//			if (query["OPTIONS"] && query["OPTIONS"]["ORDER"]) {
-//				let order = query["OPTIONS"]["ORDER"];
-//				this.Sort(result, order);
-//				return Promise.resolve(result);
-//			}
-//		}
-//		return Promise.reject("Not implemented.");
-// >>>>>>> ijn
