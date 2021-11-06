@@ -152,7 +152,7 @@ export default class PerformeQuery{
 		let str: string = JSON.stringify(query);
 		const files = fs.readdirSync("./data/");
 		files.forEach((x) => {
-			if (str.indexOf(x.split(".")[0] + "_")) {
+			if (str.indexOf(x.split(".")[0].substring(1) + "_")) {
 				id = x;
 			}
 		});
