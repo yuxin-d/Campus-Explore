@@ -1,9 +1,4 @@
-import {
-	InsightDataset,
-	InsightDatasetKind,
-	InsightError,
-	ResultTooLargeError
-} from "../../src/controller/IInsightFacade";
+import {InsightDatasetKind, InsightError, ResultTooLargeError} from "../../src/controller/IInsightFacade";
 import InsightFacade from "../../src/controller/InsightFacade";
 
 import * as fs from "fs-extra";
@@ -64,6 +59,18 @@ describe("InsightFacade", function () {
 			return insightFacade.addDataset(id, content, InsightDatasetKind.Courses).then((result: string[]) => {
 				expect(result).to.deep.equal(expected);
 			});
+		});
+
+		it("Should List a valid dataset", function () {
+			const id: string = "courses";
+			const content: string = datasetContents.get("courses") ?? "";
+			const expected: any[] = [{id: "courses", kind: "courses", numRows: 5944}];
+			insightFacade.addDataset(id, content, InsightDatasetKind.Courses).then(() => {
+				return insightFacade.listDatasets().then((result: any[]) => {
+					expect(result).to.deep.equal(expected);
+				});
+			});
+
 		});
 
 		// This is a unit test. You should create more like this!

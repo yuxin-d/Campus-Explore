@@ -143,7 +143,7 @@ export default class InsightFacade implements IInsightFacade {
 			// 	allSections = allRoom;
 			// }
 			let result = performeQuery.doMatchingAction(query.WHERE, allSections);
-			result = performeQuery.removeDupLicate(result);
+			// result = performeQuery.removeDupLicate(result);
 			let options = query.OPTIONS;
 			if (result.length > 5000) {
 				return Promise.reject(new ResultTooLargeError());
@@ -277,6 +277,7 @@ export default class InsightFacade implements IInsightFacade {
 
 
 	public listDatasets(): Promise<InsightDataset[]> {
+		k2.init(this.dataSets);
 		return Promise.resolve(this.dataSets);
 	}
 }
