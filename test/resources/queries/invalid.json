@@ -1,0 +1,8 @@
+{
+	"title": "Very invalid query",
+	"input": {
+		"OPTIONS": {}
+	},
+	"errorExpected": true,
+	"with": "InsightError"
+}

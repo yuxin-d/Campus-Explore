@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid key type in GT",
+  "title": "Invalid_instructor",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "courses_instructor": 1998
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
