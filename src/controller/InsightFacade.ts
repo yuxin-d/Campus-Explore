@@ -54,11 +54,6 @@ export default class InsightFacade implements IInsightFacade {
 						}
 					}
 					try {
-						let currC: any[] | PromiseLike<any[]> = [];
-						k.readCourses(addedCourses).then((currCourses: any) => {
-							allCourse = allCourse.concat(currCourses);
-							currC = currCourses;
-						});
 						return Promise.resolve(k.readCourses(addedCourses));
 					} catch {
 						return Promise.reject(new InsightError("Could not read"));
@@ -67,11 +62,6 @@ export default class InsightFacade implements IInsightFacade {
 					return this.getBuildingsFromIndex(dataset).then((buildings: any[]) => {
 						return Promise.allSettled(k2.getGets(allBuildings, buildings, shortNames, buildingNames));
 					}).then((addresses: any) => {
-						// k2.getAllRoomData(addresses).then((currRoom: any) => {
-						// 	for (let room of currRoom) {
-						// 		allRoom.push(room);
-						// 	}
-						// });
 						return Promise.resolve(k2.getAllRoomData(addresses));
 					}).catch ((error: any) => {
 						return Promise.reject(error);
@@ -146,11 +136,12 @@ export default class InsightFacade implements IInsightFacade {
 		let validQuery = new ValidQuery();
 		if (validQuery.isValidQuery(query)) {
 			let allSections: any = [];
-			if (performeQuery.kindDetect(query)) {
-				allSections = allCourse;
-			} else {
-				allSections = allRoom;
-			}
+			allSections = performeQuery.grabDataset(query);
+			// if (performeQuery.kindDetect(query)) {
+			// 	allSections = allCourse;
+			// } else {
+			// 	allSections = allRoom;
+			// }
 			let result = performeQuery.doMatchingAction(query.WHERE, allSections);
 			result = performeQuery.removeDupLicate(result);
 			let options = query.OPTIONS;

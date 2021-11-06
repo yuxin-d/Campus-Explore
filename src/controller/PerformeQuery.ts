@@ -1,3 +1,5 @@
+import * as fs from "fs";
+
 export default class PerformeQuery{
 	public doMatchingAction(query: any, allSections: any[]): any[] {
 		let subResults: any[] = [];
@@ -159,6 +161,24 @@ export default class PerformeQuery{
 		result = Array.from(new Set(result));
 		result = result.map((x) => JSON.parse(x));
 		return result;
+	}
+
+	public grabDataset(query: any[]) {
+		let id: any = false;
+		let res = [];
+		let str: string = JSON.stringify(query);
+		const files = fs.readdirSync("./src/data/");
+		files.forEach((x) => {
+			if (str.indexOf(x.split(".")[0] + "_")) {
+				id = x;
+			}
+		});
+		if (id !== false) {
+			res = JSON.parse(fs.readFileSync("./src/data/" + id, "utf8"));
+			return res;
+		} else {
+			return [];
+		}
 	}
 
 }

@@ -1,4 +1,9 @@
-import {InsightDatasetKind, InsightError, ResultTooLargeError} from "../../src/controller/IInsightFacade";
+import {
+	InsightDataset,
+	InsightDatasetKind,
+	InsightError,
+	ResultTooLargeError
+} from "../../src/controller/IInsightFacade";
 import InsightFacade from "../../src/controller/InsightFacade";
 
 import * as fs from "fs-extra";
