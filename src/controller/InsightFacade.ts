@@ -121,9 +121,10 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		this.dataSets = this.dataSets.filter((obj: any) => obj["id"] !== id);
 		try {
+			// id.json
 			let fs = require("fs");
-			fs.statSync(`./src/data/${id}.json`);
-			fs.unlinkSync(`./src/data/${id}.json`);
+			fs.statSync(`./data/${id}.json`);
+			fs.unlinkSync(`./data/${id}.json`);
 		} catch {
 			return Promise.reject(new InsightError("Error deleting"));
 		}
@@ -277,7 +278,7 @@ export default class InsightFacade implements IInsightFacade {
 
 
 	public listDatasets(): Promise<InsightDataset[]> {
-		k2.init(this.dataSets);
+		// k2.init(this.dataSets);
 		return Promise.resolve(this.dataSets);
 	}
 }

@@ -51,13 +51,13 @@ export function getInfo(tbody: any, indexes: any[], buildingNames: any[], shortN
 export function init(dataSets: any[]) {
 	let fs = require("fs");
 	// https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
-	if (!fs.existsSync("./src/data")) {
-		fs.mkdirSync("./src/data");
+	if (!fs.existsSync("./data")) {
+		fs.mkdirSync("./data");
 	}
-	let diskDatasets = fs.readdirSync("./src/data");
+	let diskDatasets = fs.readdirSync("./data");
 	dataSets = [];
 	diskDatasets.forEach((disk: any) => {
-		let read = fs.readFileSync(`./src/data/${disk}`).toString("utf8");
+		let read = fs.readFileSync(`./data/${disk}`).toString("utf8");
 		// https://stackoverflow.com/questions/48676751/convert-javascript-string-to-literal-array
 		dataSets.push(
 			{
@@ -73,7 +73,7 @@ export function succesful(success: any, id: string, kind: InsightDatasetKind, nu
 	// https://stackoverflow.com/questions/51577849/how-to-save-an-array-of-strings-to-a-json-file-in-javascript
 	// https://stackoverflow.com/questions/12899061/creating-a-file-only-if-it-doesnt-exist-in-node-js
 	let fs = require("fs");
-	fs.writeFile(`./src/data/${id}.json`, JSON.stringify(success),
+	fs.writeFile(`./data/${id}.json`, JSON.stringify(success),
 		{flag: "wx"}, function (error: any) {
 			if (error) {
 				return Promise.reject(new InsightError("Could not write"));
