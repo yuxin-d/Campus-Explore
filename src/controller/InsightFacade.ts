@@ -1,4 +1,3 @@
-
 import {
 	IInsightFacade,
 	InsightDataset,
@@ -133,7 +132,6 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
-
 	public performQuery(query: any): Promise<any[]> {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery();
@@ -219,6 +217,7 @@ export default class InsightFacade implements IInsightFacade {
 		return actualResult;
 	}
 
+	// eslint-disable-next-line max-lines-per-function
 	private applyFunctions(gp: any, query: any) {
 		let newResult = [];
 		for (let data of Object.values(gp)) {
@@ -247,37 +246,36 @@ export default class InsightFacade implements IInsightFacade {
 					}
 					newResultItem[newColumn] = mini;
 				}
+				if (applyMethod === "AVG") {
+					let average: any = newData[0][trueColumn];
+					for (let element of newData) {
+						let curr = 0;
+						curr = curr + element[trueColumn];
+						average = curr / trueColumn;
+					}
+					newResultItem[newColumn] = average;
+				}
+				if (applyMethod === "SUM") {
+					let sum: any = newData[0][trueColumn];
+					for (let element of newData) {
+						sum = sum + element[trueColumn];
+					}
+					newResultItem[newColumn] = sum;
+				}
+				if (applyMethod === "COUNT") {
+					let curr: any = Array;
+					for (let element of newData) {
+						if (!curr.contain(element[trueColumn])) {
+							curr.push(element[trueColumn]);
+						}
+					}
+					newResultItem[newColumn] = curr.length;
+				}
 			}
 			newResult.push(newResultItem);
 		}
 		return newResult;
-
 	}
-
-	private Sort(arr: any[], orderof: string, order = "asc") {
-		arr.sort((a, b) => {
-			if (order === "desc") {
-				return b[orderof] > a[orderof] ? 1 : -1;
-			}
-			return a[orderof] > b[orderof] ? 1 : -1;
-		});
-	}
-
-	private wildCard(inputstring: string, fieldstring: string) {
-		if (inputstring.startsWith("*")) {
-			inputstring = "." + inputstring;
-		}
-
-		if (inputstring.endsWith("*")) {
-			inputstring = inputstring.substring(0, inputstring.length - 1);
-			inputstring += ".*";
-		}
-
-		const reg = new RegExp(inputstring);
-
-		return reg.test(fieldstring);
-	}
-
 
 	public listDatasets(): Promise<InsightDataset[]> {
 		// k2.init(this.dataSets);

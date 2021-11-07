@@ -162,4 +162,26 @@ export default class PerformeQuery{
 		}
 	}
 
+	private Sort(arr: any[], orderof: string, order = "asc") {
+		arr.sort((a, b) => {
+			if (order === "desc") {
+				return b[orderof] > a[orderof] ? 1 : -1;
+			}
+			return a[orderof] > b[orderof] ? 1 : -1;
+		});
+	}
+
+	private wildCard(inputstring: string, fieldstring: string) {
+		if (inputstring.startsWith("*")) {
+			inputstring = "." + inputstring;
+		}
+
+		if (inputstring.endsWith("*")) {
+			inputstring = inputstring.substring(0, inputstring.length - 1);
+			inputstring += ".*";
+		}
+		const reg = new RegExp(inputstring);
+		return reg.test(fieldstring);
+	}
+
 }
