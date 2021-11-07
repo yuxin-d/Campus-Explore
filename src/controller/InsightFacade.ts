@@ -156,7 +156,7 @@ export default class InsightFacade implements IInsightFacade {
 			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
 			if ("TRANSFORMATIONS" in query) {
 				let gp = this.performTrans(query, result);
-				result = this.applyFunctions(gp, query);
+				result = k2.applyFunctions(gp, query);
 			}
 			if ("COLUMNS" in options) {
 				let columns = options.COLUMNS;
@@ -217,41 +217,6 @@ export default class InsightFacade implements IInsightFacade {
 			actualResult.push(obj);
 		}
 		return actualResult;
-	}
-
-	private applyFunctions(gp: any, query: any) {
-		let newResult = [];
-		for (let data of Object.values(gp)) {
-			let newData = data as any[];
-			let newResultItem = newData[0];
-			for (let apply of query.TRANSFORMATIONS.APPLY) {
-				let newColumn = Object.keys(apply)[0];
-				let applyMethod = Object.keys(apply[newColumn])[0];
-				let applyColumn = apply[newColumn][applyMethod];
-				let trueColumn = applyColumn.split("_")[1];
-				if (applyMethod === "MAX") {
-					let maximum: any = newData[0][trueColumn];
-					for (let element of newData) {
-						if (element[trueColumn] > maximum) {
-							maximum = element[trueColumn];
-						}
-					}
-					newResultItem[newColumn] = maximum;
-				}
-				if (applyMethod === "MIN") {
-					let mini: any = newData[0][trueColumn];
-					for (let element of newData) {
-						if (element[trueColumn] < mini) {
-							mini = element[trueColumn];
-						}
-					}
-					newResultItem[newColumn] = mini;
-				}
-			}
-			newResult.push(newResultItem);
-		}
-		return newResult;
-
 	}
 
 	private Sort(arr: any[], orderof: string, order = "asc") {
