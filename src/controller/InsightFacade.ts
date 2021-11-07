@@ -10,6 +10,7 @@ import * as k from "./UtilsK";
 import * as k2 from "./UtilsK2";
 import PerformeQuery from "./PerformeQuery";
 import ValidQuery from "./validQuery";
+import Decimal from "decimal.js";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -248,11 +249,13 @@ export default class InsightFacade implements IInsightFacade {
 				}
 				if (applyMethod === "AVG") {
 					let average: any = newData[0][trueColumn];
+					let total = new Decimal(0);
 					for (let element of newData) {
-						let curr = 0;
-						curr = curr + element[trueColumn];
-						average = curr / trueColumn;
+						let nnum = new Decimal(element[trueColumn]);
+						total = Decimal.add (nnum, total);
 					}
+					average = total.toNumber() / trueColumn;
+					Number(average.toFixed(2));
 					newResultItem[newColumn] = average;
 				}
 				if (applyMethod === "SUM") {
@@ -260,6 +263,7 @@ export default class InsightFacade implements IInsightFacade {
 					for (let element of newData) {
 						sum = sum + element[trueColumn];
 					}
+					Number(sum.toFixed(2));
 					newResultItem[newColumn] = sum;
 				}
 				if (applyMethod === "COUNT") {
