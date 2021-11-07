@@ -1,4 +1,3 @@
-
 import {
 	IInsightFacade,
 	InsightDataset,
@@ -11,6 +10,7 @@ import * as k from "./UtilsK";
 import * as k2 from "./UtilsK2";
 import PerformeQuery from "./PerformeQuery";
 import ValidQuery from "./validQuery";
+import Decimal from "decimal.js";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -133,7 +133,6 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
-
 	public performQuery(query: any): Promise<any[]> {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery();
@@ -218,31 +217,6 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return actualResult;
 	}
-
-	private Sort(arr: any[], orderof: string, order = "asc") {
-		arr.sort((a, b) => {
-			if (order === "desc") {
-				return b[orderof] > a[orderof] ? 1 : -1;
-			}
-			return a[orderof] > b[orderof] ? 1 : -1;
-		});
-	}
-
-	private wildCard(inputstring: string, fieldstring: string) {
-		if (inputstring.startsWith("*")) {
-			inputstring = "." + inputstring;
-		}
-
-		if (inputstring.endsWith("*")) {
-			inputstring = inputstring.substring(0, inputstring.length - 1);
-			inputstring += ".*";
-		}
-
-		const reg = new RegExp(inputstring);
-
-		return reg.test(fieldstring);
-	}
-
 
 	public listDatasets(): Promise<InsightDataset[]> {
 		// k2.init(this.dataSets);
