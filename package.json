@@ -47,6 +47,7 @@
 		"test": "mocha --require ts-node/register --timeout 100000 --extension .spec.ts --recursive test",
 		"pretty": "prettier --config ./.prettierrc.json --write \"./**/*.ts\"",
 		"lint": "eslint src test --ext .ts",
-		"fix": "yarn lint --fix"
+		"fix": "yarn lint --fix",
+		"start": "ts-node src/App.ts"
 	}
 }
