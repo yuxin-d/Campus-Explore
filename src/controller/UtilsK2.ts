@@ -2,6 +2,7 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFou
 import { parse as p5} from "parse5";
 import * as k from "./UtilsK";
 import { inherits } from "util";
+import Decimal from "decimal.js";
 
 
 export function getTBody(child: any) {
@@ -131,26 +132,74 @@ export function applyFunctions(gp: any, query: any) {
 			let applyMethod = Object.keys(apply[newColumn])[0];
 			let applyColumn = apply[newColumn][applyMethod];
 			let trueColumn = applyColumn.split("_")[1];
-			if (applyMethod === "MAX") {
-				let maximum: any = newData[0][trueColumn];
-				for (let element of newData) {
-					if (element[trueColumn] > maximum) {
-						maximum = element[trueColumn];
-					}
-				}
-				newResultItem[newColumn] = maximum;
-			}
-			if (applyMethod === "MIN") {
-				let mini: any = newData[0][trueColumn];
-				for (let element of newData) {
-					if (element[trueColumn] < mini) {
-						mini = element[trueColumn];
-					}
-				}
-				newResultItem[newColumn] = mini;
-			}
+			MAX(applyMethod, newData, trueColumn, newResultItem, newColumn);
+			MIN(applyMethod, newData, trueColumn, newResultItem, newColumn);
+			AVG(applyMethod, newData, trueColumn, newResultItem, newColumn);
+			SUM(applyMethod, newData, trueColumn, newResultItem, newColumn);
+			COUNT(applyMethod, newData, trueColumn, newResultItem, newColumn);
 		}
 		newResult.push(newResultItem);
 	}
 	return newResult;
+}
+
+export function COUNT(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
+	if (applyMethod === "COUNT") {
+		let curr: any = Array;
+		for (let element of newData) {
+			if (!curr.contain(element[trueColumn])) {
+				curr.push(element[trueColumn]);
+			}
+		}
+		newResultItem[newColumn] = curr.length;
+	}
+}
+
+export function SUM(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
+	if (applyMethod === "SUM") {
+		let sum: any = newData[0][trueColumn];
+		for (let element of newData) {
+			sum = sum + element[trueColumn];
+		}
+		Number(sum.toFixed(2));
+		newResultItem[newColumn] = sum;
+	}
+}
+
+export function AVG(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
+	if (applyMethod === "AVG") {
+		let average: any = newData[0][trueColumn];
+		let total = new Decimal(0);
+		for (let element of newData) {
+			let nnum = new Decimal(element[trueColumn]);
+			total = Decimal.add (nnum, total);
+		}
+		average = total.toNumber() / trueColumn;
+		Number(average.toFixed(2));
+		newResultItem[newColumn] = average;
+	}
+}
+
+export function MAX(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
+	if (applyMethod === "MAX") {
+		let maximum: any = newData[0][trueColumn];
+		for (let element of newData) {
+			if (element[trueColumn] > maximum) {
+				maximum = element[trueColumn];
+			}
+		}
+		newResultItem[newColumn] = maximum;
+	}
+}
+
+export function MIN(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
+	if (applyMethod === "MIN") {
+		let mini: any = newData[0][trueColumn];
+		for (let element of newData) {
+			if (element[trueColumn] < mini) {
+				mini = element[trueColumn];
+			}
+		}
+		newResultItem[newColumn] = mini;
+	}
 }
