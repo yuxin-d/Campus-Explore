@@ -184,4 +184,16 @@ export default class PerformeQuery{
 		return reg.test(fieldstring);
 	}
 
+	public enhancedSort(arr: any[], dir: string, key: string) {
+		arr.sort((a, b) => {
+			if (dir === "DOWN") {
+				return b[key] > a[key] ? 1 : -1;
+			} else if (dir === "UP") {
+				return a[key] > b[key] ? 1 : -1;
+			} else {
+				return 0;
+			}
+		});
+	}
+
 }
