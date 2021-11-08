@@ -1,10 +1,9 @@
-{
-  "errorMsg": "Invalid value type in GT, should be number",
+{"errorMsg": "Year should be a number with using EQ instead of IS",
   "title": "Invalid_year",
   "input": {
     "WHERE": {
       "IS": {
-        "courses_year": "2077"
+        "courses_year": 2077
       }
     },
     "OPTIONS": {
