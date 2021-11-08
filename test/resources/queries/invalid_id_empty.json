@@ -15,6 +15,6 @@
       "ORDER": "courses_id"
     }
   },
-  "errorExpected": true,
-  "with": "InsightError"
+  "errorExpected": false,
+  "with": []
 }
