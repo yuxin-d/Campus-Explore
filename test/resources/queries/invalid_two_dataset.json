@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Cannot query more than one dataset",
+  "title": "invalid_two_dataset",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "banana_avg": 9
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
