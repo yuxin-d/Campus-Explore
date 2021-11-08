@@ -239,7 +239,7 @@ export function readCourses(addedCourses: any[]): Promise<void | any[]> {
 					pass: section["Pass"],
 					fail: section["Fail"],
 					audit: section["Audit"],
-					uuid: section["id"],
+					uuid: section["id"].toString(),
 					year: parseInt(section["Year"], 10)
 				};
 				allSections.push(thisSection); // push to helper member field
