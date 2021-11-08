@@ -155,7 +155,7 @@ export default class InsightFacade implements IInsightFacade {
 			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
 			if ("TRANSFORMATIONS" in query) {
 				let gp = this.performTrans(query, result);
-				result = this.applyFunctions(gp, query);
+				result = k2.applyFunctions(gp, query);
 			}
 			if ("COLUMNS" in options) {
 				let columns = options.COLUMNS;
@@ -216,69 +216,6 @@ export default class InsightFacade implements IInsightFacade {
 			actualResult.push(obj);
 		}
 		return actualResult;
-	}
-
-	// eslint-disable-next-line max-lines-per-function
-	private applyFunctions(gp: any, query: any) {
-		let newResult = [];
-		for (let data of Object.values(gp)) {
-			let newData = data as any[];
-			let newResultItem = newData[0];
-			for (let apply of query.TRANSFORMATIONS.APPLY) {
-				let newColumn = Object.keys(apply)[0];
-				let applyMethod = Object.keys(apply[newColumn])[0];
-				let applyColumn = apply[newColumn][applyMethod];
-				let trueColumn = applyColumn.split("_")[1];
-				if (applyMethod === "MAX") {
-					let maximum: any = newData[0][trueColumn];
-					for (let element of newData) {
-						if (element[trueColumn] > maximum) {
-							maximum = element[trueColumn];
-						}
-					}
-					newResultItem[newColumn] = maximum;
-				}
-				if (applyMethod === "MIN") {
-					let mini: any = newData[0][trueColumn];
-					for (let element of newData) {
-						if (element[trueColumn] < mini) {
-							mini = element[trueColumn];
-						}
-					}
-					newResultItem[newColumn] = mini;
-				}
-				if (applyMethod === "AVG") {
-					let average: any = newData[0][trueColumn];
-					let total = new Decimal(0);
-					for (let element of newData) {
-						let nnum = new Decimal(element[trueColumn]);
-						total = Decimal.add (nnum, total);
-					}
-					average = total.toNumber() / trueColumn;
-					Number(average.toFixed(2));
-					newResultItem[newColumn] = average;
-				}
-				if (applyMethod === "SUM") {
-					let sum: any = newData[0][trueColumn];
-					for (let element of newData) {
-						sum = sum + element[trueColumn];
-					}
-					Number(sum.toFixed(2));
-					newResultItem[newColumn] = sum;
-				}
-				if (applyMethod === "COUNT") {
-					let curr: any = Array;
-					for (let element of newData) {
-						if (!curr.contain(element[trueColumn])) {
-							curr.push(element[trueColumn]);
-						}
-					}
-					newResultItem[newColumn] = curr.length;
-				}
-			}
-			newResult.push(newResultItem);
-		}
-		return newResult;
 	}
 
 	public listDatasets(): Promise<InsightDataset[]> {
