@@ -1,0 +1,36 @@
+{
+  "title": "valid_EQ",
+  "input": {
+    "WHERE": {
+      "EQ": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "crwr",
+      "courses_id": "599",
+      "courses_avg": 97
+    },
+    {
+      "courses_dept": "epse",
+      "courses_id": "534",
+      "courses_avg": 97
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "549",
+      "courses_avg": 97
+    }
+  ]
+}

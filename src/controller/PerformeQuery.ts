@@ -118,21 +118,19 @@ export default class PerformeQuery{
 		} else if (propValue.startsWith("*") && propValue.endsWith("*")) {
 			for (let section of allSections) {
 				let index = section[courseProp].indexOf(propValue.substring(1, propValue.length - 1));
-				if (index >= 1 && index < section[courseProp].length - 2) {
+				if (index > -1) {
 					result.push(section);
 				}
 			}
 		} else if (propValue.startsWith("*")) {
 			for (let section of allSections) {
-				let index = section[courseProp].indexOf(propValue.substring(1, propValue.length));
-				if (index >= 1) {
+				if (section[courseProp].endsWith(propValue.substring(1, propValue.length))) {
 					result.push(section);
 				}
 			}
 		} else if (propValue.endsWith("*")) {
 			for (let section of allSections) {
-				let index = section[courseProp].indexOf(propValue.substring(0, propValue.length - 1 ));
-				if (index > -1 && index < section[courseProp].length - 2) {
+				if (section[courseProp].startsWith(propValue.substring(0, propValue.length - 1 ))) {
 					result.push(section);
 				}
 			}

@@ -1,5 +1,5 @@
 {
-  "errorMsg": "Invalid key type in GT",
+  "errorMsg": "Invalid key type in IS should be a string",
   "title": "Invalid_id",
   "input": {
     "WHERE": {
@@ -16,6 +16,6 @@
       "ORDER": "courses_avg"
     }
   },
-  "errorExpected": true,
-  "with": "InsightError"
+	"errorExpected": true,
+	"with": "InsightError"
 }

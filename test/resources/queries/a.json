@@ -1,20 +1,29 @@
 {
-	"title": "SELECT dept, id, avg WHERE avg == 95 || avg > 90 && dept == 'adhe' ORDER BY avg",
+	"title": "Do test here",
 	"input": {
 		"WHERE": {
-			"IS": {
-				"courses_dept": "*an*"
-			}
-
+			"AND": [
+				{
+					"EQ": {
+						"courses_year": 2014
+					}
+				},
+				{
+					"IS": {
+						"courses_dept": "*nt*"
+					}
+				}
+			]
 		},
 		"OPTIONS": {
 			"COLUMNS": [
 				"courses_dept",
+				"courses_avg",
 				"courses_id",
-				"courses_avg"
+				"courses_year",
+				"courses_uuid"
 			],
-			"ORDER": "courses_avg"
+			"ORDER": "courses_uuid"
 		}
 	},
-	"with": []
-}
+	"with": [{"courses_dept":"anth","courses_avg":74.61,"courses_id":"213","courses_year":2014,"courses_uuid":"12179"},{"courses_dept":"anth","courses_avg":70.96,"courses_id":"215","courses_year":2014,"courses_uuid":"12181"},{"courses_dept":"anth","courses_avg":73.91,"courses_id":"217","courses_year":2014,"courses_uuid":"12183"},{"courses_dept":"anth","courses_avg":70.11,"courses_id":"217","courses_year":2014,"courses_uuid":"12184"},{"courses_dept":"anth","courses_avg":82.07,"courses_id":"220","courses_year":2014,"courses_uuid":"12186"},{"courses_dept":"anth","courses_avg":78.86,"courses_id":"227","courses_year":2014,"courses_uuid":"12188"},{"courses_dept":"anth","courses_avg":73.56,"courses_id":"227","courses_year":2014,"courses_uuid":"12189"},{"courses_dept":"anth","courses_avg":76.62,"courses_id":"241","courses_year":2014,"courses_uuid":"12191"},{"courses_dept":"anth","courses_avg":76.65,"courses_id":"301","courses_year":2014,"courses_uuid":"12196"},{"courses_dept":"anth","courses_avg":72.82,"courses_id":"312","courses_year":2014,"courses_uuid":"12204"},{"courses_dept":"anth","courses_avg":75.62,"courses_id":"315","courses_year":2014,"courses_uuid":"12206"},{"courses_dept":"anth","courses_avg":73.23,"courses_id":"332","courses_year":2014,"courses_uuid":"12212"},{"courses_dept":"anth","courses_avg":75.99,"courses_id":"378","courses_year":2014,"courses_uuid":"12218"},{"courses_dept":"anth","courses_avg":67.58,"courses_id":"407","courses_year":2014,"courses_uuid":"12229"},{"courses_dept":"anth","courses_avg":69.59,"courses_id":"418","courses_year":2014,"courses_uuid":"12233"},{"courses_dept":"anth","courses_avg":77.76,"courses_id":"428","courses_year":2014,"courses_uuid":"12235"},{"courses_dept":"anth","courses_avg":87.9,"courses_id":"500","courses_year":2014,"courses_uuid":"12251"},{"courses_dept":"anth","courses_avg":86.4,"courses_id":"516","courses_year":2014,"courses_uuid":"12258"},{"courses_dept":"anth","courses_avg":88.38,"courses_id":"528","courses_year":2014,"courses_uuid":"12260"},{"courses_dept":"anth","courses_avg":86.67,"courses_id":"541","courses_year":2014,"courses_uuid":"12264"},{"courses_dept":"dent","courses_avg":84.94,"courses_id":"599","courses_year":2014,"courses_uuid":"16009"},{"courses_dept":"vant","courses_avg":65.52,"courses_id":"148","courses_year":2014,"courses_uuid":"39318"},{"courses_dept":"vant","courses_avg":63.67,"courses_id":"148","courses_year":2014,"courses_uuid":"39319"},{"courses_dept":"vant","courses_avg":66.37,"courses_id":"148","courses_year":2014,"courses_uuid":"39320"},{"courses_dept":"vant","courses_avg":62.07,"courses_id":"148","courses_year":2014,"courses_uuid":"39321"},{"courses_dept":"vant","courses_avg":71.98,"courses_id":"148","courses_year":2014,"courses_uuid":"39322"},{"courses_dept":"dent","courses_avg":87.51,"courses_id":"410","courses_year":2014,"courses_uuid":"64912"},{"courses_dept":"dent","courses_avg":81.88,"courses_id":"420","courses_year":2014,"courses_uuid":"64914"},{"courses_dept":"dent","courses_avg":79.8,"courses_id":"430","courses_year":2014,"courses_uuid":"64916"},{"courses_dept":"dent","courses_avg":79,"courses_id":"430","courses_year":2014,"courses_uuid":"64917"},{"courses_dept":"dent","courses_avg":80.53,"courses_id":"440","courses_year":2014,"courses_uuid":"64919"},{"courses_dept":"dent","courses_avg":87,"courses_id":"504","courses_year":2014,"courses_uuid":"64921"},{"courses_dept":"dent","courses_avg":81.5,"courses_id":"513","courses_year":2014,"courses_uuid":"64923"},{"courses_dept":"dent","courses_avg":85,"courses_id":"516","courses_year":2014,"courses_uuid":"64925"},{"courses_dept":"dent","courses_avg":81.11,"courses_id":"524","courses_year":2014,"courses_uuid":"64927"},{"courses_dept":"dent","courses_avg":84.25,"courses_id":"525","courses_year":2014,"courses_uuid":"64929"},{"courses_dept":"dent","courses_avg":78.25,"courses_id":"527","courses_year":2014,"courses_uuid":"64931"},{"courses_dept":"dent","courses_avg":83.75,"courses_id":"531","courses_year":2014,"courses_uuid":"64933"},{"courses_dept":"dent","courses_avg":83.25,"courses_id":"532","courses_year":2014,"courses_uuid":"64935"},{"courses_dept":"dent","courses_avg":91.82,"courses_id":"539","courses_year":2014,"courses_uuid":"64937"},{"courses_dept":"dent","courses_avg":82.78,"courses_id":"540","courses_year":2014,"courses_uuid":"64939"},{"courses_dept":"dent","courses_avg":86.58,"courses_id":"542","courses_year":2014,"courses_uuid":"64941"},{"courses_dept":"dent","courses_avg":81.06,"courses_id":"543","courses_year":2014,"courses_uuid":"64943"},{"courses_dept":"dent","courses_avg":83.67,"courses_id":"565","courses_year":2014,"courses_uuid":"64948"},{"courses_dept":"dent","courses_avg":82.5,"courses_id":"566","courses_year":2014,"courses_uuid":"64950"},{"courses_dept":"dent","courses_avg":83.4,"courses_id":"567","courses_year":2014,"courses_uuid":"64952"},{"courses_dept":"dent","courses_avg":80.5,"courses_id":"568","courses_year":2014,"courses_uuid":"64954"},{"courses_dept":"dent","courses_avg":82.29,"courses_id":"574","courses_year":2014,"courses_uuid":"64956"},{"courses_dept":"dent","courses_avg":79.67,"courses_id":"575","courses_year":2014,"courses_uuid":"64958"},{"courses_dept":"dent","courses_avg":90.25,"courses_id":"578","courses_year":2014,"courses_uuid":"64960"},{"courses_dept":"dent","courses_avg":91.25,"courses_id":"584","courses_year":2014,"courses_uuid":"64962"},{"courses_dept":"dent","courses_avg":84.25,"courses_id":"591","courses_year":2014,"courses_uuid":"64964"},{"courses_dept":"dent","courses_avg":84,"courses_id":"592","courses_year":2014,"courses_uuid":"64966"},{"courses_dept":"dent","courses_avg":84,"courses_id":"594","courses_year":2014,"courses_uuid":"64968"},{"courses_dept":"dent","courses_avg":87,"courses_id":"595","courses_year":2014,"courses_uuid":"64970"},{"courses_dept":"dent","courses_avg":89,"courses_id":"596","courses_year":2014,"courses_uuid":"64972"},{"courses_dept":"dent","courses_avg":80.5,"courses_id":"599","courses_year":2014,"courses_uuid":"64974"},{"courses_dept":"dent","courses_avg":82.5,"courses_id":"721","courses_year":2014,"courses_uuid":"64976"},{"courses_dept":"dent","courses_avg":83.75,"courses_id":"722","courses_year":2014,"courses_uuid":"64978"},{"courses_dept":"dent","courses_avg":90,"courses_id":"724","courses_year":2014,"courses_uuid":"64980"}]}

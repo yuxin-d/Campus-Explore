@@ -1,0 +1,19 @@
+{
+  "title": "invalid_order_with_underscore",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "courses_id": "300_"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id"
+      ],
+      "ORDER": "courses_id"
+    }
+  },
+  "errorExpected": false,
+  "with": []
+}
