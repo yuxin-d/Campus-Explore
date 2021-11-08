@@ -1,4 +1,3 @@
-
 import {
 	IInsightFacade,
 	InsightDataset,
@@ -11,6 +10,7 @@ import * as k from "./UtilsK";
 import * as k2 from "./UtilsK2";
 import PerformeQuery from "./PerformeQuery";
 import ValidQuery from "./validQuery";
+import Decimal from "decimal.js";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -133,7 +133,6 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
-
 	public performQuery(query: any): Promise<any[]> {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery();
@@ -156,7 +155,7 @@ export default class InsightFacade implements IInsightFacade {
 			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
 			if ("TRANSFORMATIONS" in query) {
 				let gp = this.performTrans(query, result);
-				result = this.applyFunctions(gp, query);
+				result = k2.applyFunctions(gp, query);
 			}
 			if ("COLUMNS" in options) {
 				let columns = options.COLUMNS;
@@ -218,66 +217,6 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return actualResult;
 	}
-
-	private applyFunctions(gp: any, query: any) {
-		let newResult = [];
-		for (let data of Object.values(gp)) {
-			let newData = data as any[];
-			let newResultItem = newData[0];
-			for (let apply of query.TRANSFORMATIONS.APPLY) {
-				let newColumn = Object.keys(apply)[0];
-				let applyMethod = Object.keys(apply[newColumn])[0];
-				let applyColumn = apply[newColumn][applyMethod];
-				let trueColumn = applyColumn.split("_")[1];
-				if (applyMethod === "MAX") {
-					let maximum: any = newData[0][trueColumn];
-					for (let element of newData) {
-						if (element[trueColumn] > maximum) {
-							maximum = element[trueColumn];
-						}
-					}
-					newResultItem[newColumn] = maximum;
-				}
-				if (applyMethod === "MIN") {
-					let mini: any = newData[0][trueColumn];
-					for (let element of newData) {
-						if (element[trueColumn] < mini) {
-							mini = element[trueColumn];
-						}
-					}
-					newResultItem[newColumn] = mini;
-				}
-			}
-			newResult.push(newResultItem);
-		}
-		return newResult;
-
-	}
-
-	private Sort(arr: any[], orderof: string, order = "asc") {
-		arr.sort((a, b) => {
-			if (order === "desc") {
-				return b[orderof] > a[orderof] ? 1 : -1;
-			}
-			return a[orderof] > b[orderof] ? 1 : -1;
-		});
-	}
-
-	private wildCard(inputstring: string, fieldstring: string) {
-		if (inputstring.startsWith("*")) {
-			inputstring = "." + inputstring;
-		}
-
-		if (inputstring.endsWith("*")) {
-			inputstring = inputstring.substring(0, inputstring.length - 1);
-			inputstring += ".*";
-		}
-
-		const reg = new RegExp(inputstring);
-
-		return reg.test(fieldstring);
-	}
-
 
 	public listDatasets(): Promise<InsightDataset[]> {
 		// k2.init(this.dataSets);

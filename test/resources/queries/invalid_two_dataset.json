@@ -1,9 +1,10 @@
-{"errorMsg": "Year should be a number with using EQ instead of IS",
-  "title": "Invalid_year",
+{
+  "errorMsg": "Cannot query more than one dataset",
+  "title": "invalid_two_dataset",
   "input": {
     "WHERE": {
       "GT": {
-        "courses_year": 2077
+        "banana_avg": 9
       }
     },
     "OPTIONS": {
@@ -14,6 +15,6 @@
       "ORDER": "courses_avg"
     }
   },
-  "errorExpected": false,
-  "with": []
+  "errorExpected": true,
+  "with": "InsightError"
 }

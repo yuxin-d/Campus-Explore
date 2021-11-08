@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Referenced dataset \"banana\" not added yet",
+  "title": "invalid_dataset_not_added",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "banana_avg": 9
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "banana_dept",
+        "banana_avg"
+      ],
+      "ORDER": "banana_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
