@@ -2,7 +2,7 @@
   "title": "Invalid_year",
   "input": {
     "WHERE": {
-      "IS": {
+      "GT": {
         "courses_year": 2077
       }
     },
@@ -14,6 +14,6 @@
       "ORDER": "courses_avg"
     }
   },
-  "errorExpected": true,
-  "with": "InsightError"
+  "errorExpected": false,
+  "with": []
 }
