@@ -145,7 +145,7 @@ export function applyFunctions(gp: any, query: any) {
 
 export function COUNT(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
 	if (applyMethod === "COUNT") {
-		let curr: any = Array;
+		let curr: any[] = [];
 		for (let element of newData) {
 			if (!curr.includes(element[trueColumn])) {
 				curr.push(element[trueColumn]);
