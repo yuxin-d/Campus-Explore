@@ -1,0 +1,44 @@
+{
+  "title": "c2_valid_avg",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "courses_id": "310"
+          }
+        },
+        {
+          "IS": {
+            "courses_dept": "cpsc"
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_id",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_id"
+      ],
+      "APPLY": [
+        {
+          "overallAvg": {
+            "AVG": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_id": "310",
+      "overallAvg": 78.25
+    }
+  ]
+}
