@@ -1,0 +1,44 @@
+{
+  "title": "c2_valid_min",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "courses_id": "310"
+          }
+        },
+        {
+          "IS": {
+            "courses_dept": "cpsc"
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_id",
+        "overall"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_id"
+      ],
+      "APPLY": [
+        {
+          "overall": {
+            "MIN": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_id": "310",
+      "overall": 72.27
+    }
+  ]
+}
