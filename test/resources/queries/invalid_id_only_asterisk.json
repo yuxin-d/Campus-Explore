@@ -1,6 +1,6 @@
 {
 	"errorMsg": "The result is too big. Only queries with a maximum of 5000 results are supported.",
-	"title": "invalid_order_with_underscore",
+	"title": "invalid_only_asterisk",
 	"input": {
 		"WHERE": {
 			"IS": {
