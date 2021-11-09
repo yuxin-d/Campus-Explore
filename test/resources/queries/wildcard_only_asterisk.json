@@ -1,0 +1,57 @@
+{
+  "title": "wildcard_only_asterisk",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "courses_id": "*"
+          }
+        },
+        {
+          "LT": {
+            "courses_avg": 10
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "frst",
+      "courses_avg": 0
+    },
+    {
+      "courses_dept": "lfs",
+      "courses_avg": 0
+    },
+    {
+      "courses_dept": "lfs",
+      "courses_avg": 0
+    },
+    {
+      "courses_dept": "wood",
+      "courses_avg": 1
+    },
+    {
+      "courses_dept": "busi",
+      "courses_avg": 4
+    },
+    {
+      "courses_dept": "busi",
+      "courses_avg": 4
+    },
+    {
+      "courses_dept": "fopr",
+      "courses_avg": 4.5
+    }
+  ]
+}
