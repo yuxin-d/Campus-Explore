@@ -147,7 +147,7 @@ export function COUNT(applyMethod: string, newData: any[], trueColumn: any, newR
 	if (applyMethod === "COUNT") {
 		let curr: any = Array;
 		for (let element of newData) {
-			if (!curr.contain(element[trueColumn])) {
+			if (!curr.includes(element[trueColumn])) {
 				curr.push(element[trueColumn]);
 			}
 		}
@@ -157,26 +157,24 @@ export function COUNT(applyMethod: string, newData: any[], trueColumn: any, newR
 
 export function SUM(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
 	if (applyMethod === "SUM") {
-		let sum: any = newData[0][trueColumn];
+		let sum = 0;
 		for (let element of newData) {
 			sum = sum + element[trueColumn];
 		}
-		Number(sum.toFixed(2));
-		newResultItem[newColumn] = sum;
+		newResultItem[newColumn] = Number(sum.toFixed(2));
 	}
 }
 
 export function AVG(applyMethod: string, newData: any[], trueColumn: any, newResultItem: any, newColumn: string) {
 	if (applyMethod === "AVG") {
-		let average: any = newData[0][trueColumn];
+		let average = 0;
 		let total = new Decimal(0);
 		for (let element of newData) {
 			let nnum = new Decimal(element[trueColumn]);
 			total = Decimal.add (nnum, total);
 		}
-		average = total.toNumber() / trueColumn;
-		Number(average.toFixed(2));
-		newResultItem[newColumn] = average;
+		average = total.toNumber() / (newData.length);
+		newResultItem[newColumn] = Number(average.toFixed(2));
 	}
 }
 
