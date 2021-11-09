@@ -240,7 +240,7 @@ export function readCourses(addedCourses: any[]): Promise<void | any[]> {
 					fail: section["Fail"],
 					audit: section["Audit"],
 					uuid: section["id"].toString(),
-					year: parseInt(section["Year"], 10)
+					year: section["Section"] === "overall" ? 1900 : parseInt(section["Year"], 10)
 				};
 				allSections.push(thisSection); // push to helper member field
 			}
