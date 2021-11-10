@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Result is too large",
+  "title": "invalid_result_too_big",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "courses_id": "*"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id"
+      ],
+      "ORDER": "courses_id"
+    }
+  },
+  "errorExpected": true,
+  "with": "ResultTooLargeError"
+}

@@ -1,0 +1,18 @@
+{
+	"title": "Invalid query with syntax Error in Body",
+	"input": {
+		"WHE": {
+			"GT": {
+				"courses_avg":97
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"with": "InsightError"
+}

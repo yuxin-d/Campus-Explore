@@ -1,0 +1,21 @@
+{
+    "title": "Invalid type in column key string",
+    "input": {
+        "WHERE": {
+            "NOT": {
+                "LT": {
+                    "courses_avg": 98
+                }
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_de_pt",
+                "courses_avg",
+				"courses_uuid"
+            ]
+        }
+    },
+    "errorExpected": true,
+    "with": "InsightError"
+}
