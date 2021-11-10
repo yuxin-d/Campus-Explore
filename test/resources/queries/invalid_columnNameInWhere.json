@@ -1,0 +1,18 @@
+{
+	"title": "Invalid type in where key string",
+	"input": {
+		"WHERE": {
+				"IS": {
+					"courses_de_pt": "cpsc"
+				}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"with": "InsightError"
+}
