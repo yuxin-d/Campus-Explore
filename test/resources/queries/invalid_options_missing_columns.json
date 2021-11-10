@@ -1,0 +1,20 @@
+{
+  "errorMsg": "OPTIONS missing COLUMNS",
+  "title": "invalid_options_missing_columns",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "TT": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

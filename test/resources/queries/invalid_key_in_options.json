@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid keys in OPTIONS",
+  "title": "invalid_key_in_options",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "TT": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
