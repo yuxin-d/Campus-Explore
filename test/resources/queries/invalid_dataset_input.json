@@ -1,0 +1,18 @@
+{
+	"title": "No Exist Dataset",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"abc_avg": 97
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"abc_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"with": "InsightError"
+}
+
