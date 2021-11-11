@@ -46,7 +46,7 @@ describe("InsightFacade", function() {
 			zeroSections = getFileContent("test/resources/archives/zeroSections.zip");
 			basic2 = getFileContent("test/resources/archives/basic2.zip");
 			notCourses = getFileContent("test/resources/archives/notCourses.zip");
-			rooms = getFileContent("test/resources/archives/rooms/rooms.zip");
+			rooms = getFileContent("test/resources/archives/rooms.zip");
 		});
 
 		// ID Checking
