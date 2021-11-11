@@ -4,7 +4,7 @@
   "input": {
     "WHERE": {
       "LT": {
-        "courses_avg": 97
+        "courses_courses": 97
       }
     },
     "OPTIONS": {
