@@ -119,7 +119,7 @@ export default class ValidQuery{
 		// }
 
 
-		const reg = new RegExp("^\\*?[^*]+\\*?$");
+		const reg = new RegExp("^\\*?[^*]*\\*?$");
 		if (!reg.test(value)) {
 			throw new InsightError("Invalid type in IS");
 		}
