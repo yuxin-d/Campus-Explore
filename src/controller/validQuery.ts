@@ -7,6 +7,26 @@ export default class ValidQuery{
 		this.dataset = dataset.map((item) => item.id);
 	}
 
+	public validateColumns(cols: string[], trans: any | null) {
+
+		let fields = ["_dept", "_id", "_instructor", "_title", "_uuid", "_avg", "_pass", "_fail", "_audit", "_year"];
+		let addon: string[] = [];
+		if (trans && trans["APPLY"]) {
+			addon = trans["APPLY"].map((item: any) => {
+				let keys = Object.keys(item);
+				if (keys.length > 1) {
+					throw new InsightError("Apply rule should only have 1 key, has " + keys.length);
+				}
+				return keys[0];
+			});
+		}
+		cols.forEach((element: string) => {
+			if (!fields.includes("_" + element.split("_")[1]) && !addon.includes(element)) {
+				throw new InsightError(`Invalid key ${element} in COLUMNS`);
+			}
+		});
+	}
+
 	public isValidQuery(query: any): boolean {
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
@@ -25,13 +45,15 @@ export default class ValidQuery{
 			throw new InsightError("OPTIONS missing COLUMNS");
 		}
 
+		this.validateColumns(query["OPTIONS"]["COLUMNS"], query["TRANSFORMATIONS"]);
+
 		const querykey = Object.keys(query["WHERE"])[0];
 
 		if (!LOGIC.includes(querykey) && !MCOMPARATOR.includes(querykey) && querykey !== "IS") {
 			throw new InsightError("Invalid filter key: " + querykey);
 		}
 		if (LOGIC.includes(querykey)) {
-			this.handleLOGIC(query["WHERE"][querykey]);
+			this.handleLOGIC(query["WHERE"][querykey], querykey);
 		} else if (MCOMPARATOR.includes(querykey)) {
 			this.handleMCOMPARATOR(query["WHERE"][querykey]);
 		} else if (querykey === "IS") {
@@ -55,26 +77,39 @@ export default class ValidQuery{
 		return true;
 	}
 
-	private handleLOGIC(query: any) {
+	private handleLOGIC(query: any | any[], filter: string) {
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
-		query.forEach((q: any) => {
-			const key = Object.keys(q)[0];
+
+		if(filter === "NOT"){
+			const key = Object.keys(query)[0];
 			if (LOGIC.includes(key)) {
-				this.handleLOGIC(q[key]);
+				this.handleLOGIC(query[key], key);
 			} else if (MCOMPARATOR.includes(key)) {
-				this.handleMCOMPARATOR(q[key]);
+				this.handleMCOMPARATOR(query[key]);
 			} else if (key === "IS") {
-				this.handleSCOMPARISON(q[key], "IS");
+				this.handleSCOMPARISON(query[key]);
 			}
-		});
+		}else {
+			query.forEach((q: any) => {
+				const key = Object.keys(q)[0];
+				if (LOGIC.includes(key)) {
+					this.handleLOGIC(q[key], key);
+				} else if (MCOMPARATOR.includes(key)) {
+					this.handleMCOMPARATOR(q[key]);
+				} else if (key === "IS") {
+					this.handleSCOMPARISON(q[key]);
+				}
+			});
+		}
 	}
 
 	private handleMCOMPARATOR(query: any) {
 		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
 		// const mfield = ["courses_avg", "courses_pass", "courses_fail", "courses_audit", "courses_year"];
-		const sfield = ["_dept", "id", "_instructor", "_title", "_uuid"];
-		const mfield = ["_avg", "_pass", "_fail", "_audit", "_year"];
+		const sfield = ["_dept", "_id", "_instructor", "_title", "_uuid", "_fullname", "_shortname", "_number",
+			"name", "_address", "_type", "_furniture", "_href"];
+		const mfield = ["_avg", "_pass", "_fail", "_audit", "_year", "_lat", "_lon", "_seats"];
 
 		const mkey = Object.keys(query)[0];
 		const pre = mkey.split("_")[0];
@@ -94,7 +129,7 @@ export default class ValidQuery{
 
 	}
 
-	private handleSCOMPARISON(query: any, LOGIC = "") {
+	private handleSCOMPARISON(query: any) {
 		const skey = Object.keys(query)[0];
 
 		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
