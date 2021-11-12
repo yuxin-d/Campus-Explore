@@ -1,16 +1,20 @@
 import express, {Application, Request, Response} from "express";
 import * as http from "http";
 import cors from "cors";
+import InsightFacade from "../controller/InsightFacade";
+import { InsightDataset, InsightDatasetKind, NotFoundError } from "../controller/IInsightFacade";
 
 export default class Server {
 	private readonly port: number;
 	private express: Application;
 	private server: http.Server | undefined;
+	private static insightFacade: InsightFacade;
 
 	constructor(port: number) {
 		console.info(`Server::<init>( ${port} )`);
 		this.port = port;
 		this.express = express();
+		Server.insightFacade = new InsightFacade();
 
 		this.registerMiddleware();
 		this.registerRoutes();
@@ -18,7 +22,7 @@ export default class Server {
 		// NOTE: you can serve static frontend files in from your express server
 		// by uncommenting the line below. This makes files in ./frontend/public
 		// accessible at http://localhost:<port>/
-		// this.express.use(express.static("./frontend/public"))
+		this.express.use(express.static("./frontend/public"));
 	}
 
 	/**
@@ -85,6 +89,10 @@ export default class Server {
 		this.express.get("/echo/:msg", Server.echo);
 
 		// TODO: your other endpoints should go here
+		this.express.get("/datasets", Server.listDatasets);
+		this.express.put("/dataset/:id/:kind", Server.addDataset);
+		this.express.delete("/dataset/:id", Server.removeDataset);
+		this.express.post("/query", Server.performQuery);
 
 	}
 
@@ -106,6 +114,65 @@ export default class Server {
 			return `${msg}...${msg}`;
 		} else {
 			return "Message not provided";
+		}
+	}
+	// https://javascript.tutorialink.com/getting-typeerror-res-status-is-not-a-function/
+
+	private static listDatasets(req: any, res: Response) {
+		console.log("listdatasets called");
+		try{
+			Server.insightFacade.listDatasets().then((lData: any[]) => {
+				console.log(lData);
+				res.status(200).json({result: lData});
+			});
+		} catch (err) {
+			res.status(400).json({error: err});
+		}
+	}
+
+	private static addDataset(req: Request, res: Response) {
+		try {
+			let id: string = req.params.id;
+			let kind: InsightDatasetKind = req.params.kind as InsightDatasetKind;
+			let content: string = req.body.toString("base64");
+			Server.insightFacade.addDataset(id, content, kind).then((lData: any[]) => {
+				console.log(lData);
+				res.status(200).json({result: lData});
+			}).catch((err) => {
+				res.status(400).json({error: err.message});
+			});
+		} catch (err) {
+			console.log(err);
+			res.status(400).json({error: err});
+		}
+	}
+
+	private static removeDataset(req: Request, res: Response) {
+		console.log("remove called");
+		try{
+			Server.insightFacade.removeDataset(req.params.id).then((id: string) => {
+				console.log("successfully deleted");
+				res.status(200).json({result: id});
+			}).catch((err) => {
+				if (err instanceof NotFoundError) {
+					res.status(404).json({error: err.message});
+				} else {
+					res.status(400).json({error: err.message});
+				}
+			});
+		} catch (err) {
+			console.log("error removing");
+			res.status(400).json({error: err});
+		}
+	}
+
+	private static performQuery(req: Request, res: Response) {
+		try {
+			Server.insightFacade.performQuery(req.body).then((result: any) => {
+				res.status(200).json({result: result});
+			});
+		} catch (err) {
+			res.status(400).json({error: err});
 		}
 	}
 }

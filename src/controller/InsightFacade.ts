@@ -10,7 +10,6 @@ import * as k from "./UtilsK";
 import * as k2 from "./UtilsK2";
 import PerformeQuery from "./PerformeQuery";
 import ValidQuery from "./validQuery";
-import Decimal from "decimal.js";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -22,8 +21,6 @@ import Decimal from "decimal.js";
 let buildingNames: string[] = [];
 let shortNames: string[] = [];
 let allBuildings: any[] = [];
-let allCourse: any[] = [];
-let allRoom: any[] = [];
 // DO NOT USE THESE
 export default class InsightFacade implements IInsightFacade {
 	public dataSets: InsightDataset[] = [];
@@ -219,7 +216,6 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public listDatasets(): Promise<InsightDataset[]> {
-		// k2.init(this.dataSets);
 		return Promise.resolve(this.dataSets);
 	}
 }
