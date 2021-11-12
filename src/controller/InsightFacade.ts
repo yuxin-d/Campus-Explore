@@ -135,7 +135,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	public performQuery(query: any): Promise<any[]> {
 		let performeQuery = new PerformeQuery();
-		let validQuery = new ValidQuery();
+		let validQuery = new ValidQuery(this.dataSets);
 		if (validQuery.isValidQuery(query)) {
 			let allSections: any = [];
 			allSections = performeQuery.grabDataset(query);
