@@ -5,7 +5,6 @@ export function httpGet(addr: string, buildingName: string, shortName: string, i
 	addr = addr.split(" ").join("%20");
 	let http: any = require("http");
 	let url: string = "http://cs310.students.cs.ubc.ca:11316/api/v1/project_team" + "184" + `/${addr}`;
-	// console.log(url)
 	// https://nodejs.org/api/http.html#httpgetoptions-callback
 	let count: number = 0;
 	// return Promise.resolve([{lon: 10.0, lat: 9.99}, info, buildingName, shortName, addr.split("%20").join(" ")]);

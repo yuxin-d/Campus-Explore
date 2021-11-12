@@ -56,15 +56,13 @@ export function init(dataSets: any[]) {
 		fs.mkdirSync("./data");
 	}
 	let diskDatasets = fs.readdirSync("./data");
-	dataSets = [];
 	diskDatasets.forEach((disk: any) => {
 		let read = fs.readFileSync(`./data/${disk}`).toString("utf8");
-		// https://stackoverflow.com/questions/48676751/convert-javascript-string-to-literal-array
 		dataSets.push(
 			{
-				id: disk.split(".")[0],
-				kind: InsightDatasetKind.Courses,
-				numRows: JSON.parse(read.replace(/'/g, '"')).length
+				id: disk.split(".")[0].substring(1),
+				kind: disk.split(".")[0].charAt(0) === "c" ? InsightDatasetKind.Courses : InsightDatasetKind.Rooms,
+				numRows: JSON.parse(read).length
 			}
 		);
 	});
