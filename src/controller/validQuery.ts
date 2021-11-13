@@ -9,7 +9,9 @@ export default class ValidQuery{
 
 	public validateColumns(cols: string[], trans: any | null) {
 
-		let fields = ["_dept", "_id", "_instructor", "_title", "_uuid", "_avg", "_pass", "_fail", "_audit", "_year"];
+		let fields = ["_dept", "_id", "_instructor", "_title", "_uuid", "_fullname", "_shortname", "_number",
+			"name", "_address", "_type", "_furniture", "_href","_avg", "_pass", "_fail", "_audit", "_year",
+			"_lat", "_lon", "_seats"];
 		let addon: string[] = [];
 		if (trans && trans["APPLY"]) {
 			addon = trans["APPLY"].map((item: any) => {
