@@ -184,15 +184,24 @@ export default class PerformeQuery{
 		return reg.test(fieldstring);
 	}
 
-	public enhancedSort(arr: any[], dir: string, key: string) {
-		arr.sort((a, b) => {
-			if (dir === "DOWN") {
-				return b[key] > a[key] ? 1 : -1;
-			} else if (dir === "UP") {
-				return a[key] > b[key] ? 1 : -1;
-			} else {
-				return 0;
+	public enhancedSort = (items: any[], keys = [], dir = "UP") => {
+		items.sort((a, b) => {
+			for (let key of keys) {
+				if (a[key] > b[key]) {
+					if (dir === "UP") {
+						return 1;
+					} else if (dir === "DOWN") {
+						return -1;
+					}
+				} else if (a[key] < b[key]) {
+					if (dir === "UP") {
+						return -1;
+					} else if (dir === "DOWN") {
+						return 1;
+					}
+				}
 			}
+			return 0;
 		});
 	}
 

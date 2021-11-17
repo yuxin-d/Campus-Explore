@@ -1,0 +1,29 @@
+{
+	"errorMsg": "Invalid key courses_courses in GT",
+	"title": "invalid_key_in_GT",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"courses_avg": 97
+					}
+				},
+				{
+					"IS": {
+						"rooms_shortname": "DMP"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		},
+		"errorExpected": true,
+		"with": "InsightError"
+	}
+}
