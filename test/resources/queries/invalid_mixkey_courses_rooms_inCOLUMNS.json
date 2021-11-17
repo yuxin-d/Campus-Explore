@@ -1,0 +1,19 @@
+{
+  "errorMsg": "Invalid key rooms_avgs in COLUMNS",
+  "title": "invalid_mixkey_courses_rooms_inCOLUMNS",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "rooms_seats": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_avg"
+      ],
+      "ORDER": "courses_seats"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

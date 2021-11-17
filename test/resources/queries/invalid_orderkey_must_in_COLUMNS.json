@@ -1,0 +1,19 @@
+{
+  "errorMsg": "ORDER key must be in COLUMNS",
+  "title": "invalid_orderkey_must_in_COLUMNS",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "rooms_seats": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_seats"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
