@@ -22,7 +22,8 @@
 			  "courses_avg"
 		  ],
 		  "ORDER": "courses_avg"
-  },
+  	},
 	"errorExpected": true,
 	"with": "InsightError"
+	}
 }
