@@ -1,0 +1,29 @@
+{
+	"title": "valid_GT",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"courses_avg": 50
+					}
+				},
+				{
+					"LT": {
+						"courses_avg": 40
+					}
+				}
+			]
+
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"errorExpected": false,
+	"with": []
+}

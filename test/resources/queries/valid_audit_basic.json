@@ -1,0 +1,20 @@
+{
+	"title": "valid_EQ_audit",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"courses_audit": 12
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"errorExpected": false,
+	"with": [{"courses_dept":"fren","courses_id":"101","courses_avg":73.4},{"courses_dept":"rhsc","courses_id":"503","courses_avg":81.09},{"courses_dept":"biol","courses_id":"509","courses_avg":84.38},{"courses_dept":"biol","courses_id":"509","courses_avg":84.38},{"courses_dept":"rhsc","courses_id":"503","courses_avg":84.71},{"courses_dept":"rhsc","courses_id":"501","courses_avg":87.03},{"courses_dept":"rhsc","courses_id":"509","courses_avg":88.25}]
+}
