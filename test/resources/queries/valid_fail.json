@@ -1,0 +1,741 @@
+{
+  "title": "valid_fail",
+  "input": {
+    "WHERE": {
+      "EQ": {
+        "courses_fail": 20
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "math",
+      "courses_id": "110",
+      "courses_avg": 51.49
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "344",
+      "courses_avg": 55.95
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "100",
+      "courses_avg": 56.52
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "100",
+      "courses_avg": 56.52
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "200",
+      "courses_avg": 56.6
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "180",
+      "courses_avg": 56.62
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "300",
+      "courses_avg": 56.67
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "300",
+      "courses_avg": 56.67
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "121",
+      "courses_avg": 59
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "121",
+      "courses_avg": 59
+    },
+    {
+      "courses_dept": "phil",
+      "courses_id": "120",
+      "courses_avg": 60.14
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "200",
+      "courses_avg": 60.29
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "331",
+      "courses_avg": 60.43
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "257",
+      "courses_avg": 60.62
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "101",
+      "courses_avg": 60.67
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "331",
+      "courses_avg": 60.96
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "104",
+      "courses_avg": 61.1
+    },
+    {
+      "courses_dept": "mech",
+      "courses_id": "360",
+      "courses_avg": 61.44
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "121",
+      "courses_avg": 61.47
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "121",
+      "courses_avg": 61.51
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "121",
+      "courses_avg": 61.83
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "184",
+      "courses_avg": 61.83
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "221",
+      "courses_avg": 61.97
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "100",
+      "courses_avg": 62.21
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "105",
+      "courses_avg": 62.52
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "300",
+      "courses_avg": 63.51
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "335",
+      "courses_avg": 63.68
+    },
+    {
+      "courses_dept": "geog",
+      "courses_id": "122",
+      "courses_avg": 63.71
+    },
+    {
+      "courses_dept": "geob",
+      "courses_id": "102",
+      "courses_avg": 63.88
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "293",
+      "courses_avg": 64.25
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "121",
+      "courses_avg": 64.39
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "331",
+      "courses_avg": 64.52
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "105",
+      "courses_avg": 64.74
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "302",
+      "courses_avg": 64.89
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "443",
+      "courses_avg": 65.16
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "200",
+      "courses_avg": 65.44
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "170",
+      "courses_avg": 65.51
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "105",
+      "courses_avg": 65.56
+    },
+    {
+      "courses_dept": "geog",
+      "courses_id": "122",
+      "courses_avg": 65.66
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "255",
+      "courses_avg": 65.8
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "213",
+      "courses_avg": 65.93
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "213",
+      "courses_avg": 65.93
+    },
+    {
+      "courses_dept": "mech",
+      "courses_id": "360",
+      "courses_avg": 65.96
+    },
+    {
+      "courses_dept": "asia",
+      "courses_id": "101",
+      "courses_avg": 66
+    },
+    {
+      "courses_dept": "asia",
+      "courses_id": "101",
+      "courses_avg": 66
+    },
+    {
+      "courses_dept": "elec",
+      "courses_id": "342",
+      "courses_avg": 66.12
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "102",
+      "courses_avg": 66.37
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "152",
+      "courses_avg": 66.55
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 66.82
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 66.82
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "103",
+      "courses_avg": 67.03
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_id": "278",
+      "courses_avg": 67.22
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "213",
+      "courses_avg": 67.31
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "213",
+      "courses_avg": 67.31
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "121",
+      "courses_avg": 67.36
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "307",
+      "courses_avg": 67.46
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "153",
+      "courses_avg": 67.47
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "153",
+      "courses_avg": 67.47
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "102",
+      "courses_avg": 67.48
+    },
+    {
+      "courses_dept": "civl",
+      "courses_id": "215",
+      "courses_avg": 67.67
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "102",
+      "courses_avg": 67.69
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "111",
+      "courses_avg": 67.75
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "101",
+      "courses_avg": 67.75
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "101",
+      "courses_avg": 67.82
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "102",
+      "courses_avg": 67.9
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "102",
+      "courses_avg": 67.91
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "221",
+      "courses_avg": 67.97
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "121",
+      "courses_avg": 68.02
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "102",
+      "courses_avg": 68.27
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "102",
+      "courses_avg": 68.27
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "101",
+      "courses_avg": 68.3
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 68.59
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "300",
+      "courses_avg": 68.6
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "304",
+      "courses_avg": 68.67
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "213",
+      "courses_avg": 68.69
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "213",
+      "courses_avg": 68.69
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "101",
+      "courses_avg": 68.73
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 68.76
+    },
+    {
+      "courses_dept": "comm",
+      "courses_id": "293",
+      "courses_avg": 68.83
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "203",
+      "courses_avg": 68.88
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "203",
+      "courses_avg": 68.88
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_id": "112",
+      "courses_avg": 69.06
+    },
+    {
+      "courses_dept": "micb",
+      "courses_id": "201",
+      "courses_avg": 69.2
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 69.29
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "256",
+      "courses_avg": 69.32
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "221",
+      "courses_avg": 69.43
+    },
+    {
+      "courses_dept": "math",
+      "courses_id": "200",
+      "courses_avg": 69.44
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "101",
+      "courses_avg": 69.45
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "101",
+      "courses_avg": 69.49
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "121",
+      "courses_avg": 69.6
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_id": "114",
+      "courses_avg": 69.76
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "355",
+      "courses_avg": 69.77
+    },
+    {
+      "courses_dept": "soci",
+      "courses_id": "200",
+      "courses_avg": 69.87
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "443",
+      "courses_avg": 69.97
+    },
+    {
+      "courses_dept": "phil",
+      "courses_id": "120",
+      "courses_avg": 70.01
+    },
+    {
+      "courses_dept": "phil",
+      "courses_id": "120",
+      "courses_avg": 70.02
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "102",
+      "courses_avg": 70.22
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_id": "110",
+      "courses_avg": 70.34
+    },
+    {
+      "courses_dept": "kin",
+      "courses_id": "191",
+      "courses_avg": 70.46
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "499",
+      "courses_avg": 70.66
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 70.68
+    },
+    {
+      "courses_dept": "mech",
+      "courses_id": "224",
+      "courses_avg": 70.71
+    },
+    {
+      "courses_dept": "mech",
+      "courses_id": "224",
+      "courses_avg": 70.71
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 70.73
+    },
+    {
+      "courses_dept": "chem",
+      "courses_id": "123",
+      "courses_avg": 70.82
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "100",
+      "courses_avg": 70.89
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "101",
+      "courses_avg": 70.94
+    },
+    {
+      "courses_dept": "span",
+      "courses_id": "102",
+      "courses_avg": 70.98
+    },
+    {
+      "courses_dept": "mech",
+      "courses_id": "224",
+      "courses_avg": 71
+    },
+    {
+      "courses_dept": "mech",
+      "courses_id": "224",
+      "courses_avg": 71
+    },
+    {
+      "courses_dept": "busi",
+      "courses_id": "370",
+      "courses_avg": 71.06
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "221",
+      "courses_avg": 71.16
+    },
+    {
+      "courses_dept": "cons",
+      "courses_id": "200",
+      "courses_avg": 71.22
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_id": "302",
+      "courses_avg": 71.26
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "317",
+      "courses_avg": 71.27
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "102",
+      "courses_avg": 71.39
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "112",
+      "courses_avg": 71.4
+    },
+    {
+      "courses_dept": "visa",
+      "courses_id": "110",
+      "courses_avg": 71.5
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "230",
+      "courses_avg": 71.85
+    },
+    {
+      "courses_dept": "engl",
+      "courses_id": "110",
+      "courses_avg": 71.99
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "112",
+      "courses_avg": 72.08
+    },
+    {
+      "courses_dept": "engl",
+      "courses_id": "110",
+      "courses_avg": 72.3
+    },
+    {
+      "courses_dept": "econ",
+      "courses_id": "325",
+      "courses_avg": 72.34
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "140",
+      "courses_avg": 72.38
+    },
+    {
+      "courses_dept": "comm",
+      "courses_id": "291",
+      "courses_avg": 72.39
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "201",
+      "courses_avg": 72.46
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_id": "310",
+      "courses_avg": 72.51
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "102",
+      "courses_avg": 72.59
+    },
+    {
+      "courses_dept": "fnh",
+      "courses_id": "200",
+      "courses_avg": 73.02
+    },
+    {
+      "courses_dept": "comm",
+      "courses_id": "294",
+      "courses_avg": 73.15
+    },
+    {
+      "courses_dept": "micb",
+      "courses_id": "202",
+      "courses_avg": 73.3
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "110",
+      "courses_avg": 73.56
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_id": "201",
+      "courses_avg": 73.68
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_id": "118",
+      "courses_avg": 73.72
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "170",
+      "courses_avg": 74.1
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_id": "160",
+      "courses_avg": 74.36
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_id": "160",
+      "courses_avg": 74.68
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "213",
+      "courses_avg": 74.93
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "100",
+      "courses_avg": 75.25
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_id": "112",
+      "courses_avg": 76.37
+    },
+    {
+      "courses_dept": "biol",
+      "courses_id": "260",
+      "courses_avg": 76.42
+    },
+    {
+      "courses_dept": "phys",
+      "courses_id": "101",
+      "courses_avg": 77.38
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_id": "160",
+      "courses_avg": 78.49
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_id": "200",
+      "courses_avg": 79.4
+    }
+  ]
+}
