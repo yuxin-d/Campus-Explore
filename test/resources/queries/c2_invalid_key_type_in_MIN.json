@@ -1,0 +1,31 @@
+{
+  "errorMsg": "Invalid key type in MIN",
+  "title": "c2_invalid_key_type_in_MIN",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "overallAvg": {
+            "MIN": "courses_dept"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

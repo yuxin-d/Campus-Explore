@@ -1,0 +1,210 @@
+{
+  "title": "c2_query_machine",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "courses_dept": "cpsc"
+          }
+        },
+        {
+          "GT": {
+            "courses_avg": 80
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_id",
+        "maxAvg"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "maxAvg"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_id"
+      ],
+      "APPLY": [
+        {
+          "maxAvg": {
+            "MAX": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_id": "589",
+      "maxAvg": 95
+    },
+    {
+      "courses_id": "503",
+      "maxAvg": 94.5
+    },
+    {
+      "courses_id": "501",
+      "maxAvg": 94
+    },
+    {
+      "courses_id": "449",
+      "maxAvg": 93.5
+    },
+    {
+      "courses_id": "490",
+      "maxAvg": 92.4
+    },
+    {
+      "courses_id": "507",
+      "maxAvg": 91.79
+    },
+    {
+      "courses_id": "445",
+      "maxAvg": 91.25
+    },
+    {
+      "courses_id": "527",
+      "maxAvg": 91.22
+    },
+    {
+      "courses_id": "540",
+      "maxAvg": 91.22
+    },
+    {
+      "courses_id": "522",
+      "maxAvg": 90.71
+    },
+    {
+      "courses_id": "543",
+      "maxAvg": 89.75
+    },
+    {
+      "courses_id": "513",
+      "maxAvg": 89.09
+    },
+    {
+      "courses_id": "547",
+      "maxAvg": 88.68
+    },
+    {
+      "courses_id": "319",
+      "maxAvg": 88.39
+    },
+    {
+      "courses_id": "301",
+      "maxAvg": 88
+    },
+    {
+      "courses_id": "509",
+      "maxAvg": 88
+    },
+    {
+      "courses_id": "544",
+      "maxAvg": 88
+    },
+    {
+      "courses_id": "521",
+      "maxAvg": 87.78
+    },
+    {
+      "courses_id": "221",
+      "maxAvg": 86.47
+    },
+    {
+      "courses_id": "500",
+      "maxAvg": 86.33
+    },
+    {
+      "courses_id": "502",
+      "maxAvg": 86.2
+    },
+    {
+      "courses_id": "210",
+      "maxAvg": 86.15
+    },
+    {
+      "courses_id": "418",
+      "maxAvg": 86.04
+    },
+    {
+      "courses_id": "411",
+      "maxAvg": 86
+    },
+    {
+      "courses_id": "304",
+      "maxAvg": 85.5
+    },
+    {
+      "courses_id": "110",
+      "maxAvg": 85.46
+    },
+    {
+      "courses_id": "312",
+      "maxAvg": 85.13
+    },
+    {
+      "courses_id": "310",
+      "maxAvg": 84.6
+    },
+    {
+      "courses_id": "121",
+      "maxAvg": 84.56
+    },
+    {
+      "courses_id": "311",
+      "maxAvg": 84.39
+    },
+    {
+      "courses_id": "515",
+      "maxAvg": 83.36
+    },
+    {
+      "courses_id": "340",
+      "maxAvg": 82.66
+    },
+    {
+      "courses_id": "314",
+      "maxAvg": 82.58
+    },
+    {
+      "courses_id": "313",
+      "maxAvg": 82.27
+    },
+    {
+      "courses_id": "404",
+      "maxAvg": 81.82
+    },
+    {
+      "courses_id": "213",
+      "maxAvg": 81.76
+    },
+    {
+      "courses_id": "344",
+      "maxAvg": 81.18
+    },
+    {
+      "courses_id": "416",
+      "maxAvg": 81.18
+    },
+    {
+      "courses_id": "444",
+      "maxAvg": 80.62
+    },
+    {
+      "courses_id": "430",
+      "maxAvg": 80.55
+    },
+    {
+      "courses_id": "410",
+      "maxAvg": 80.18
+    }
+  ]
+}
