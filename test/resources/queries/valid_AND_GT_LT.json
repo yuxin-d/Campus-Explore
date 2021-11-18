@@ -1,5 +1,5 @@
 {
-	"title": "valid_GT",
+	"title": "valid_AND",
 	"input": {
 		"WHERE": {
 			"AND": [
@@ -14,7 +14,6 @@
 					}
 				}
 			]
-
 		},
 		"OPTIONS": {
 			"COLUMNS": [
