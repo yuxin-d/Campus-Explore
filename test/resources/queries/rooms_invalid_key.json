@@ -1,0 +1,25 @@
+{
+  "errorMsg": "Invalid key rooms_avg in GT",
+  "title": "rooms_invalid_key",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "rooms_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_dept",
+        "rooms_avg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "rooms_avg"
+        ]
+      }
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

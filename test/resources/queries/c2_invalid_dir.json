@@ -1,0 +1,25 @@
+{
+  "errorMsg": "Invalid ORDER direction",
+  "title": "c2_invalid_dir",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": {
+        "dir": "",
+        "keys": [
+          "courses_avg"
+        ]
+      }
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
