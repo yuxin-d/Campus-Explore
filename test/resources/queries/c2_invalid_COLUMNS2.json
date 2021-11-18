@@ -1,0 +1,21 @@
+{
+  "errorMsg": "Invalid key overallAvg in COLUMNS",
+  "title": "c2_invalid_COLUMNS2",
+  "input": {
+    "WHERE": {},
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": []
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

@@ -1,0 +1,16 @@
+{
+  "errorMsg": "TRANSFORMATIONS missing GROUP",
+  "title": "c2_transformation_wrong_Symbol",
+  "input": {
+    "WHERE": {},
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": []
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
