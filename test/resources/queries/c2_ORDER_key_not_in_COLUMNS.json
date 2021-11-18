@@ -1,0 +1,25 @@
+{
+  "errorMsg": "All ORDER keys must be in COLUMNS",
+  "title": "c2_ORDER_key_not_in_COLUMNS",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "courses_id"
+        ]
+      }
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

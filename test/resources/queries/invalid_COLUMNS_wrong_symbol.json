@@ -1,0 +1,22 @@
+{
+  "errorMsg": "COLUMNS must be a non-empty array",
+  "title": "invalid_COLUMNS_wrong_symbol",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": {},
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "courses_id"
+        ]
+      }
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
