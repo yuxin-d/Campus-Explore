@@ -1,0 +1,23 @@
+{
+	"errorMsg": "Excess keys in query",
+	"title": "Excess keys in query",
+	"input": {
+		"title": "Invalid type in column key string",
+		"input": {
+			"WHERE": {
+				"LT": {
+					"courses_avg": 98
+				}
+			},
+			"OPTIONS": {
+				"COLUMNS": [
+					"rooms_number"
+				]
+			}
+		},
+		"errorExpected": true,
+		"with": "InsightError"
+	},
+	"errorExpected": true,
+	"with": "InsightError"
+}
