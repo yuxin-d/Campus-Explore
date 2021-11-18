@@ -217,37 +217,41 @@ export function makeIndex(td4: any): string {
 }
 
 // initialize helper before everything
-export function readCourses(addedCourses: any[]): Promise<void | any[]> {
+export function readCourses(addedCourses: any[]): Promise<any[]> {
 	return Promise.all(addedCourses).then((courses) => {
 		let empty: boolean = true;
 		let allSections: any[] = []; // delete
 		courses.forEach((course) => {
 			let result: any[];
-			result =  JSON.parse(course)["result"]; // this is a list of sections
-			if (result.length > 0) {
-				empty = false;
-			}
-			for (const i in result) {
-				let section = result[i];
-				let thisSection: any = {
-					dept: section["Subject"],
-					id: section["Course"],
-					avg: section["Avg"],
-					instructor: section["Professor"],
-					title: section["Title"],
-					pass: section["Pass"],
-					fail: section["Fail"],
-					audit: section["Audit"],
-					uuid: section["id"].toString(),
-					year: section["Section"] === "overall" ? 1900 : parseInt(section["Year"], 10)
-				};
-				allSections.push(thisSection); // push to helper member field
+			try {
+				result =  JSON.parse(course)["result"]; // this is a list of sections
+				if (result.length > 0) {
+					empty = false;
+				}
+				for (const i in result) {
+					let section = result[i];
+					let thisSection: any = {
+						dept: section["Subject"],
+						id: section["Course"],
+						avg: section["Avg"],
+						instructor: section["Professor"],
+						title: section["Title"],
+						pass: section["Pass"],
+						fail: section["Fail"],
+						audit: section["Audit"],
+						uuid: section["id"].toString(),
+						year: section["Section"] === "overall" ? 1900 : parseInt(section["Year"], 10)
+					};
+					allSections.push(thisSection); // push to helper member field
+				}
+			} catch (error) {
+				console.log("Skip this one");
 			}
 		});
 		if (empty) {
 			return Promise.reject(new InsightError("Empty dataset"));
 		} else {
-			return allSections; // return helper member
+			return Promise.resolve(allSections); // return helper member
 		}
 	});
 }

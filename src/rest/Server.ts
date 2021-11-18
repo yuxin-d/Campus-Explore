@@ -116,7 +116,6 @@ export default class Server {
 			return "Message not provided";
 		}
 	}
-	// https://javascript.tutorialink.com/getting-typeerror-res-status-is-not-a-function/
 
 	private static listDatasets(req: any, res: Response) {
 		console.log("listdatasets called");
