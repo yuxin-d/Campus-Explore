@@ -1,0 +1,22 @@
+{
+  "errorMsg": "ORDER missing 'keys' key",
+  "title": "c2_ORDER_missing_key",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": {
+        "dir": "UP"
+      }
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

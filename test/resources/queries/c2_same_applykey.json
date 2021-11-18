@@ -1,0 +1,30 @@
+{
+  "title": "c2_same_applykey",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "overallAvg": {
+            "COUNT": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+	"errorExpected": true,
+	"with": "InsightError"
+}

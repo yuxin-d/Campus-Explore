@@ -83,7 +83,7 @@ export default class ValidQuery{
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
 
-		if(filter === "NOT"){
+		if(filter === "NOT") {
 			const key = Object.keys(query)[0];
 			if (LOGIC.includes(key)) {
 				this.handleLOGIC(query[key], key);

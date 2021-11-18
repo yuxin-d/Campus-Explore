@@ -1,0 +1,19 @@
+{
+  "errorMsg": "Invalid ORDER type",
+  "title": "invalid_ORDER_wrong_symbol",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_avg"
+      ],
+      "ORDER": []
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

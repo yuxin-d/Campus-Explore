@@ -1,0 +1,23 @@
+{
+  "errorMsg": "Apply rule should only have 1 key, has 0",
+  "title": "c2_empty_APPLYrule",
+  "input": {
+    "WHERE": {},
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": [
+        {}
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

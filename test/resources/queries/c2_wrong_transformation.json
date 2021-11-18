@@ -1,0 +1,27 @@
+{
+  "errorMsg": "Excess keys in query",
+  "title": "c2_wrong_transformation",
+  "input": {
+    "WHERE": {},
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "overallAvg": {
+            "AVG": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

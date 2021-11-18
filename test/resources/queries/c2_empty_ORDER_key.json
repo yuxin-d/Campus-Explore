@@ -1,0 +1,23 @@
+{
+  "errorMsg": "ORDER keys must be a non-empty array",
+  "title": "c2_empty_ORDER_key",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": []
+      }
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

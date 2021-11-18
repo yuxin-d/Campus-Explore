@@ -1,0 +1,107 @@
+{
+  "title": "c2_valid_key_type_in_COUNT",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "overallAvg": {
+            "COUNT": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_title": "career planning",
+      "overallAvg": 2
+    },
+    {
+      "courses_title": "thesis",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "res mthd in educ",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "multimedia sys",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "assess lrn diffi",
+      "overallAvg": 4
+    },
+    {
+      "courses_title": "educ stds autism",
+      "overallAvg": 4
+    },
+    {
+      "courses_title": "dev el sk df&hrd",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "acad assess schl",
+      "overallAvg": 2
+    },
+    {
+      "courses_title": "sem in autism",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "cor des ed res",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "coll&uni teachng",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "diff geometry i",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "algb topology i",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "algb geometry i",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "harmonic anal i",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "cl pro prim care",
+      "overallAvg": 2
+    },
+    {
+      "courses_title": "fam nrs pract",
+      "overallAvg": 3
+    },
+    {
+      "courses_title": "eth&profl issues",
+      "overallAvg": 1
+    },
+    {
+      "courses_title": "work int health",
+      "overallAvg": 1
+    }
+  ]
+}

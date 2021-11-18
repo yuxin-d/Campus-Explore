@@ -1,0 +1,28 @@
+{
+  "errorMsg": "Keys in COLUMNS must be in GROUP or APPLY when TRANSFORMATIONS is present",
+  "title": "Keys in COLUMNS must be in GROUP or APPLY when TRANSFORMATIONS is present",
+  "input": {
+    "WHERE": {},
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg",
+        "courses_id"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "overallAvg": {
+            "AVG": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

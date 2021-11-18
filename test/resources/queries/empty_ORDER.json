@@ -1,0 +1,19 @@
+{
+  "errorMsg": "ORDER missing 'dir' key",
+  "title": "empty_ORDER",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_avg"
+      ],
+      "ORDER": {}
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
