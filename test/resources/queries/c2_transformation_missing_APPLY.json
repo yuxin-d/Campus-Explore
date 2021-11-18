@@ -1,0 +1,20 @@
+{
+  "errorMsg": "TRANSFORMATIONS missing APPLY",
+  "title": "c2_transformation_missing_APPLY",
+  "input": {
+    "WHERE": {},
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ]
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
