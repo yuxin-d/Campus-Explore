@@ -6,7 +6,39 @@
 		<link href="/style.css" rel="stylesheet" />
 	</head>
 	<body>
-		<button id="click-me-button" class="button" >Click Me!</button>
+		<div>
+			<!-- add dataset -->
+			<input type="text" id="addInput">
+			<select id="addDropdown">
+				<option value="courses">Courses</option>
+				<option value="rooms">Rooms</option>
+			</select>
+			<input type="file" id="addFile" accept=".zip">
+			<button id="addButton" onclick="clickAddDataset(
+				document.getElementById('addInput').value,
+				document.getElementById('addDropdown').value,
+				document.getElementById('addFile').files[0]
+			)">Add Dataset</button>
+
+		</div>
+		<div>
+			<!-- remove dataset -->
+			<input id="removeInput" type="text">
+			<button id="remove-button" onclick="clickRemoveDataset(document.getElementById('removeInput').value)">Remove Dataset</button>
+		</div>
+		<div>
+			<!-- listdataset -->
+			<button id="list-button" onclick="clickListDatasets()">List Datasets</button>
+		</div>
+		<div>
+			<!-- query -->
+		</div>
+			<textarea id="queryArea" row = "50" cols="50"></textarea>
+			<button id="queryButton" onclick="clickQuery(document.getElementById('queryArea').value)">Perform Query</button>
+		<div id="msg">
+		</div>
+
+		
 
 		<script type="text/javascript" src="/frontend.js"></script>
 	</body>
