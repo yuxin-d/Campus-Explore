@@ -6,12 +6,7 @@
 		  "AND": [
 			  {
 				  "GT": {
-					  "courses_avg": 97
-				  }
-			  },
-			  {
-				  "IS": {
-					  "rooms_shortname": "DMP"
+					  "courses_courses": 97
 				  }
 			  }
 		  ]
@@ -25,4 +20,5 @@
   },
 	"errorExpected": true,
 	"with": "InsightError"
-}}
+}
+}
