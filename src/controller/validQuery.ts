@@ -82,7 +82,6 @@ export default class ValidQuery{
 	private handleLOGIC(query: any | any[], filter: string) {
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
-
 		if(filter === "NOT") {
 			const key = Object.keys(query)[0];
 			if (LOGIC.includes(key)) {
@@ -93,6 +92,9 @@ export default class ValidQuery{
 				this.handleSCOMPARISON(query[key]);
 			}
 		}else {
+			if (query.length === 0) {
+				throw new InsightError("There is an empty AND or OR");
+			}
 			query.forEach((q: any) => {
 				const key = Object.keys(q)[0];
 				if (LOGIC.includes(key)) {
@@ -105,6 +107,7 @@ export default class ValidQuery{
 			});
 		}
 	}
+
 
 	private handleMCOMPARATOR(query: any) {
 		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
