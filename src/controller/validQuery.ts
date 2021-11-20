@@ -2,9 +2,11 @@ import {InsightDataset, InsightError} from "./IInsightFacade";
 
 export default class ValidQuery{
 	private dataset: string[];
+	private thisdataset: number;
 
 	constructor(dataset: InsightDataset[]) {
 		this.dataset = dataset.map((item) => item.id);
+		this.thisdataset = -1;
 	}
 
 	public validateColumns(cols: string[], trans: any | null) {
@@ -22,6 +24,9 @@ export default class ValidQuery{
 				return keys[0];
 			});
 		}
+		if (cols === null || cols === undefined || cols.length < 1) {
+			throw new InsightError("Invalid or empty column");
+		}
 		cols.forEach((element: string) => {
 			if (!fields.includes("_" + element.split("_")[1]) && !addon.includes(element)) {
 				throw new InsightError(`Invalid key ${element} in COLUMNS`);
@@ -32,47 +37,39 @@ export default class ValidQuery{
 	public isValidQuery(query: any): boolean {
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
-		const QUERYKEY = ["WHERE", "OPTIONS"];
+		const QUERYKEY = ["WHERE", "OPTIONS", "TRANSFORMATIONS"];
 		const OPTIONSKEYS = ["COLUMNS", "ORDER"];
 
-		if (!query["WHERE"]) {
-			throw new InsightError("MISSING WHERE");
+		if (!query["WHERE"] || !query["OPTIONS"]) {
+			throw new InsightError("MISSING WHERE/OPTIONS");
 		}
-
-		if (!query["OPTIONS"]) {
-			throw new InsightError("MISSING OPTIONS");
-		}
-
 		if (!query["OPTIONS"]["COLUMNS"]) {
 			throw new InsightError("OPTIONS missing COLUMNS");
 		}
-
 		this.validateColumns(query["OPTIONS"]["COLUMNS"], query["TRANSFORMATIONS"]);
-
 		const querykey = Object.keys(query["WHERE"])[0];
-
-		if (!LOGIC.includes(querykey) && !MCOMPARATOR.includes(querykey) && querykey !== "IS") {
-			throw new InsightError("Invalid filter key: " + querykey);
+		this.checkKeys(LOGIC, MCOMPARATOR, querykey);
+		if (query["WHERE"][querykey] === null || query["WHERE"][querykey] === undefined
+			|| JSON.stringify(query["WHERE"][querykey]).length <= 2) {
+			throw new InsightError("Empty or invalid key-value Object");
 		}
-		if (LOGIC.includes(querykey)) {
-			this.handleLOGIC(query["WHERE"][querykey], querykey);
-		} else if (MCOMPARATOR.includes(querykey)) {
-			this.handleMCOMPARATOR(query["WHERE"][querykey]);
-		} else if (querykey === "IS") {
-			this.handleSCOMPARISON(query["WHERE"][querykey]);
-		}
+		// this.grabDataset(query, querykey);
+		this.validationSelect(LOGIC, query, querykey, MCOMPARATOR);
 
 		const options = Object.keys(query["OPTIONS"]);
 		for (let option of options) {
-
 			if (!OPTIONSKEYS.includes(option)) {
 				throw new InsightError("Invalid keys in OPTIONS");
 			}
 		}
-
 		if (query["OPTIONS"]["ORDER"]) {
 			if (!query["OPTIONS"]["COLUMNS"].includes(query["OPTIONS"]["ORDER"])) {
 				throw new InsightError("ORDER key must be in COLUMNS");
+			}
+		}
+		for (let key of Object.keys(query)) {
+			if (!QUERYKEY.includes(key)) {
+				throw new InsightError("Invalid Section in Query");
 			}
 		}
 
@@ -82,8 +79,10 @@ export default class ValidQuery{
 	private handleLOGIC(query: any | any[], filter: string) {
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
-
 		if(filter === "NOT") {
+			if (JSON.stringify(query).length <= 2 || typeof query !== "object") {
+				throw new InsightError("There is an empty or invalid NOT");
+			}
 			const key = Object.keys(query)[0];
 			if (LOGIC.includes(key)) {
 				this.handleLOGIC(query[key], key);
@@ -93,8 +92,12 @@ export default class ValidQuery{
 				this.handleSCOMPARISON(query[key]);
 			}
 		}else {
+			if (typeof query !== "object" && query.length <= 2) {
+				throw new InsightError("There is an empty or invalid AND or OR");
+			}
 			query.forEach((q: any) => {
 				const key = Object.keys(q)[0];
+				this.checkKeys(LOGIC, MCOMPARATOR, key);
 				if (LOGIC.includes(key)) {
 					this.handleLOGIC(q[key], key);
 				} else if (MCOMPARATOR.includes(key)) {
@@ -106,14 +109,17 @@ export default class ValidQuery{
 		}
 	}
 
+
 	private handleMCOMPARATOR(query: any) {
 		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
 		// const mfield = ["courses_avg", "courses_pass", "courses_fail", "courses_audit", "courses_year"];
 		const sfield = ["_dept", "_id", "_instructor", "_title", "_uuid", "_fullname", "_shortname", "_number",
 			"name", "_address", "_type", "_furniture", "_href"];
 		const mfield = ["_avg", "_pass", "_fail", "_audit", "_year", "_lat", "_lon", "_seats"];
-
 		const mkey = Object.keys(query)[0];
+		if (typeof mkey !== typeof  "") {
+			throw new InsightError("INVALID MCOMPARATOR");
+		}
 		const pre = mkey.split("_")[0];
 
 		if (!this.dataset.includes(pre)) {
@@ -123,28 +129,46 @@ export default class ValidQuery{
 			throw new InsightError(`Invalid key ${mkey} in GT`);
 		}
 
-		if (mfield.includes("_" + mkey.split("_")[1]) && typeof query[mkey] !== "number") {
-			throw new InsightError("Invalid type in GT, should be number");
-		} else if (sfield.includes(mkey.split("_")[1]) && (typeof query[mkey] !== "string")) {
-			throw new InsightError("Invalid type in GT, should be string");
+		if (sfield.includes("_" + mkey.split("_")[1]) || typeof query[mkey] !== "number") {
+			throw new InsightError("Invalid type in GT/LT/EQ, should be number");
+		} else {
+			if (this.thisdataset < 0) {
+				this.thisdataset = this.dataset.indexOf(pre);
+			} else {
+				if (this.dataset.indexOf(pre) !== this.thisdataset) {
+					throw new InsightError("duplicate Dataset");
+				}
+			}
 		}
 
 	}
 
 	private handleSCOMPARISON(query: any) {
 		const skey = Object.keys(query)[0];
-
 		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
 		// const mfield = ["courses_avg", "courses_pass", "courses_fail", "courses_audit", "courses_year"];
 		const sfield = ["_dept", "_id", "_instructor", "_title", "_uuid", "_fullname", "_shortname", "_number",
 			"name", "_address", "_type", "_furniture", "_href"];
 		const mfield = ["_avg", "_pass", "_fail", "_audit", "_year", "_lat", "_lon", "_seats"];
-		if (!mfield.includes("_" + skey.split("_")[1]) && !sfield.includes("_" + skey.split("_")[1])) {
-			throw new InsightError(`Invalid key ${skey} in GT`);
+		if (typeof skey !== typeof  "") {
+			throw new InsightError("INVALID SCOMPARATOR");
 		}
+		if (!mfield.includes("_" + skey.split("_")[1]) && !sfield.includes("_" + skey.split("_")[1])) {
+			throw new InsightError(`Invalid key ${skey} in GT/LT/EQ`);
+		}
+		// const pre = skey.split("_")[0];
 		const value = query[skey];
-		if (typeof value !== "string") {
+		if (mfield.includes("_" + skey.split("_")[1]) || typeof query[skey] !== "string") {
 			throw new InsightError("Invalid type in IS, should be string");
+		} else {
+			const pre = skey.split("_")[0];
+			if (this.thisdataset < 0) {
+				this.thisdataset = this.dataset.indexOf(pre);
+			} else {
+				if (this.dataset.indexOf(pre) !== this.thisdataset) {
+					throw new InsightError("duplicate Dataset");
+				}
+			}
 		}
 		// let inputstring = value;
 		// if (inputstring.endsWith("*")) {
@@ -162,4 +186,22 @@ export default class ValidQuery{
 		}
 	}
 
+	private validationSelect(LOGIC: string[], query: any, querykey: any, MCOMPARATOR: any) {
+		// if (Object.keys(query["WHERE"][querykey])[0].split("_")[0]  !== this.thisdataset ) {
+		// 	throw new InsightError("One query can only search in one dataset");
+		// }
+		if (LOGIC.includes(querykey)) {
+			this.handleLOGIC(query["WHERE"][querykey], querykey);
+		} else if (MCOMPARATOR.includes(querykey)) {
+			this.handleMCOMPARATOR(query["WHERE"][querykey]);
+		} else if (querykey === "IS") {
+			this.handleSCOMPARISON(query["WHERE"][querykey]);
+		}
+	}
+
+	private checkKeys(LOGIC: any, MCOMPARATOR: any, key: any) {
+		if (!LOGIC.includes(key) && !MCOMPARATOR.includes(key) && key !== "IS") {
+			throw new InsightError("Invalid filter key: " + key);
+		}
+	}
 }

@@ -36,6 +36,7 @@
 // 		let basic2: string;
 // 		let notCourses: string;
 // 		let rooms: string;
+// 		let skipOne: string;
 // 		before(function() {
 // 			insightFacade = new InsightFacade();
 // 			basic = getFileContent("test/resources/archives/basic.zip");
@@ -47,6 +48,8 @@
 // 			basic2 = getFileContent("test/resources/archives/basic2.zip");
 // 			notCourses = getFileContent("test/resources/archives/notCourses.zip");
 // 			rooms = getFileContent("test/resources/archives/rooms.zip");
+// 			skipOne = getFileContent("test/resources/archives/skipOne.zip");
+
 // 		});
 
 // 		// ID Checking
@@ -129,7 +132,7 @@
 // 				{
 // 					id: "basic",
 // 					kind: InsightDatasetKind.Courses,
-// 					numRows: 1,
+// 					numRows: 2,
 // 				}
 // 			]);
 // 		});
@@ -174,12 +177,12 @@
 // 				{
 // 					id: "basic",
 // 					kind: InsightDatasetKind.Courses,
-// 					numRows: 1,
+// 					numRows: 2,
 // 				},
 // 				{
 // 					id: "basic2",
 // 					kind: InsightDatasetKind.Courses,
-// 					numRows: 2,
+// 					numRows: 4,
 // 				},
 // 				{
 // 					id: "rooms",
@@ -187,14 +190,14 @@
 // 					numRows: 3
 // 				},
 // 				{
-// 					id: "course",
+// 					id: "courses",
 // 					kind: InsightDatasetKind.Courses,
-// 					numRows: undefined
+// 					numRows: 64612
 // 				}
 // 			]);
 // 		});
 
-// 		it("Should have length 2", function() {
+// 		it("Should have length 4", function() {
 // 			const result = insightFacade.listDatasets();
 // 			return expect(result).eventually.to.have.length(4);
 // 		});
@@ -244,58 +247,80 @@
 // 				{
 // 					id: "basic2",
 // 					kind: InsightDatasetKind.Courses,
-// 					numRows: 2,
+// 					numRows: 4,
 // 				}
 // 			]);
 // 		});
 
 // 		// Should be able to re-add without error
 // 		it("Should add a valid dataset", function() {
-// 			const shouldEq = ["basic2", "rooms", "basic3"];
+// 			const shouldEq = ["basic2", "rooms", "courses", "basic3"];
 // 			const result = insightFacade.addDataset("basic3", basic, InsightDatasetKind.Courses);
 // 			return expect(result).eventually.to.deep.equal(shouldEq);
+// 		});
+
+
+// 		it("Should add the following dataset", function() {
+// 			insightFacade.removeDataset("basic2");
+// 			insightFacade.removeDataset("rooms");
+// 			insightFacade.removeDataset("courses");
+// 			insightFacade.removeDataset("basic3");
+// 			const shouldEq = ["skipOne"];
+// 			const result = insightFacade.addDataset("skipOne", skipOne, InsightDatasetKind.Courses);
+// 			return expect(result).eventually.to.deep.equal(shouldEq);
+// 		});
+
+// 		it("Should list only 4 numRows", function() {
+// 			const result = insightFacade.listDatasets();
+// 			return expect(result).eventually.to.deep.include.members([
+// 				{
+// 					id: "skipOne",
+// 					kind: InsightDatasetKind.Courses,
+// 					numRows: 4
+// 				}
+// 			]);
 // 		});
 // 	});
 
 // 		// Reference folder test example
-// 	describe("performQuery", function() {
-// 		let insightFacade: IInsightFacade;
-// 		let all: string;
+// 	// describe("performQuery", function() {
+// 	// 	let insightFacade: IInsightFacade;
+// 	// 	let all: string;
 
-// 		before(function() {
-// 			insightFacade = new InsightFacade();
-// 			all = getFileContent("test/resources/archives/all.zip");
-// 			insightFacade.addDataset("all", all, InsightDatasetKind.Courses);
-// 		});
+// 	// 	before(function() {
+// 	// 		insightFacade = new InsightFacade();
+// 	// 		all = getFileContent("test/resources/archives/all.zip");
+// 	// 		insightFacade.addDataset("all", all, InsightDatasetKind.Courses);
+// 	// 	});
 
-// 		it("Should error if query onto nothing", function () {
-// 			const result = insightFacade.performQuery(fs.readFileSync("test/resources/queries/basicQuery.json"));
-// 			return expect(result).eventually.to.be.rejectedWith(NotFoundError);
-// 		});
+// 	// 	it("Should error if query onto nothing", function () {
+// 	// 		const result = insightFacade.performQuery(fs.readFileSync("test/resources/queries/basicQuery.json"));
+// 	// 		return expect(result).eventually.to.be.rejectedWith(NotFoundError);
+// 	// 	});
 
-// 		function assertResult(expected: Output, actual: any) {
-// 			return expect(actual).eventually.to.deep.equals(expected);
-// 		}
+// 	// 	function assertResult(expected: Output, actual: any) {
+// 	// 		return expect(actual).eventually.to.deep.equals(expected);
+// 	// 	}
 
-// 		function assertError(expected: Error, actual: any) {
-// 			if (expected === "InsightError") {
-// 				return expect(actual).to.be.rejectedWith(InsightError);
-// 			} else if (expected === "NotFoundError") {
-// 				return expect(actual).to.be.rejectedWith(NotFoundError);
-// 			} else {
-// 				return expect(actual).to.be.rejectedWith(ResultTooLargeError);
-// 			}
-// 		}
+// 	// 	function assertError(expected: Error, actual: any) {
+// 	// 		if (expected === "InsightError") {
+// 	// 			return expect(actual).to.be.rejectedWith(InsightError);
+// 	// 		} else if (expected === "NotFoundError") {
+// 	// 			return expect(actual).to.be.rejectedWith(NotFoundError);
+// 	// 		} else {
+// 	// 			return expect(actual).to.be.rejectedWith(ResultTooLargeError);
+// 	// 		}
+// 	// 	}
 
-// 		// Some query examples taken from CPSC310 website
-// 		testFolder<Input, Output, Error>(
-// 			"performQuery tests",
-// 			(input: Input): Output => insightFacade.performQuery(input),
-// 			"./test/resources/queries/",
-// 			{
-// 				assertOnResult: assertResult,
-// 				assertOnError: assertError,
-// 			}
-// 		);
-// 	});
+// 	// 	// Some query examples taken from CPSC310 website
+// 	// 	testFolder<Input, Output, Error>(
+// 	// 		"performQuery tests",
+// 	// 		(input: Input): Output => insightFacade.performQuery(input),
+// 	// 		"./test/resources/queries/",
+// 	// 		{
+// 	// 			assertOnResult: assertResult,
+// 	// 			assertOnError: assertError,
+// 	// 		}
+// 	// 	);
+// 	// });
 // });

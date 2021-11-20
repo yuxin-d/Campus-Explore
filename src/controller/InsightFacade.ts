@@ -43,18 +43,14 @@ export default class InsightFacade implements IInsightFacade {
 					let allKeys = Object.keys(allFiles);
 					numRows = allKeys.length - 1;
 					if (numRows < 1) {
-						return Promise.reject(new InsightError("Invalid Data"));
+						return Promise.reject(new InsightError("Dataset has 0 sections"));
 					}
 					for (const key of allKeys) {
 						if (key.length > 8) {
 							addedCourses.push(allFiles[key].async("string"));
 						}
 					}
-					try {
-						return Promise.resolve(k.readCourses(addedCourses));
-					} catch {
-						return Promise.reject(new InsightError("Could not read"));
-					}
+					return k.readCourses(addedCourses);
 				} else {
 					return this.getBuildingsFromIndex(dataset).then((buildings: any[]) => {
 						return Promise.allSettled(k2.getGets(allBuildings, buildings, shortNames, buildingNames));
@@ -68,7 +64,7 @@ export default class InsightFacade implements IInsightFacade {
 				(success: any) => {
 					return k2.succesful(success, id, kind, success.length, this.dataSets);
 				},
-				function(error: any) {
+				(error: any) => {
 					return Promise.reject(new InsightError(error));
 				}
 			);
@@ -134,6 +130,9 @@ export default class InsightFacade implements IInsightFacade {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery(this.dataSets);
 		if (validQuery.isValidQuery(query)) {
+			if (query.toString() === "{}") {
+				throw new ResultTooLargeError();
+			}
 			let allSections: any = [];
 			allSections = performeQuery.grabDataset(query);
 			// if (performeQuery.kindDetect(query)) {
