@@ -130,6 +130,9 @@ export default class InsightFacade implements IInsightFacade {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery(this.dataSets);
 		if (validQuery.isValidQuery(query)) {
+			if (query.toString() === "{}") {
+				throw new ResultTooLargeError();
+			}
 			let allSections: any = [];
 			allSections = performeQuery.grabDataset(query);
 			// if (performeQuery.kindDetect(query)) {
