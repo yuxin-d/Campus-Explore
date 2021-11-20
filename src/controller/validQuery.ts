@@ -123,10 +123,8 @@ export default class ValidQuery{
 			throw new InsightError(`Invalid key ${mkey} in GT`);
 		}
 
-		if (mfield.includes("_" + mkey.split("_")[1]) && typeof query[mkey] !== "number") {
-			throw new InsightError("Invalid type in GT, should be number");
-		} else if (sfield.includes(mkey.split("_")[1]) && (typeof query[mkey] !== "string")) {
-			throw new InsightError("Invalid type in GT, should be string");
+		if (sfield.includes("_" + mkey.split("_")[1]) || typeof query[mkey] !== "number") {
+			throw new InsightError("Invalid type in GT/LT/EQ, should be number");
 		}
 
 	}
@@ -140,10 +138,10 @@ export default class ValidQuery{
 			"name", "_address", "_type", "_furniture", "_href"];
 		const mfield = ["_avg", "_pass", "_fail", "_audit", "_year", "_lat", "_lon", "_seats"];
 		if (!mfield.includes("_" + skey.split("_")[1]) && !sfield.includes("_" + skey.split("_")[1])) {
-			throw new InsightError(`Invalid key ${skey} in GT`);
+			throw new InsightError(`Invalid key ${skey} in GT/LT/EQ`);
 		}
 		const value = query[skey];
-		if (typeof value !== "string") {
+		if (mfield.includes("_" + skey.split("_")[1]) || typeof query[skey] !== "string") {
 			throw new InsightError("Invalid type in IS, should be string");
 		}
 		// let inputstring = value;
