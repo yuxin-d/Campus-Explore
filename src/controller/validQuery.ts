@@ -32,7 +32,7 @@ export default class ValidQuery{
 	public isValidQuery(query: any): boolean {
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
-		const QUERYKEY = ["WHERE", "OPTIONS"];
+		// const QUERYKEY = ["WHERE", "OPTIONS"];
 		const OPTIONSKEYS = ["COLUMNS", "ORDER"];
 
 		if (!query["WHERE"]) {
@@ -54,13 +54,11 @@ export default class ValidQuery{
 		if (!LOGIC.includes(querykey) && !MCOMPARATOR.includes(querykey) && querykey !== "IS") {
 			throw new InsightError("Invalid filter key: " + querykey);
 		}
-		if (LOGIC.includes(querykey)) {
-			this.handleLOGIC(query["WHERE"][querykey], querykey);
-		} else if (MCOMPARATOR.includes(querykey)) {
-			this.handleMCOMPARATOR(query["WHERE"][querykey]);
-		} else if (querykey === "IS") {
-			this.handleSCOMPARISON(query["WHERE"][querykey]);
+		if (query["WHERE"][querykey] === null || query["WHERE"][querykey] === undefined
+			|| query["WHERE"][querykey].toString().length <= 2) {
+			throw new InsightError("Empty or invalid key-value Object");
 		}
+		this.validationSelect(LOGIC, query, querykey, MCOMPARATOR);
 
 		const options = Object.keys(query["OPTIONS"]);
 		for (let option of options) {
@@ -82,7 +80,6 @@ export default class ValidQuery{
 	private handleLOGIC(query: any | any[], filter: string) {
 		const LOGIC = ["OR", "AND", "NOT"];
 		const MCOMPARATOR = ["LT", "GT", "EQ"];
-
 		if(filter === "NOT") {
 			const key = Object.keys(query)[0];
 			if (LOGIC.includes(key)) {
@@ -93,6 +90,9 @@ export default class ValidQuery{
 				this.handleSCOMPARISON(query[key]);
 			}
 		}else {
+			if (query.length === 0) {
+				throw new InsightError("There is an empty AND or OR");
+			}
 			query.forEach((q: any) => {
 				const key = Object.keys(q)[0];
 				if (LOGIC.includes(key)) {
@@ -105,6 +105,7 @@ export default class ValidQuery{
 			});
 		}
 	}
+
 
 	private handleMCOMPARATOR(query: any) {
 		// const sfield = ["courses_dept", "courses_id", "courses_instructor", "courses_title", "courses_uuid"];
@@ -160,4 +161,13 @@ export default class ValidQuery{
 		}
 	}
 
+	private validationSelect(LOGIC: string[], query: any, querykey: any, MCOMPARATOR: any) {
+		if (LOGIC.includes(querykey)) {
+			this.handleLOGIC(query["WHERE"][querykey], querykey);
+		} else if (MCOMPARATOR.includes(querykey)) {
+			this.handleMCOMPARATOR(query["WHERE"][querykey]);
+		} else if (querykey === "IS") {
+			this.handleSCOMPARISON(query["WHERE"][querykey]);
+		}
+	}
 }
