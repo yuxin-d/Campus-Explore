@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid key type in GT",
+  "title": "invalid_string_GT",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_dept": "cpsc"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

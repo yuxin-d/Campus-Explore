@@ -1,0 +1,20 @@
+{
+
+	"title": "Dataset_simple_query",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"basic_dept": "cpsc"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"basic_dept",
+				"basic_avg"
+			],
+			"ORDER": "basic_avg"
+		}
+	},
+	"errorExpected": false,
+	"with": []
+}
