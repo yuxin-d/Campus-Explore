@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid value type in IS, should be string",
+  "title": "rooms_invalid_number",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "rooms_number": 22
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_number",
+        "rooms_name"
+      ],
+      "ORDER": "rooms_name"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

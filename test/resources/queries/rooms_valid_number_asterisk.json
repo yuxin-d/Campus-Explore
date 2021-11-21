@@ -1,0 +1,244 @@
+{
+  "title": "rooms_valid_number_asterisk",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "rooms_number": "*2"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_number",
+        "rooms_name"
+      ],
+      "ORDER": "rooms_name"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "rooms_number": "112",
+      "rooms_name": "ALRD_112"
+    },
+    {
+      "rooms_number": "232",
+      "rooms_name": "ANGU_232"
+    },
+    {
+      "rooms_number": "292",
+      "rooms_name": "ANGU_292"
+    },
+    {
+      "rooms_number": "332",
+      "rooms_name": "ANGU_332"
+    },
+    {
+      "rooms_number": "432",
+      "rooms_name": "ANGU_432"
+    },
+    {
+      "rooms_number": "202",
+      "rooms_name": "ANSO_202"
+    },
+    {
+      "rooms_number": "142",
+      "rooms_name": "AUDX_142"
+    },
+    {
+      "rooms_number": "A102",
+      "rooms_name": "BUCH_A102"
+    },
+    {
+      "rooms_number": "A202",
+      "rooms_name": "BUCH_A202"
+    },
+    {
+      "rooms_number": "B142",
+      "rooms_name": "BUCH_B142"
+    },
+    {
+      "rooms_number": "B302",
+      "rooms_name": "BUCH_B302"
+    },
+    {
+      "rooms_number": "B312",
+      "rooms_name": "BUCH_B312"
+    },
+    {
+      "rooms_number": "D222",
+      "rooms_name": "BUCH_D222"
+    },
+    {
+      "rooms_number": "D312",
+      "rooms_name": "BUCH_D312"
+    },
+    {
+      "rooms_number": "D322",
+      "rooms_name": "BUCH_D322"
+    },
+    {
+      "rooms_number": "1202",
+      "rooms_name": "CEME_1202"
+    },
+    {
+      "rooms_number": "1212",
+      "rooms_name": "CEME_1212"
+    },
+    {
+      "rooms_number": "102",
+      "rooms_name": "CHBE_102"
+    },
+    {
+      "rooms_number": "1012",
+      "rooms_name": "ESB_1012"
+    },
+    {
+      "rooms_number": "2012",
+      "rooms_name": "ESB_2012"
+    },
+    {
+      "rooms_number": "1002",
+      "rooms_name": "FSC_1002"
+    },
+    {
+      "rooms_number": "1402",
+      "rooms_name": "FSC_1402"
+    },
+    {
+      "rooms_number": "212",
+      "rooms_name": "GEOG_212"
+    },
+    {
+      "rooms_number": "242",
+      "rooms_name": "GEOG_242"
+    },
+    {
+      "rooms_number": "12",
+      "rooms_name": "HEBB_12"
+    },
+    {
+      "rooms_number": "202",
+      "rooms_name": "HENN_202"
+    },
+    {
+      "rooms_number": "302",
+      "rooms_name": "HENN_302"
+    },
+    {
+      "rooms_number": "182",
+      "rooms_name": "IBLC_182"
+    },
+    {
+      "rooms_number": "192",
+      "rooms_name": "IBLC_192"
+    },
+    {
+      "rooms_number": "102",
+      "rooms_name": "LASR_102"
+    },
+    {
+      "rooms_number": "1002",
+      "rooms_name": "LSC_1002"
+    },
+    {
+      "rooms_number": "462",
+      "rooms_name": "LSK_462"
+    },
+    {
+      "rooms_number": "102",
+      "rooms_name": "MATH_102"
+    },
+    {
+      "rooms_number": "202",
+      "rooms_name": "MATH_202"
+    },
+    {
+      "rooms_number": "202",
+      "rooms_name": "MCLD_202"
+    },
+    {
+      "rooms_number": "242",
+      "rooms_name": "MCLD_242"
+    },
+    {
+      "rooms_number": "3002",
+      "rooms_name": "ORCH_3002"
+    },
+    {
+      "rooms_number": "3052",
+      "rooms_name": "ORCH_3052"
+    },
+    {
+      "rooms_number": "3062",
+      "rooms_name": "ORCH_3062"
+    },
+    {
+      "rooms_number": "3072",
+      "rooms_name": "ORCH_3072"
+    },
+    {
+      "rooms_number": "4002",
+      "rooms_name": "ORCH_4002"
+    },
+    {
+      "rooms_number": "4052",
+      "rooms_name": "ORCH_4052"
+    },
+    {
+      "rooms_number": "4062",
+      "rooms_name": "ORCH_4062"
+    },
+    {
+      "rooms_number": "4072",
+      "rooms_name": "ORCH_4072"
+    },
+    {
+      "rooms_number": "1002",
+      "rooms_name": "PCOH_1002"
+    },
+    {
+      "rooms_number": "1302",
+      "rooms_name": "PCOH_1302"
+    },
+    {
+      "rooms_number": "3112",
+      "rooms_name": "PHRM_3112"
+    },
+    {
+      "rooms_number": "3122",
+      "rooms_name": "PHRM_3122"
+    },
+    {
+      "rooms_number": "1022",
+      "rooms_name": "SCRF_1022"
+    },
+    {
+      "rooms_number": "202",
+      "rooms_name": "SCRF_202"
+    },
+    {
+      "rooms_number": "122",
+      "rooms_name": "SOWK_122"
+    },
+    {
+      "rooms_number": "222",
+      "rooms_name": "SOWK_222"
+    },
+    {
+      "rooms_number": "B112",
+      "rooms_name": "SPPH_B112"
+    },
+    {
+      "rooms_number": "122",
+      "rooms_name": "SWNG_122"
+    },
+    {
+      "rooms_number": "222",
+      "rooms_name": "SWNG_222"
+    },
+    {
+      "rooms_number": "2",
+      "rooms_name": "WOOD_2"
+    }
+  ]
+}
