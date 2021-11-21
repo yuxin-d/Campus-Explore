@@ -1,0 +1,113 @@
+{
+  "title": "c2_valid_ORDER_UP",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_title",
+        "overallAvg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "overallAvg"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "overallAvg": {
+            "AVG": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_title": "cor des ed res",
+      "overallAvg": 97.09
+    },
+    {
+      "courses_title": "harmonic anal i",
+      "overallAvg": 97.09
+    },
+    {
+      "courses_title": "diff geometry i",
+      "overallAvg": 97.25
+    },
+    {
+      "courses_title": "eth&profl issues",
+      "overallAvg": 97.33
+    },
+    {
+      "courses_title": "algb geometry i",
+      "overallAvg": 97.48
+    },
+    {
+      "courses_title": "res mthd in educ",
+      "overallAvg": 97.5
+    },
+    {
+      "courses_title": "acad assess schl",
+      "overallAvg": 97.59
+    },
+    {
+      "courses_title": "coll&uni teachng",
+      "overallAvg": 97.67
+    },
+    {
+      "courses_title": "sem in autism",
+      "overallAvg": 97.69
+    },
+    {
+      "courses_title": "assess lrn diffi",
+      "overallAvg": 97.94
+    },
+    {
+      "courses_title": "thesis",
+      "overallAvg": 98
+    },
+    {
+      "courses_title": "career planning",
+      "overallAvg": 98.04
+    },
+    {
+      "courses_title": "fam nrs pract",
+      "overallAvg": 98.2
+    },
+    {
+      "courses_title": "dev el sk df&hrd",
+      "overallAvg": 98.45
+    },
+    {
+      "courses_title": "cl pro prim care",
+      "overallAvg": 98.46
+    },
+    {
+      "courses_title": "educ stds autism",
+      "overallAvg": 98.48
+    },
+    {
+      "courses_title": "multimedia sys",
+      "overallAvg": 98.75
+    },
+    {
+      "courses_title": "work int health",
+      "overallAvg": 98.98
+    },
+    {
+      "courses_title": "algb topology i",
+      "overallAvg": 99.78
+    }
+  ]
+}
