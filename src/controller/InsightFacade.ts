@@ -163,17 +163,18 @@ export default class InsightFacade implements IInsightFacade {
 					let keys = key.keys;
 					if (key.dir) {
 						this.enhancedSort(result, keys, key.dir);
+					} else {
+						// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+						result.sort((a: any, b: any) => {
+							if (a[key] < b[key]) {
+								return -1;
+							} else if (a[key] > b[key]) {
+								return 1;
+							} else {
+								return 0;
+							}
+						});
 					}
-				// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
-					result.sort((a: any, b: any) => {
-						if (a[key] < b[key]){
-							return -1;
-						} else if (a[key] > b[key]) {
-							return 1;
-						} else {
-							return 0;
-						}
-					});
 				}
 				result = Array.from(new Set(result));
 				return Promise.resolve(result);
