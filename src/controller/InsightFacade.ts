@@ -130,7 +130,13 @@ export default class InsightFacade implements IInsightFacade {
 		// try {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery(this.dataSets);
-		if (validQuery.isValidQuery(query)) {
+		let valid = false;
+		try {
+			valid = validQuery.isValidQuery(query);
+		} catch (e) {
+			return Promise.reject(e);
+		}
+		if (valid) {
 			if (query.toString() === "{}") {
 				throw new ResultTooLargeError();
 			}
