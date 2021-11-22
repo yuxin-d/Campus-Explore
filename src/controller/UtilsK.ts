@@ -136,7 +136,28 @@ export function getSeats(td1: any): number {
 
 export function getType(td: any): string {
 	if (td["childNodes"] && td["childNodes"][0]["value"]) {
-		return td["childNodes"][0]["value"].replace(/\W/g, "");
+		let str: string = td["childNodes"][0]["value"];
+		let first: number = 0;
+		let last: number = 0;
+		for (let i = 0; i < str.length; i++) {
+			let ascii: number = str.charCodeAt(i);
+			if ((ascii > 64  && ascii < 91) ||
+			(ascii > 96 && ascii < 123) ||
+			(ascii > 47 && ascii < 58)) {
+				first = i;
+				break;
+			}
+		}
+		for (let i = str.length - 1; i >= 0; i--) {
+			let ascii: number = str.charCodeAt(i);
+			if ((ascii > 64  && ascii < 91) ||
+				(ascii > 96 && ascii < 123) ||
+				(ascii > 47 && ascii < 58)) {
+				last = i;
+				break;
+			}
+		}
+		return str.substring(first, last + 1);
 	}
 	return "";
 }
@@ -271,13 +292,4 @@ export function checkRemoveId(id: string, dataSets: any[]): boolean {
 		return false;
 	}
 	return true;
-}
-
-export function confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number, dataSets: any[]) {
-	let newDataset = {
-		id: id,
-		kind: kind,
-		numRows: numRows
-	};
-	dataSets.push(newDataset); // Add new dataset
 }
