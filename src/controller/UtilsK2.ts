@@ -72,13 +72,19 @@ export function succesful(success: any, id: string, kind: InsightDatasetKind, nu
 	// https://stackoverflow.com/questions/51577849/how-to-save-an-array-of-strings-to-a-json-file-in-javascript
 	// https://stackoverflow.com/questions/12899061/creating-a-file-only-if-it-doesnt-exist-in-node-js
 	let fs = require("fs");
-	fs.writeFile(`./data/${kind === InsightDatasetKind.Courses ? "c" : "r"}${id}.json`, JSON.stringify(success),
-		{flag: "wx"}, function (error: any) {
-			if (error) {
-				return Promise.reject(new InsightError("Could not write"));
-			}
-		});
-	k.confirmAddDataset(id, kind, numRows, dataSets);
+	// fs.writeFile(`./data/${kind === InsightDatasetKind.Courses ? "c" : "r"}${id}.json`, JSON.stringify(success),
+	// 	{flag: "wx"}, function (error: any) {
+	// 		if (error) {
+	// 			return Promise.reject(new InsightError("Could not write"));
+	// 		}
+	// 	});
+	try {
+		fs.writeFileSync(
+			`./data/${kind === InsightDatasetKind.Courses ? "c" : "r"}${id}.json`, JSON.stringify(success));
+		k.confirmAddDataset(id, kind, numRows, dataSets);
+	}catch {
+		return Promise.reject("Failed to write file");
+	}
 	return Promise.resolve(dataSets.map((dataset) => dataset.id));
 }
 
