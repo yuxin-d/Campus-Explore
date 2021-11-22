@@ -1,0 +1,31 @@
+{
+	"title": "SELECT dept, avg WHERE avg > 97",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 99
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"with":
+	[
+		{
+			"courses_avg": 99.19,
+			"courses_dept": "cnps"
+		},
+		{
+			"courses_avg": 99.78,
+			"courses_dept": "math"
+		},
+		{
+			"courses_avg": 99.78,
+			"courses_dept": "math"
+		}
+	]}
