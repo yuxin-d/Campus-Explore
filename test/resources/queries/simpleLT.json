@@ -1,0 +1,31 @@
+{
+	"title": "SELECT dept, avg WHERE avg > 97",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"courses_avg": 1
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"with":
+	[
+		{
+			"courses_avg": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"courses_avg": 0,
+			"courses_dept": "lfs"
+		},
+		{
+			"courses_avg": 0,
+			"courses_dept": "lfs"
+		}
+	]}

@@ -1,4 +1,6 @@
 import * as fs from "fs";
+import InsightFacade from "./InsightFacade";
+import {InsightDatasetKind, InsightError} from "./IInsightFacade";
 
 export default class PerformeQuery{
 	public doMatchingAction(query: any, allSections: any[]): any[] {
@@ -144,21 +146,25 @@ export default class PerformeQuery{
 		return result;
 	}
 
-	public grabDataset(query: any[]) {
+	public grabDataset(query: any[], dataset: any[]) {
 		let id: any = false;
 		let res = [];
 		let str: string = JSON.stringify(query);
 		const files = fs.readdirSync("./data/");
-		files.forEach((x) => {
-			if (str.indexOf(x.split(".")[0].substring(1) + "_")) {
+		dataset.forEach((x) => {
+			if (str.indexOf("\"" + x.id + "_") >= 0) {
 				id = x;
 			}
 		});
 		if (id !== false) {
-			res = JSON.parse(fs.readFileSync("./data/" + id, "utf8"));
+			let type: any = "c";
+			if (id.kind === InsightDatasetKind.Rooms) {
+				type = "r";
+			}
+			res = JSON.parse(fs.readFileSync("./data/" + type + id.id + ".json", "utf8"));
 			return res;
 		} else {
-			return [];
+			throw new InsightError("Dataset not added");
 		}
 	}
 
