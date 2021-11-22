@@ -1,0 +1,180 @@
+{
+  "title": "rooms_valid_name",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "rooms_name": "A*"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_number",
+        "rooms_name"
+      ],
+      "ORDER": "rooms_name"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "rooms_number": "120",
+      "rooms_name": "AERL_120"
+    },
+    {
+      "rooms_number": "105",
+      "rooms_name": "ALRD_105"
+    },
+    {
+      "rooms_number": "112",
+      "rooms_name": "ALRD_112"
+    },
+    {
+      "rooms_number": "113",
+      "rooms_name": "ALRD_113"
+    },
+    {
+      "rooms_number": "121",
+      "rooms_name": "ALRD_121"
+    },
+    {
+      "rooms_number": "B101",
+      "rooms_name": "ALRD_B101"
+    },
+    {
+      "rooms_number": "037",
+      "rooms_name": "ANGU_037"
+    },
+    {
+      "rooms_number": "039",
+      "rooms_name": "ANGU_039"
+    },
+    {
+      "rooms_number": "098",
+      "rooms_name": "ANGU_098"
+    },
+    {
+      "rooms_number": "232",
+      "rooms_name": "ANGU_232"
+    },
+    {
+      "rooms_number": "234",
+      "rooms_name": "ANGU_234"
+    },
+    {
+      "rooms_number": "235",
+      "rooms_name": "ANGU_235"
+    },
+    {
+      "rooms_number": "237",
+      "rooms_name": "ANGU_237"
+    },
+    {
+      "rooms_number": "241",
+      "rooms_name": "ANGU_241"
+    },
+    {
+      "rooms_number": "243",
+      "rooms_name": "ANGU_243"
+    },
+    {
+      "rooms_number": "254",
+      "rooms_name": "ANGU_254"
+    },
+    {
+      "rooms_number": "291",
+      "rooms_name": "ANGU_291"
+    },
+    {
+      "rooms_number": "292",
+      "rooms_name": "ANGU_292"
+    },
+    {
+      "rooms_number": "293",
+      "rooms_name": "ANGU_293"
+    },
+    {
+      "rooms_number": "295",
+      "rooms_name": "ANGU_295"
+    },
+    {
+      "rooms_number": "296",
+      "rooms_name": "ANGU_296"
+    },
+    {
+      "rooms_number": "332",
+      "rooms_name": "ANGU_332"
+    },
+    {
+      "rooms_number": "334",
+      "rooms_name": "ANGU_334"
+    },
+    {
+      "rooms_number": "335",
+      "rooms_name": "ANGU_335"
+    },
+    {
+      "rooms_number": "339",
+      "rooms_name": "ANGU_339"
+    },
+    {
+      "rooms_number": "343",
+      "rooms_name": "ANGU_343"
+    },
+    {
+      "rooms_number": "345",
+      "rooms_name": "ANGU_345"
+    },
+    {
+      "rooms_number": "347",
+      "rooms_name": "ANGU_347"
+    },
+    {
+      "rooms_number": "350",
+      "rooms_name": "ANGU_350"
+    },
+    {
+      "rooms_number": "354",
+      "rooms_name": "ANGU_354"
+    },
+    {
+      "rooms_number": "432",
+      "rooms_name": "ANGU_432"
+    },
+    {
+      "rooms_number": "434",
+      "rooms_name": "ANGU_434"
+    },
+    {
+      "rooms_number": "435",
+      "rooms_name": "ANGU_435"
+    },
+    {
+      "rooms_number": "437",
+      "rooms_name": "ANGU_437"
+    },
+    {
+      "rooms_number": "202",
+      "rooms_name": "ANSO_202"
+    },
+    {
+      "rooms_number": "203",
+      "rooms_name": "ANSO_203"
+    },
+    {
+      "rooms_number": "205",
+      "rooms_name": "ANSO_205"
+    },
+    {
+      "rooms_number": "207",
+      "rooms_name": "ANSO_207"
+    },
+    {
+      "rooms_number": "142",
+      "rooms_name": "AUDX_142"
+    },
+    {
+      "rooms_number": "157",
+      "rooms_name": "AUDX_157"
+    }
+  ]
+}

@@ -21,7 +21,12 @@
           "overallAvg": {
             "COUNT": "courses_avg"
           }
-        }
+        },
+		  {
+			  "overallAvg": {
+				  "MAX": "courses_avg"
+			  }
+		  }
       ]
     }
   },

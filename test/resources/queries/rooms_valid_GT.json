@@ -1,0 +1,1476 @@
+{
+  "title": "rooms_valid_GT",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "rooms_lat": 1
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_address",
+        "rooms_lat"
+      ],
+      "ORDER": "rooms_lat"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "2424 Main Mall",
+      "rooms_lat": 49.26044
+    },
+    {
+      "rooms_address": "6108 Thunderbird Boulevard",
+      "rooms_lat": 49.26047
+    },
+    {
+      "rooms_address": "6108 Thunderbird Boulevard",
+      "rooms_lat": 49.26047
+    },
+    {
+      "rooms_address": "6108 Thunderbird Boulevard",
+      "rooms_lat": 49.26047
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "6363 Agronomy Road",
+      "rooms_lat": 49.26048
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "2357 Main Mall",
+      "rooms_lat": 49.26114
+    },
+    {
+      "rooms_address": "6245 Agronomy Road V6T 1Z4",
+      "rooms_lat": 49.26125
+    },
+    {
+      "rooms_address": "6245 Agronomy Road V6T 1Z4",
+      "rooms_lat": 49.26125
+    },
+    {
+      "rooms_address": "6245 Agronomy Road V6T 1Z4",
+      "rooms_lat": 49.26125
+    },
+    {
+      "rooms_address": "6245 Agronomy Road V6T 1Z4",
+      "rooms_lat": 49.26125
+    },
+    {
+      "rooms_address": "6245 Agronomy Road V6T 1Z4",
+      "rooms_lat": 49.26125
+    },
+    {
+      "rooms_address": "6350 Stores Road",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "6350 Stores Road",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "6350 Stores Road",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "2356 Main Mall",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "2356 Main Mall",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "2356 Main Mall",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "2356 Main Mall",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "2356 Main Mall",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "2356 Main Mall",
+      "rooms_lat": 49.26176
+    },
+    {
+      "rooms_address": "2260 West Mall, V6T 1Z4",
+      "rooms_lat": 49.26207
+    },
+    {
+      "rooms_address": "2360 East Mall V6T 1Z3",
+      "rooms_lat": 49.26228
+    },
+    {
+      "rooms_address": "2360 East Mall V6T 1Z3",
+      "rooms_lat": 49.26228
+    },
+    {
+      "rooms_address": "2360 East Mall V6T 1Z3",
+      "rooms_lat": 49.26228
+    },
+    {
+      "rooms_address": "6339 Stores Road",
+      "rooms_lat": 49.26228
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2405 Wesbrook Mall",
+      "rooms_lat": 49.26229
+    },
+    {
+      "rooms_address": "2350 Health Sciences Mall",
+      "rooms_lat": 49.26236
+    },
+    {
+      "rooms_address": "2350 Health Sciences Mall",
+      "rooms_lat": 49.26236
+    },
+    {
+      "rooms_address": "2350 Health Sciences Mall",
+      "rooms_lat": 49.26236
+    },
+    {
+      "rooms_address": "6250 Applied Science Lane",
+      "rooms_lat": 49.26273
+    },
+    {
+      "rooms_address": "6250 Applied Science Lane",
+      "rooms_lat": 49.26273
+    },
+    {
+      "rooms_address": "6250 Applied Science Lane",
+      "rooms_lat": 49.26273
+    },
+    {
+      "rooms_address": "6250 Applied Science Lane",
+      "rooms_lat": 49.26273
+    },
+    {
+      "rooms_address": "6250 Applied Science Lane",
+      "rooms_lat": 49.26273
+    },
+    {
+      "rooms_address": "6250 Applied Science Lane",
+      "rooms_lat": 49.26273
+    },
+    {
+      "rooms_address": "2207 Main Mall",
+      "rooms_lat": 49.26274
+    },
+    {
+      "rooms_address": "2207 Main Mall",
+      "rooms_lat": 49.26274
+    },
+    {
+      "rooms_address": "2207 Main Mall",
+      "rooms_lat": 49.26274
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2175 West Mall V6T 1Z4",
+      "rooms_lat": 49.26293
+    },
+    {
+      "rooms_address": "2202 Main Mall",
+      "rooms_lat": 49.26372
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "2125 Main Mall",
+      "rooms_lat": 49.26398
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "6445 University Boulevard",
+      "rooms_lat": 49.264
+    },
+    {
+      "rooms_address": "2205 East Mall",
+      "rooms_lat": 49.26414
+    },
+    {
+      "rooms_address": "2205 East Mall",
+      "rooms_lat": 49.26414
+    },
+    {
+      "rooms_address": "2205 East Mall",
+      "rooms_lat": 49.26414
+    },
+    {
+      "rooms_address": "2205 East Mall",
+      "rooms_lat": 49.26414
+    },
+    {
+      "rooms_address": "2205 East Mall",
+      "rooms_lat": 49.26414
+    },
+    {
+      "rooms_address": "2205 East Mall",
+      "rooms_lat": 49.26414
+    },
+    {
+      "rooms_address": "2206 East Mall",
+      "rooms_lat": 49.2642
+    },
+    {
+      "rooms_address": "2206 East Mall",
+      "rooms_lat": 49.2642
+    },
+    {
+      "rooms_address": "2206 East Mall",
+      "rooms_lat": 49.2642
+    },
+    {
+      "rooms_address": "2206 East Mall",
+      "rooms_lat": 49.2642
+    },
+    {
+      "rooms_address": "2206 East Mall",
+      "rooms_lat": 49.2642
+    },
+    {
+      "rooms_address": "2206 East Mall",
+      "rooms_lat": 49.2642
+    },
+    {
+      "rooms_address": "2080 West Mall",
+      "rooms_lat": 49.2643
+    },
+    {
+      "rooms_address": "2080 West Mall",
+      "rooms_lat": 49.2643
+    },
+    {
+      "rooms_address": "2080 West Mall",
+      "rooms_lat": 49.2643
+    },
+    {
+      "rooms_address": "2080 West Mall",
+      "rooms_lat": 49.2643
+    },
+    {
+      "rooms_address": "2080 West Mall",
+      "rooms_lat": 49.2643
+    },
+    {
+      "rooms_address": "2080 West Mall",
+      "rooms_lat": 49.2643
+    },
+    {
+      "rooms_address": "2080 West Mall",
+      "rooms_lat": 49.2643
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "2194 Health Sciences Mall",
+      "rooms_lat": 49.26478
+    },
+    {
+      "rooms_address": "6270 University Boulevard",
+      "rooms_lat": 49.26479
+    },
+    {
+      "rooms_address": "6270 University Boulevard",
+      "rooms_lat": 49.26479
+    },
+    {
+      "rooms_address": "6270 University Boulevard",
+      "rooms_lat": 49.26479
+    },
+    {
+      "rooms_address": "6270 University Boulevard",
+      "rooms_lat": 49.26479
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "2053 Main Mall",
+      "rooms_lat": 49.26486
+    },
+    {
+      "rooms_address": "6174 University Boulevard",
+      "rooms_lat": 49.26517
+    },
+    {
+      "rooms_address": "6174 University Boulevard",
+      "rooms_lat": 49.26517
+    },
+    {
+      "rooms_address": "2177 Wesbrook Mall V6T 1Z3",
+      "rooms_lat": 49.26541
+    },
+    {
+      "rooms_address": "6356 Agricultural Road",
+      "rooms_lat": 49.26545
+    },
+    {
+      "rooms_address": "6356 Agricultural Road",
+      "rooms_lat": 49.26545
+    },
+    {
+      "rooms_address": "6356 Agricultural Road",
+      "rooms_lat": 49.26545
+    },
+    {
+      "rooms_address": "6356 Agricultural Road",
+      "rooms_lat": 49.26545
+    },
+    {
+      "rooms_address": "2036 Main Mall",
+      "rooms_lat": 49.2659
+    },
+    {
+      "rooms_address": "2036 Main Mall",
+      "rooms_lat": 49.2659
+    },
+    {
+      "rooms_address": "2036 Main Mall",
+      "rooms_lat": 49.2659
+    },
+    {
+      "rooms_address": "2036 Main Mall",
+      "rooms_lat": 49.2659
+    },
+    {
+      "rooms_address": "2036 Main Mall",
+      "rooms_lat": 49.2659
+    },
+    {
+      "rooms_address": "2036 Main Mall",
+      "rooms_lat": 49.2659
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1984 West Mall",
+      "rooms_lat": 49.26605
+    },
+    {
+      "rooms_address": "1986 Mathematics Road",
+      "rooms_lat": 49.266089
+    },
+    {
+      "rooms_address": "2045 East Mall",
+      "rooms_lat": 49.2661
+    },
+    {
+      "rooms_address": "2045 East Mall",
+      "rooms_lat": 49.2661
+    },
+    {
+      "rooms_address": "2045 East Mall",
+      "rooms_lat": 49.2661
+    },
+    {
+      "rooms_address": "2045 East Mall",
+      "rooms_lat": 49.2661
+    },
+    {
+      "rooms_address": "6224 Agricultural Road",
+      "rooms_lat": 49.26627
+    },
+    {
+      "rooms_address": "6224 Agricultural Road",
+      "rooms_lat": 49.26627
+    },
+    {
+      "rooms_address": "6224 Agricultural Road",
+      "rooms_lat": 49.26627
+    },
+    {
+      "rooms_address": "6224 Agricultural Road",
+      "rooms_lat": 49.26627
+    },
+    {
+      "rooms_address": "6224 Agricultural Road",
+      "rooms_lat": 49.26627
+    },
+    {
+      "rooms_address": "6224 Agricultural Road",
+      "rooms_lat": 49.26627
+    },
+    {
+      "rooms_address": "6081 University Blvd",
+      "rooms_lat": 49.2663
+    },
+    {
+      "rooms_address": "6081 University Blvd",
+      "rooms_lat": 49.2663
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1984 Mathematics Road",
+      "rooms_lat": 49.266463
+    },
+    {
+      "rooms_address": "1924 West Mall",
+      "rooms_lat": 49.2666
+    },
+    {
+      "rooms_address": "1924 West Mall",
+      "rooms_lat": 49.2666
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "1961 East Mall V6T 1Z1",
+      "rooms_lat": 49.26766
+    },
+    {
+      "rooms_address": "6333 Memorial Road",
+      "rooms_lat": 49.26767
+    },
+    {
+      "rooms_address": "6333 Memorial Road",
+      "rooms_lat": 49.26767
+    },
+    {
+      "rooms_address": "6333 Memorial Road",
+      "rooms_lat": 49.26767
+    },
+    {
+      "rooms_address": "6333 Memorial Road",
+      "rooms_lat": 49.26767
+    },
+    {
+      "rooms_address": "6333 Memorial Road",
+      "rooms_lat": 49.26767
+    },
+    {
+      "rooms_address": "6333 Memorial Road",
+      "rooms_lat": 49.26767
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "1866 Main Mall",
+      "rooms_lat": 49.26826
+    },
+    {
+      "rooms_address": "6000 Student Union Blvd",
+      "rooms_lat": 49.2683
+    },
+    {
+      "rooms_address": "6000 Student Union Blvd",
+      "rooms_lat": 49.2683
+    },
+    {
+      "rooms_address": "6000 Student Union Blvd",
+      "rooms_lat": 49.2683
+    },
+    {
+      "rooms_address": "1874 East Mall",
+      "rooms_lat": 49.26862
+    },
+    {
+      "rooms_address": "1874 East Mall",
+      "rooms_lat": 49.26862
+    },
+    {
+      "rooms_address": "6331 Crescent Road V6T 1Z1",
+      "rooms_lat": 49.26867
+    },
+    {
+      "rooms_address": "6331 Crescent Road V6T 1Z1",
+      "rooms_lat": 49.26867
+    },
+    {
+      "rooms_address": "6331 Crescent Road V6T 1Z1",
+      "rooms_lat": 49.26867
+    },
+    {
+      "rooms_address": "6331 Crescent Road V6T 1Z1",
+      "rooms_lat": 49.26867
+    },
+    {
+      "rooms_address": "6303 North West Marine Drive",
+      "rooms_lat": 49.26958
+    },
+    {
+      "rooms_address": "6303 North West Marine Drive",
+      "rooms_lat": 49.26958
+    },
+    {
+      "rooms_address": "6303 North West Marine Drive",
+      "rooms_lat": 49.26958
+    },
+    {
+      "rooms_address": "6303 North West Marine Drive",
+      "rooms_lat": 49.26958
+    },
+    {
+      "rooms_address": "1822 East Mall",
+      "rooms_lat": 49.2699
+    },
+    {
+      "rooms_address": "1822 East Mall",
+      "rooms_lat": 49.2699
+    },
+    {
+      "rooms_address": "1822 East Mall",
+      "rooms_lat": 49.2699
+    },
+    {
+      "rooms_address": "1822 East Mall",
+      "rooms_lat": 49.2699
+    },
+    {
+      "rooms_address": "1822 East Mall",
+      "rooms_lat": 49.2699
+    },
+    {
+      "rooms_address": "6000 Iona Drive",
+      "rooms_lat": 49.27106
+    },
+    {
+      "rooms_address": "6000 Iona Drive",
+      "rooms_lat": 49.27106
+    }
+  ]
+}
