@@ -160,6 +160,7 @@ export default class InsightFacade implements IInsightFacade {
 				}
 				if ("ORDER" in options) {
 					let key = options.ORDER;
+
 				// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
 					result.sort((a: any, b: any) => {
 						if (a[key] < b[key]){
@@ -179,6 +180,27 @@ export default class InsightFacade implements IInsightFacade {
 		} catch (e) {
 			return Promise.reject(e);
 		}
+	}
+
+	public enhancedSort = (items: any[], keys = [], dir = "UP") => {
+		items.sort((a, b) => {
+			for (let key of keys) {
+				if (a[key] > b[key]) {
+					if (dir === "UP") {
+						return 1;
+					} else if (dir === "DOWN") {
+						return -1;
+					}
+				} else if (a[key] < b[key]) {
+					if (dir === "UP") {
+						return -1;
+					} else if (dir === "DOWN") {
+						return 1;
+					}
+				}
+			}
+			return 0;
+		});
 	}
 
 	private performTrans(query: any, result: any) {
