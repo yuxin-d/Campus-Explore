@@ -160,7 +160,10 @@ export default class InsightFacade implements IInsightFacade {
 				}
 				if ("ORDER" in options) {
 					let key = options.ORDER;
-
+					let keys = key.keys;
+					if (key.dir) {
+						this.enhancedSort(result, keys, key.dir);
+					}
 				// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
 					result.sort((a: any, b: any) => {
 						if (a[key] < b[key]){
@@ -197,6 +200,8 @@ export default class InsightFacade implements IInsightFacade {
 					} else if (dir === "DOWN") {
 						return 1;
 					}
+				} else {
+					continue;
 				}
 			}
 			return 0;
