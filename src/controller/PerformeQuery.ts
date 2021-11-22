@@ -4,6 +4,9 @@ import {InsightDatasetKind, InsightError} from "./IInsightFacade";
 
 export default class PerformeQuery{
 	public doMatchingAction(query: any, allSections: any[]): any[] {
+		if (JSON.stringify(query) === "{}") {
+			return allSections;
+		}
 		let subResults: any[] = [];
 		let queryKey: any = Object.keys(query)[0]; // do recursion for this function
 		switch (queryKey) {

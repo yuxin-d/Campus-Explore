@@ -144,9 +144,6 @@ export default class InsightFacade implements IInsightFacade {
 				let result = performeQuery.doMatchingAction(query.WHERE, allSections);
 			// result = performeQuery.removeDupLicate(result);
 				let options = query.OPTIONS;
-				if (result.length > 5000) {
-					return Promise.reject(new ResultTooLargeError());
-				}
 			// GROUP_BY
 			// 1. get an array for each group {value1: [x1,x2,x3...], value2: [x4,x5,x6], ...}
 			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
@@ -176,7 +173,9 @@ export default class InsightFacade implements IInsightFacade {
 						});
 					}
 				}
-				result = Array.from(new Set(result));
+				if (result.length > 5000) {
+					return Promise.reject(new ResultTooLargeError());
+				}
 				return Promise.resolve(result);
 			} else {
 				return Promise.reject("the query is not valid");
