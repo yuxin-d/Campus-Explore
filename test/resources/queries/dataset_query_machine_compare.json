@@ -1,20 +1,10 @@
 {
-	"title": "valid_GT",
+	"title": "dataset_query_machine_compare",
 	"input": {
 		"WHERE": {
-			"AND": [
-				{
-					"GT": {
-						"courses_avg": 50
-					}
-				},
-				{
-					"LT": {
-						"courses_avg": 40
-					}
-				}
-			]
-
+			"IS": {
+				"courses_dept": "cpsc"
+			}
 		},
 		"OPTIONS": {
 			"COLUMNS": [
@@ -25,5 +15,5 @@
 		}
 	},
 	"errorExpected": false,
-	"with": []
+	"with":[]
 }

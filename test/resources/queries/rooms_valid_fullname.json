@@ -1,0 +1,60 @@
+{
+  "title": "rooms_valid_fullname",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "rooms_fullname": "Forest Sciences Centre"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_fullname",
+        "rooms_name"
+      ],
+      "ORDER": "rooms_name"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1001"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1002"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1003"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1005"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1221"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1402"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1611"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1613"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1615"
+    },
+    {
+      "rooms_fullname": "Forest Sciences Centre",
+      "rooms_name": "FSC_1617"
+    }
+  ]
+}
