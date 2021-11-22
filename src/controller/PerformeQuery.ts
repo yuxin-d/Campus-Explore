@@ -8,6 +8,9 @@ export default class PerformeQuery{
 			return allSections;
 		}
 		let subResults: any[] = [];
+		if (JSON.stringify(query) === "{}") {
+			return allSections;
+		}
 		let queryKey: any = Object.keys(query)[0]; // do recursion for this function
 		switch (queryKey) {
 			case "OR":

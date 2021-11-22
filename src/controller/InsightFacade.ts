@@ -131,12 +131,12 @@ export default class InsightFacade implements IInsightFacade {
 		let performeQuery = new PerformeQuery();
 		let validQuery = new ValidQuery(this.dataSets);
 		let valid = false;
-		// try {
-		// 	valid = validQuery.isValidQuery(query);
-		// } catch (e) {
-		// 	return Promise.reject(e);
-		// }
-		if (validQuery.isValidQuery(query)) {
+		try {
+			valid = validQuery.isValidQuery(query);
+		} catch (e) {
+			return Promise.reject(e);
+		}
+		if (valid) {
 			if (query.toString() === "{}") {
 				throw new ResultTooLargeError();
 			}
@@ -150,6 +150,9 @@ export default class InsightFacade implements IInsightFacade {
 			let result = performeQuery.doMatchingAction(query.WHERE, allSections);
 			// result = performeQuery.removeDupLicate(result);
 			let options = query.OPTIONS;
+			if (result.length > 5000) {
+				return Promise.reject(new ResultTooLargeError());
+			}
 			// GROUP_BY
 			// 1. get an array for each group {value1: [x1,x2,x3...], value2: [x4,x5,x6], ...}
 			// 2. Create an element for each array [x1,x2,x3...] => {"key": value1, agg: xxx}
@@ -163,28 +166,17 @@ export default class InsightFacade implements IInsightFacade {
 			}
 			if ("ORDER" in options) {
 				let key = options.ORDER;
-				let keys = key.keys;
-				if (key.dir) {
-					this.enhancedSort(result, keys, key.dir);
-				} else {
-					// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
-					result.sort((a: any, b: any) => {
-						if (a[key] < b[key]) {
-							return -1;
-						} else if (a[key] > b[key]) {
-							return 1;
-						} else {
-							return 0;
-						}
-					});
-				}
+				// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+				result.sort((a: any, b: any) => {
+					if (a[key] < b[key]){
+						return -1;
+					} else if (a[key] > b[key]) {
+						return 1;
+					} else {
+						return 0;
+					}
+				});
 			}
-			if (result.length > 5000) {
-				return Promise.reject(new ResultTooLargeError());
-			}
-				return Promise.resolve(result);
-			} else {
-				return Promise.reject("the query is not valid");
 			result = Array.from(new Set(result));
 			return Promise.resolve(result);
 		} else {
@@ -193,29 +185,6 @@ export default class InsightFacade implements IInsightFacade {
 		// } catch (e) {
 		// 	return Promise.reject(e);
 		// }
-	}
-
-	public enhancedSort = (items: any[], keys = [], dir = "UP") => {
-		items.sort((a, b) => {
-			for (let key of keys) {
-				if (a[key] > b[key]) {
-					if (dir === "UP") {
-						return 1;
-					} else if (dir === "DOWN") {
-						return -1;
-					}
-				} else if (a[key] < b[key]) {
-					if (dir === "UP") {
-						return -1;
-					} else if (dir === "DOWN") {
-						return 1;
-					}
-				} else {
-					continue;
-				}
-			}
-			return 0;
-		});
 	}
 
 	private performTrans(query: any, result: any) {
