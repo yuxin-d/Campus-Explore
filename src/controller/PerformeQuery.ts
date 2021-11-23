@@ -35,12 +35,16 @@ export default class PerformeQuery{
 	private orHelperFn(arrayNew: any[]): any[] {
 		let orResult: any[] = [];
 		for (let subArray of arrayNew) {
-			for (let element of subArray) {
-				if (orResult.indexOf(element) === -1) {
-					orResult.push(element);
-				}
-			}
+			// let subAr = subArray.map((x: any) => JSON.stringify(x));
+			orResult = orResult.concat(subArray);
+			// for (let element of subArray) {
+			// 	if (orResult.indexOf(element) === -1) {
+			// 		orResult.push(element);
+			// 	}
+			// }
 		}
+		orResult = Array.from(new Set(orResult));
+		// orResult.map((x) => JSON.parse(x));
 		return orResult;
 	}
 
