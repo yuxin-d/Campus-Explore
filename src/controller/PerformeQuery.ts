@@ -52,20 +52,27 @@ export default class PerformeQuery{
 		if (arrayNew.length === 0) {
 			return [];
 		}
-		let andResult: any[] = [];
-		let domain = arrayNew[0];
-		for (let element of domain) {
-			let isExistInAllArray = true;
-			for (let subArr of arrayNew) {
-				if (subArr.indexOf(element) === -1) {
-					isExistInAllArray = false;
-					break;
-				}
-			}
-			if (isExistInAllArray) {
-				andResult.push(element);
-			}
+		let andResult: any[] = arrayNew[0];
+		for (let i = 1; i < arrayNew.length; i++) {
+			andResult = andResult.filter((x) => {
+				return arrayNew[i].indexOf(x) !== -1;
+			});
 		}
+		return andResult;
+
+		// let domain = arrayNew[0];
+		// for (let element of domain) {
+		// 	let isExistInAllArray = true;
+		// 	for (let subArr of arrayNew) {
+		// 		if (subArr.indexOf(element) === -1) {
+		// 			isExistInAllArray = false;
+		// 			break;
+		// 		}
+		// 	}
+		// 	if (isExistInAllArray) {
+		// 		andResult.push(element);
+		// 	}
+		// }
 		return andResult;
 	}
 
