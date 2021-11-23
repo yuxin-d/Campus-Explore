@@ -48,9 +48,6 @@ export default class ValidQuery{
 				addon.push(keys[0]);
 			});
 		}
-//		if (cols === null || cols === undefined || cols.length < 1) {
-//			throw new InsightError("Invalid or empty column");
-	//	}
 		cols.forEach((element: string) => {
 			if (!addon.includes(element)) {
 				throw new InsightError("Keys in COLUMNS must be in GROUP or APPLY when TRANSFORMATIONS is present");
@@ -89,7 +86,6 @@ export default class ValidQuery{
 			throw new InsightError("Apply duplicate key " + keys[0]);
 		}
 		this.set.push(keys[0]);
-		// console.log("apply" ,this.set);
 		const applyObject = item[keys[0]];
 		let applyItems: Array<[string, string]> = Object.entries(applyObject);
 		if (applyItems.length === 0) {
@@ -226,6 +222,9 @@ export default class ValidQuery{
 	}
 
 	private handleMCOMPARATOR(query: any) {
+		if (typeof query !== "object") {
+			throw new InsightError("Invalid Object in query-M");
+		}
 		const mkey = Object.keys(query)[0];
 		if (!mkey) {
 			throw new InsightError(`${mkey} should only have 1 key, has 0`);
@@ -236,18 +235,17 @@ export default class ValidQuery{
 		if (!this.validateKey(mkey)) {
 			throw new InsightError(`Invalid key ${mkey} in GT`);
 		}
-//		if (!mfield.includes("_" + mkey.split("_")[1]) && !sfield.includes("_" + mkey.split("_")[1])) {
-//			throw new InsightError(`Invalid key ${mkey} in GT`);
-//		}
 		if (sfield.includes("_" + mkey.split("_")[1]) || typeof query[mkey] !== "number") {
 			throw new InsightError("Invalid type in GT/LT/EQ, should be number");
 		} else {
-			const pre = mkey.split("_")[0];
 			this.datasetCheck(mkey);
 		}
 	}
 
 	private handleSCOMPARISON(query: any) {
+		if (typeof query !== "object") {
+			throw new InsightError("Invalid Object in query-M");
+		}
 		const skey = Object.keys(query)[0];
 		if (!this.validateKey(skey)) {
 			throw new InsightError(`Invalid key ${skey} in IS`);

@@ -81,7 +81,7 @@ export function succesful(success: any, id: string, kind: InsightDatasetKind, nu
 	try {
 		fs.writeFileSync(
 			`./data/${kind === InsightDatasetKind.Courses ? "c" : "r"}${id}.json`, JSON.stringify(success));
-		k.confirmAddDataset(id, kind, numRows, dataSets);
+		confirmAddDataset(id, kind, numRows, dataSets);
 	}catch {
 		return Promise.reject("Failed to write file");
 	}
@@ -204,4 +204,13 @@ export function MIN(applyMethod: string, newData: any[], trueColumn: any, newRes
 		}
 		newResultItem[newColumn] = mini;
 	}
+}
+
+export function confirmAddDataset(id: string, kind: InsightDatasetKind, numRows: number, dataSets: any[]) {
+	let newDataset = {
+		id: id,
+		kind: kind,
+		numRows: numRows
+	};
+	dataSets.push(newDataset); // Add new dataset
 }
