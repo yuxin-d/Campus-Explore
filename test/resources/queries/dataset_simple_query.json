@@ -15,6 +15,6 @@
 			"ORDER": "basic_avg"
 		}
 	},
-	"errorExpected": false,
-	"with": []
+	"errorExpected": true,
+	"with": "InsightError"
 }

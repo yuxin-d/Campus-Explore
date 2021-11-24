@@ -157,6 +157,9 @@ export function getType(td: any): string {
 				break;
 			}
 		}
+		if (first === 0) {
+			return "";
+		}
 		return str.substring(first, last + 1);
 	}
 	return "";
