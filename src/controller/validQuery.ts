@@ -124,7 +124,7 @@ export default class ValidQuery{
 	}
 
 	public isValidQuery(query: any): boolean {
-		if (!query["WHERE"] || !query["OPTIONS"]) {
+		if (!query["WHERE"] || !query["OPTIONS"] || Object.keys(query.WHERE).length > 1) {
 			throw new InsightError("MISSING WHERE/OPTIONS");
 		}
 		if (!query["OPTIONS"]["COLUMNS"]) {
@@ -204,7 +204,7 @@ export default class ValidQuery{
 				this.handleSCOMPARISON(query[key]);
 			}
 		} else {
-			if (typeof query !== "object" && query.length <= 2) {
+			if ((!Array.isArray(query)) || query.length < 1) {
 				throw new InsightError("There is an empty or invalid AND or OR");
 			}
 			query.forEach((q: any) => {
@@ -222,7 +222,7 @@ export default class ValidQuery{
 	}
 
 	private handleMCOMPARATOR(query: any) {
-		if (typeof query !== "object") {
+		if (typeof query !== "object" || Object.keys(query).length !== 1) {
 			throw new InsightError("Invalid Object in query-M");
 		}
 		const mkey = Object.keys(query)[0];
@@ -243,7 +243,7 @@ export default class ValidQuery{
 	}
 
 	private handleSCOMPARISON(query: any) {
-		if (typeof query !== "object") {
+		if (typeof query !== "object" || Object.keys(query).length !== 1) {
 			throw new InsightError("Invalid Object in query-M");
 		}
 		const skey = Object.keys(query)[0];
