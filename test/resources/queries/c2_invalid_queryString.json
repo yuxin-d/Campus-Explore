@@ -1,0 +1,33 @@
+{
+	"errorMsg": "Invalid string key",
+	"title": "Should be false",
+	"input":{
+	"WHERE":{
+		"AND":[
+			{
+				"LT":{
+					"rooms_seats":20
+				}
+			},
+			{
+				"IS":{
+					"rooms_furniture":"*Tables*"
+				}
+			}
+		]
+	},
+	"OPTIONS":{
+		"COLUMNS":[
+			"maxSeats",
+			"rooms_shortname"
+		],
+		"ORDER":{
+			"keys":[
+				"maxSeats"
+			]
+		}
+	}
+},
+	"errorExpected": true,
+	"with": "InsightError"
+}
